@@ -1,0 +1,86 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+html{
+  font-size: 10px;
+  menu{
+    aside{
+      display: block;
+      height: 100%;
+      ul{
+      }
+    }
+  }
+  .header{
+    .container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #33CCCC;
+    box-shadow: 0 3px 0 0 rgba(0,0,0,.1);
+    z-index: 100;
+    &_indexlink{
+      float: left;
+      font-size: 3rem;
+    }
+    &_loginlink{
+      float: right;
+      font-size: 1.5rem;
+    }
+    }
+  }
+}
+
+
+.slidemenu{
+  float: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #f75586;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 78px;
+  z-index: 99;
+  &_nav{
+    border-top: 1px solid #FFF;
+    line-height: 5rem;
+    text-align: center;
+    &_icon{
+      color: #FFF;
+    }
+    &_txt{
+      display: block;
+      font-size: 1rem;
+      color: #FFF;
+    }
+  }
+  &_nav:first_child{
+    border-top: none;
+  }
+}
+
+.slidemenu_contents{
+  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
+  visibility: hidden;
+  height: auto;
+  max-width: 1080px;
+  min-width: 168px;
+}

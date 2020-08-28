@@ -30,6 +30,7 @@ html{
 }
 
 .slidemenu{
+  float: none;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -43,12 +44,15 @@ html{
   &_nav{
     border-top: 1px solid #FFF;
     line-height: 5rem;
+    text-align: center;
     &_icon{
-
+      color: #FFF;
     }
     &_txt{
       display: block;
       font-size: 1rem;
+      color: #FFF;
+     
     }
   }
 }

@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+html{
+  font-size: 10px;
+  menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    aside{
+      display: block;
+      height: 100%;
+      ul{
+        list-style: none;
+      }
+    }
+  }
+}
+
+.slidemenu{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #f75586;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 78px;
+  z-index: 12001;
+  &_nav{
+    border-top: 1px solid #FFF;
+    line-height: 5rem;
+    &_icon{
+
+    }
+    &_txt{
+      display: block;
+      font-size: 1rem;
+    }
+  }
+}

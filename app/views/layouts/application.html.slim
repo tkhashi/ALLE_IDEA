@@ -1,4 +1,10 @@
-doctype html
+<!DOCTYPE html>
+html lang="en"
+  head
+    meta charset="UTF-8"/
+    script src="https://kit.fontawesome.com/0babdef10f.js" crossorigin="anonymous"
+    title ALLE_IDEA
+  body
 html
   head
     title
@@ -8,5 +14,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    h3 ALLE_IDEA
+    =link_to root_path do
+     h3 ALLE_IDEA
+
     = yield

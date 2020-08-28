@@ -14,7 +14,22 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    =link_to root_path do
-     h3 ALLE_IDEA
+    header.header
+      .container
+        nav
+          =link_to root_path do
+          span.container_indexlink
+            | ALLE_IDEA
+          .container_loginlink
+            -if user_signed_in?
+              =link_to destroy_user_session_path
+                |ログアウト
+              =link_to users_last_confirm_path
+                |退会
+            -else
+              =link_to new_user_registration_path
+                |会員登録
+              =link_to new_user_session_path
+                |ログイン
 
     = yield

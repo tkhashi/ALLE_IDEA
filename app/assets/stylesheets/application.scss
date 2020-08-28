@@ -16,18 +16,35 @@
 html{
   font-size: 10px;
   menu{
-    position: absolute;
-    top: 0;
-    left: 0;
     aside{
       display: block;
       height: 100%;
       ul{
-        list-style: none;
       }
     }
   }
+  .header{
+    .container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #33CCCC;
+    box-shadow: 0 3px 0 0 rgba(0,0,0,.1);
+    z-index: 100;
+    &_indexlink{
+      float: left;
+      font-size: 3rem;
+    }
+    &_loginlink{
+      float: right;
+      font-size: 1.5rem;
+    }
+    }
+  }
 }
+
 
 .slidemenu{
   float: none;
@@ -36,11 +53,12 @@ html{
   padding: 0;
   list-style: none;
   background-color: #f75586;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
   position: absolute;
   left: 0;
-  top: 0;
+  top: 50px;
   width: 78px;
-  z-index: 12001;
+  z-index: 99;
   &_nav{
     border-top: 1px solid #FFF;
     line-height: 5rem;
@@ -52,7 +70,9 @@ html{
       display: block;
       font-size: 1rem;
       color: #FFF;
-     
     }
+  }
+  &_nav:first_child{
+    border-top: none;
   }
 }

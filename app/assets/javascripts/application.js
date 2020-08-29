@@ -14,3 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// var elements = document.getElementsByClassName("slidemenu_contents")
+//   elements.onclick = function(event){
+//   this.classList.toggle("is_active")
+// }

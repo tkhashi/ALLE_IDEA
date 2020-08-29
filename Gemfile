@@ -61,4 +61,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'slim'
+#slim導入
+gem 'slim-rails'
+#既存の.erbを.slimに変換($for i in app/views/**/*.erb; do erb2slim $i ${i%erb}slim && rm $i; d)
+gem 'html2slim'
+
+gem 'dotenv-rails'
+
+gem 'pry-byebug', group: :development
+
+gem 'devise'

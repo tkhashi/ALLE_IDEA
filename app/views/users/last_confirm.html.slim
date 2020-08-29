@@ -1,4 +1,11 @@
 h1
   | Users#last_confirm
-p
-  | Find me in app/views/users/last_confirm.html.erb
+
+h3
+  |本当に退会しますか？
+.not_destroy
+=link_to edit_user_path(current_user)
+  |やっぱり退会しない
+.destroy
+=link_to edit_user_path(current_user)
+  |本当に退会する

@@ -71,3 +71,5 @@ gem 'dotenv-rails'
 gem 'pry-byebug', group: :development
 
 gem 'devise'
+
+gem 'jquery-rails'

@@ -15,7 +15,7 @@
  */
 html{
   font-size: 10px;
-  menu{
+  main{
     aside{
       display: block;
       height: 100%;
@@ -77,10 +77,27 @@ html{
   }
 }
 
-.slidemenu_contents{
+#slidemenu_contents{
+  position: absolute;
+  left: 78px;
+  top: 50px;
   box-shadow: 0 0 0 3px rgba(0,0,0,.1);
-  visibility: hidden;
-  height: auto;
+  height:100%;
   max-width: 1080px;
   min-width: 168px;
+  &_detail{
+    height: auto;
+    max-width: 1080px;
+    min-width: 168px;
+  }
+  & .active{
+  background-color: #ccFF00;
+  color: #000000;
+  }
+}
+
+.main{
+  position: absolute;
+  left: 78px;
+  top: 0;
 }

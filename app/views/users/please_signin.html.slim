@@ -1,4 +1,12 @@
 h1
   | Users#please_signin
-p
-  | Find me in app/views/users/please_signin.html.erb
+
+h3
+  |この機能は会員登録が必要です！
+
+.login
+  link_to new_user_session_path
+    |ログイン
+.sign_in
+  link_to new_user_registration
+    |会員登録

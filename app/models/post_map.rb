@@ -1,0 +1,2 @@
+class PostMap < ApplicationRecord
+end

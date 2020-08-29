@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -19,3 +20,20 @@
 //   elements.onclick = function(event){
 //   this.classList.toggle("is_active")
 // }
+var title = "javascriptが使えました";
+alert(title);
+
+
+// $(document).ready(function () {
+//   $('body').html('<h1>Hello jQuery!!</h1>');
+// });
+
+$("#slidemenu_contents[id != "contents-on-map"]").hide();
+
+$("#slidemenu a").on("click", function(event){
+  $("#slidemenu_contents").hide();
+  $("#slidemenu_contents .active").removeClass("active");
+  $(this).addClass("active");
+  $($(this).attr("href")).show();
+  event.preventDefault();
+});

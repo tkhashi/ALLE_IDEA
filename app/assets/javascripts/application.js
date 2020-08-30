@@ -28,7 +28,7 @@ alert(title);
 //   $('body').html('<h1>Hello jQuery!!</h1>');
 // });
 
-$("#slidemenu_contents[id != "contents-on-map"]").hide();
+$('#slidemenu_contents .slidemenu_content[id != "contents-on-map"]').hide();
 
 $("#slidemenu a").on("click", function(event){
   $("#slidemenu_contents").hide();

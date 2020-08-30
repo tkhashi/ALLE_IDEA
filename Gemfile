@@ -67,6 +67,10 @@ gem 'slim-rails'
 gem 'html2slim'
 
 gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
 
 gem 'pry-byebug', group: :development
 

@@ -73,3 +73,6 @@ yarn-debug.log*
 !/storage/.keep
 
 # End of https://www.toptal.com/developers/gitignore/api/rails
+
+#環境変数
+/.env

@@ -24,5 +24,5 @@ User.create!(
   name: "O.asahi"
   password: "oooaaa"
   email: "oooaaagmail.com"
-  profile: "岩手出身CAやってます！毎日チョベグなんですけど〜〜どうなっちゃうわけ~~~~!!!???"
+  profile: "岩手出身CAやってます！毎日チョベリグなんですけど〜〜どうなっちゃうわけ~~~~!!!???"
   is_active: "true"

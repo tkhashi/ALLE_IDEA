@@ -29,35 +29,63 @@ aside.sidebar#sidebar
         |マイマップ
 
   //スライドサイドバーの中身
-  #slidemenu_contents
-    .slidemenu_contents_detail#home
-      p
-      |動画一覧<br>
-      span
-      |皆が見ているコンテンツ
-    .slidemenu_contents_detail#contents-on-map.active
-      p
-      |地図上のコンテンツ一覧
-      span
-      |今地図上に表示されているコンテンツ
-    .slidemenu_contents_detail#posts
-      p
-      |あなたの｢道｣を投稿
-    .slidemenu_contents_detail#favorites
-      p
-      |お気に入りコンテンツ一覧
-    .slidemenu_contents_detail#mymap
-      .name
-        =current_user.name
-        =link_to user_edit_path(current_user.id) do
-        i.fas.fa-cog
-      .post_counts
-        投稿 =@posts.count 件
-        フォロー =current_user.followings 人
-        フォロワー =current_user.followers 人
+  /<ーーサインインしている時ーー>
+  -if user_signed_in?
+    #slidemenu_contents
+      .slidemenu_contents_detail#home
+        p
+        |動画一覧<br>
+        span
+        |皆が見ているコンテンツ
+      .slidemenu_contents_detail#contents-on-map.active
+        p
+        |地図上のコンテンツ一覧
+        span
+        |今地図上に表示されているコンテンツ
+      .slidemenu_contents_detail#posts
+        p
+        |あなたの｢道｣を投稿
+      .slidemenu_contents_detail#favorites
+        p
+        |お気に入りコンテンツ一覧
+      .slidemenu_contents_detail#mymap
+        .name
+          / =current_user.name
+          =link_to user_edit_path(current_user.id) do
+            i.fas.fa-cog
+        .post_counts
+          投稿 =@posts.count 件
+          フォロー =current_user.followings 人
+          フォロワー =current_user.followers 人
 
-      p
-      |マイマップ<br>
-      span
-      |あなたが集めた｢道｣一覧
+        p
+        |マイマップ<br>
+        span
+        |あなたが集めた｢道｣一覧
+  /<ーーサインインしている時ーー>
 
+  /<ーーサインインしていない時ーー>
+  -else
+    #slidemenu_contents
+      .slidemenu_contents_detail#home
+        p
+        |動画一覧<br>
+        span
+        |皆が見ているコンテンツ
+      .slidemenu_contents_detail#contents-on-map.active
+        p
+        |地図上のコンテンツ一覧
+        span
+        |今地図上に表示されているコンテンツ
+      .slidemenu_contents_detail#posts
+        p
+        |あなたの｢道｣を投稿
+      .slidemenu_contents_detail#favorites
+        p
+        |お気に入りコンテンツ一覧
+      .slidemenu_contents_detail#mymap
+        p
+        |マイマップ<br>
+        span
+        |あなたが集めた｢道｣一覧 
+  /<ーーサインインしていない時ーー>

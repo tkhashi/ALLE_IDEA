@@ -77,7 +77,7 @@ html{
   }
 }
 
-#slidemenu_contents{
+.slidemenu_contents_detail{
   position: absolute;
   left: 78px;
   top: 50px;
@@ -85,19 +85,16 @@ html{
   height:100%;
   max-width: 1080px;
   min-width: 168px;
-  &_detail{
-    height: auto;
-    max-width: 1080px;
-    min-width: 168px;
   }
-  & .active{
+  .active{
   background-color: #ccFF00;
   color: #000000;
   }
-}
 
-.main{
-  position: absolute;
-  left: 78px;
-  top: 0;
-}
+  #map_canvas{
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 1200px;
+    height: 100%;
+  }

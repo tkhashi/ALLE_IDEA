@@ -3,6 +3,7 @@ html lang="en"
   head
     meta charset="UTF-8"/
     script src="https://kit.fontawesome.com/0babdef10f.js" crossorigin="anonymous"
+    script src="https://maps.google.com/maps/api/js?key=AIzaSyDWDjyEGK8bqyz9QtpkvhPImNLcGAqcr5c&libraries=drawing"
     title ALLE_IDEA
   body
 html
@@ -13,7 +14,11 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+  body onload="initialize()"
+    p
+      |Google Maps APIを使ったサンプル地図。<br>表示例 東京タワーを座標設定</p>
+    #map_canvas
+
     header.header
       .container
         nav

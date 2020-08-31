@@ -1,5 +1,5 @@
 class PostMap < ApplicationRecord
-  belong_to :post
-  belong_to :map
+  belongs_to :post
+  belongs_to :map
 
 end

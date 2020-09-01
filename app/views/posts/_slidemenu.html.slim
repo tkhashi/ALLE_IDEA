@@ -54,9 +54,15 @@ aside.sidebar#sidebar
           =link_to edit_user_path(current_user.id) do
             i.fas.fa-cog
         .post_counts
-          投稿 =@posts.count 件
-          フォロー =current_user.followings 人
-          フォロワー =current_user.followers 人
+          投稿 
+          =@posts_counts
+          件
+          フォロー 
+          =current_user.followings 
+          人
+          フォロワー 
+          =current_user.followers 
+          人
 
         p
         |マイマップ<br>

@@ -1,4 +1,17 @@
 h1
   | Users#following
-p
-  | Find me in app/views/users/following.html.erb
+
+
+=@user.name<br>
+link_to followings_path(@user.id)
+  =@user.followings.count
+link_to followers_path(@user.id)
+  =@user.followers.count
+
+=@user.follower.each do |follower|
+  follower.name<br>
+  投稿: =follower.post.count<br>
+  フォロー: =follower.followings.count　件<br>
+  フォロワー: =follower.followers.count　件<br>
+  /link_to post_path(follower.id) do
+  / follower.post.image

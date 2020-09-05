@@ -1,14 +1,17 @@
 class PostsController < ApplicationController
   def new
-    post = Post.new
+    @post_new = Post.new
   end
 
   def create
-    post = Post.new
-    if post.save
+    @post_new = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post_new.save
       redirect_to post_path(current_user.id)
     else
-      redirect_to posts_path
+      @posts = Post.all
+      render "index"
+    end
   end
 
   def index
@@ -16,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    post = Post.new
+    @post_new = Post.new
     @posts = Post.all
     @post = Post.find(params[:id])
   end
@@ -24,4 +27,20 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(current_user.id)
+    else
+      @posts = Post.all
+      render "index"
+    end
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:body)
+  end
+
 end

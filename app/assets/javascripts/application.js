@@ -16,12 +16,14 @@
 //= require turbolinks
 //= require_tree .
 
+
 // var elements = document.getElementsByClassName("slidemenu_contents")
 //   elements.onclick = function(event){
 //   this.classList.toggle("is_active")
 // }
-var title = "javascriptが使えました";
-alert(title);
+
+// var title = "javascriptが使えました";
+// alert(title);
 
 
 // $(document).ready(function () {

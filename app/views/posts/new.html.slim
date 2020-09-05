@@ -1,4 +1,6 @@
 h1
   | Posts#new
-p
-  | Find me in app/views/posts/new.html.erb
+  =form_with model: @post_new do |f|
+    =f.label :body, "説明"
+    =f.text_field :body
+    =f.submit "投稿"

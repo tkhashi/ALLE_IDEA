@@ -1,17 +1,28 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  #ホーム
   root 'home#top'
   get 'home/about'
 
-  resources :posts, only: [:index, :show, :create, :update, :destroy]
-    resources :post_commets, only: [:create, :destroy]
-    resource :favorites, only: [:create, :destroy]
-  resources :users, only: [:show, :edit, :update]
-  get 'users/following'
-  get 'users/follower'
+  #devise
+  devise_for :users
+  #ユーザー
+  resources :users, only: [:index, :show, :edit, :update] do
+    #フォローページ
+    get 'followings'
+    get 'followers'
+    #フォロー(リレーションシップ)
+    resources :relationships, only: [:create, :destroy]
+  end
   get 'users/last_confirm'
   get 'users/please_signin'
   get 'users/thanks'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #投稿
+  resources :posts, only: [:new, :index, :show, :create, :update, :destroy] do
+    resources :post_commets, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+  end
+
+
 end

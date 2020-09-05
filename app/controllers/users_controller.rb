@@ -1,9 +1,18 @@
 class UsersController < ApplicationController
+  before_action :set_find, only: [:show]
+  before_action :set_all, only: [:index, :show]
+
+
+  def index
+  end
+
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
+  end
+
+  def update
   end
 
   def following
@@ -20,4 +29,14 @@ class UsersController < ApplicationController
 
   def thanks
   end
+
+
+  private
+    def set_find
+      @user = User.find(params[:id])
+    end
+
+    def set_all
+      @users = User.all
+    end
 end

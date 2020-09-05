@@ -14,7 +14,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header.header
+    header.header.clearfix
       .container
         nav
           =link_to root_path do
@@ -22,7 +22,7 @@ html
               | ALLE_IDEA
           .container_loginlink
             -if user_signed_in?
-              =link_to destroy_user_session_path
+              =link_to destroy_user_session_path, method: :delete
                 |ログアウト
               =link_to users_last_confirm_path
                 |退会

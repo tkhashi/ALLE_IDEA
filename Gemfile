@@ -56,6 +56,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  #consoleでpryが使える
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -66,13 +68,14 @@ gem 'slim-rails'
 #既存の.erbを.slimに変換($for i in app/views/**/*.erb; do erb2slim $i ${i%erb}slim && rm $i; d)
 gem 'html2slim'
 
+#環境変数保存
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
 
-
 gem 'pry-byebug', group: :development
+
 
 gem 'devise'
 

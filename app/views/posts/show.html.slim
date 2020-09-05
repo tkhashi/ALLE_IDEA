@@ -2,7 +2,6 @@ h1
   | Posts#show
 
 =render "slidemenu"
-
 -unless current_user == user
   -if current.following?(user)
     =form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete}) do |f|

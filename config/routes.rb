@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   #投稿
   resources :posts, only: [:new, :index, :show, :create, :update, :destroy] do
-    resources :post_commets, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
 

@@ -1,5 +1,24 @@
-=render "slidemenu"
+/ =render "slidemenu"
 p|これはテストですのでいっぱい描いてください。
--@posts.each do |post|
-  =post.name
-  =post.body
+
+table
+  thead
+    tr
+      th
+      | ユーザーネーム
+      th
+      | 説明
+  -@posts.each do |post|
+    tr
+      td
+        =post.user.name
+      td
+        =post.body
+
+    tr
+      th
+        =post.comments.count
+      | 件のコメント
+      th
+        =post.body
+      | 件のいいね

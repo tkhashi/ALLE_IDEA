@@ -4,14 +4,14 @@ h1
 / =render "posts/slidemenu"
 
 .profile_image
-  =image_tag("no_image.jpg", .profile_image)
+  =image_tag("no-image.jpg")
 .profile_name
   =@user.name
 .profile_edit_icon
   i.fas.fa-cog
 
 .user_post_count
-  =user
+  =@user.posts.count
 .followings_count
   link_to followings_path(@user.id)
     =@user.followings.count
@@ -21,8 +21,10 @@ h1
 
 =@users.each do |user|
   user.name<br>
-  投稿: =user.post.count<br>
-  フォロー: =user.followings.count　件<br>
-  フォロワー: =user.followers.count　件<br>
+  投稿: =user.post.count <br>
+  フォロー: =user.followings.count　
+  件<br>
+  フォロワー: =user.followers.count　
+  件<br>
   /link_to post_path(user.id) do
   / user.post.image

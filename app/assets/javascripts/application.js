@@ -29,16 +29,37 @@
 // $(document).ready(function () {
 //   $('body').html('<h1>Hello jQuery!!</h1>');
 // });
+ $(document).ready(function () {
+  // $("#slidemenu").on("click", function(event){
+  //   console.log(1)
 
-// $('#slidemenu_contents .slidemenu_content[id != "contents-on-map"]').hide();
+  $('#slidemenu_contents .slidemenu_content[id != "contents-on-map"]').hide();
 
-$("#slidemenu a").on("click", function(event){
-  $("#slidemenu_contents").hide();
-  $("#slidemenu_contents .active").removeClass("active");
-  $(this).addClass("active");
-  $($(this).attr("href")).show();
-  event.preventDefault();
+  $("#slidemenu a").on("click", function(event){
+    $("#slidemenu_contents").hide();
+    $("#slidemenu_contents .active").removeClass("active");
+    $(this).addClass("active");
+    $($(this).attr("href")).show();
+    event.preventDefault();
+
+  // $("#slidemenu").on("click", function(event){
+  //   $("#slidemenu_contents").hide();
+  //   $("#slidemenu_contents .active").removeClass("active");
+  //   $(this).addClass("active");
+  //   $($(this).attr("href")).show();
+  //   event.preventDefault();
+  });
 });
+console.log($("#slidemenu"))
+//
+// $("#slidemenu").on("click", function(event){
+//   console.log(1)
+//   $("#slidemenu_contents").hide();
+//   $("#slidemenu_contents .active").removeClass("active");
+//   $(this).addClass("active");
+//   $($(this).attr("href")).show();
+//   event.preventDefault();
+// });
 
 function initialize() {
   var latlng = new google.maps.LatLng(35.658704,139.745408);

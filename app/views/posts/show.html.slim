@@ -1,6 +1,39 @@
 h1
   | Posts#show
 
-=render "slidemenu"
+/ =render "slidemenu"
+
+tr
+  td
+    p
+    |ユーザーネーム #{ @post.user.name }
+  td
+    p
+    |説明 #{ @post.body }
+
+//コメント一覧
+
+ol
+  -@post.comments.each do |c|
+    li.comment
+      .comment_body
+        .comment_avatar
+          =image_tag("no-image.jpg", style: "width: 60px; height: 60px;")
+        .comment_text
+          .comment_user.clearfix
+              .comment_user_name
+                =c.user.name
+              .comment_entry
+                =c.comment
+                -if c.user == current_user
+                  .delete_btn
+                    = link_to  "削除", post_comment_path(c.post_id, c.id), method: :delete
+
+//コメント投稿フォーム
+
+-if user_signed_in?
+  =form_with url: post_comments_path(@post.id), model: [@post, @comment],　method: :post, local: true do |f|
+    =f.text_area :comment, class: "form-control", placeholder: "コメントを書こう!"
+    =f.submit "送信"
 
 div id="map_canvas" style="width:500px; height:300px"

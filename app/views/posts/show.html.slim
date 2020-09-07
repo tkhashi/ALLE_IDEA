@@ -1,6 +1,12 @@
 h1
   | Posts#show
 
+//閲覧用マップ
+/ body onload="initialize()"
+/     p
+/       |Google Maps APIを使ったサンプル地図。<br>表示例 東京タワーを座標設定</p>
+/     #map_canvas
+
 / =render "slidemenu"
 
 tr
@@ -10,6 +16,25 @@ tr
   td
     p
     |説明 #{ @post.body }
+
+
+//いいね
+
+//いいねボタンhtml
+  -if @post.favorited_by?(current_user)
+    li
+      =link_to post_favorites_path(@post), method: :delete do
+        i.fa.fa-heart area-hidden="true" style="color: red;"
+        いいね #{ @post.favorites.count } 
+  -else
+    li
+      =link_to post_favorites_path(@post), method: :post do
+        i.fa.fa-heart area-hidden="true"
+        いいね #{ @post.favorites.count }
+
+//いいねボタン Ajax
+/ #favorites_buttons_#{ @post.id }
+== render  "favorites/favorite", post: @post
 
 //コメント一覧
 
@@ -37,3 +62,5 @@ ol
     =f.submit "送信"
 
 div id="map_canvas" style="width:500px; height:300px"
+
+

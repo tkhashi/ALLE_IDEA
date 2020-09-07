@@ -15,6 +15,26 @@ table
       td
         =post.body
 
+    #favorites_buttons_#{ post.id }
+      == render partial: 'favorites/favorite', locals: { post: post }
+
+    / -if post.favorited_by?(current_user)
+    /   p
+    /     span
+    /       |お気に入り解除:
+    /     |link_to post.favorites.count, post_favorites_path(post.id), method: :delete, remote: true
+    / -else
+    /   p
+    /     span
+    /       |お気に入り登録:
+    /     |link_to post.favorites.count, post_favorites_path(post.id), method: :post, remote: true
+
+
+
+
+    //いいねボタン Ajax
+      #favorites_buttons_#{post.id}
+        render partial: "favorites/favorite", locals: { post: post }
     tr
       th
         =post.comments.count

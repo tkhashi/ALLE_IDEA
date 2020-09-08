@@ -6,7 +6,6 @@ class Post < ApplicationRecord
 
   validates :body, presence: true
 
-  @posts_count = Post.count
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?

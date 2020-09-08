@@ -14,10 +14,8 @@ table
         =post.user.name
       td
         =post.body
-
-    //いいねボタン Ajax
-      #favorites_buttons_#{ post.id }
-        == render partial: 'favorites/favorite', locals: { post: post }
+      td id='favorites_buttons_#{ post.id }'
+         = render partial: 'favorites/favorite', locals: { post: post }
 
     / -if post.favorited_by?(current_user)
     /   p

@@ -9,10 +9,9 @@ html lang="en"
     script src="https://maps.google.com/maps/api/js?key=AIzaSyDWDjyEGK8bqyz9QtpkvhPImNLcGAqcr5c&libraries=drawing"
     title ALLE_IDEA
   //閲覧用マップ
-  body onload="init()"
+  body 
     p
       |Google Maps APIを使ったサンプル地図。<br>表示例 東京タワーを座標設定</p>
-    #map_canvas
 
     header.header
       .container
@@ -22,10 +21,18 @@ html lang="en"
               | ALLE_IDEA
           .container_loginlink
             -if user_signed_in?
-              =link_to destroy_user_session_path, method: :delete
-                |ログアウト
-              =link_to users_last_confirm_path
-                |退会
+              span.user_info
+                |ユーザー名: 
+                =current_user.name
+                |  ユーザーID: 
+                =current_user.id
+              span.user_link
+                .link_logout
+                  =link_to destroy_user_session_path, method: :delete
+                    |ログアウト
+                .link_logout
+                  =link_to users_last_confirm_path
+                    |退会
             -else
               =link_to new_user_registration_path
                 |会員登録

@@ -2,22 +2,11 @@ p
   |user/index
 
 -@users.each do |user|
-  tr
-    td
-      -link_to user_path(user.id)
-    td
-      =user.name
-    td
-      =user.followings.count
-      =user.followers.count
-    td
+  =link_to "user_path(user.id)" do
+    user.avatar
+  |ユーザー名: #{user.name}<br>
+  |投稿: #{user.posts.count}<br>
+  |フォロー: #{user.followings.count} 件<br>
+  |フォロワー: #{user.followers.count} 件<br>
+  = render partial: 'follow_button', locals: { user: user }
 
-      -unless current_user == user
-        -if current_user.following?(user)
-          =form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete}) do |f|
-            =hidden_field_tag :follow_id, user.id
-            =f.submit 'Unfollow', class: 'btn btn-danger btn-block'
-        -else
-          =form_for(current_user.relationships.build) do |f|
-            =hidden_field_tag :follow_id, user.id
-            =f.submit 'Follow', class: 'btn btn-primary btn-block'

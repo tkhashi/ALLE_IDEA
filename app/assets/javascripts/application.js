@@ -36,15 +36,18 @@
   // =========================
   // $("#slidemenu").on("click", function(event){
   //   console.log(1)
-
+  
   // =========================
   //slidemenu用
-  $('#slidemenu_contents .slidemenu_content[id != "contents-on-map"]').hide();
+  $('#slidemenu_contents .slidemenu_contents_detail[id != "home"]').hide();
+     console.log('aaa')
 
   $("#slidemenu a").on("click", function(event){
-    $("#slidemenu_contents").hide();
-    $("#slidemenu_contents .active").removeClass("active");
+    $("#slidemenu_contents .slidemenu_contents_detail").hide();
+    $("#slidemenu .active").removeClass("active");
     $(this).addClass("active");
+     console.log(this)
+
     $($(this).attr("href")).show();
     event.preventDefault();
 
@@ -108,19 +111,19 @@ function init() {
   var latlng = new google.maps.LatLng(39, 138);
   var opts = {
     zoom: 6,
-    maptypeid: google.maps.maptypeid.ROADMAP,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
     center: latlng
   };
 
-  // getelementbyid("map")の"map"は、body内の<div id="map">より
-  var map = new google.maps.map(document.getelementbyid("map"), opts);
+  // getElementById("map")の"map"は、body内の<div id="map">より
+  var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
   //地図クリックイベントの登録
-  google.maps.event.addlistener(map, 'click', mylistener);
+  google.maps.event.addListener(map, 'click', mylistener);
 };
 
 function mylistener(event) {
-  document.getelementbyid("post_lat").value= event.latlng.lat();
-  document.getelementbyid("post_lng").value= event.latlng.lng();
+  document.getElementById("post_lat").value= event.latLng.lat();
+  document.getElementById("post_lng").value= event.latLng.lng();
 };
 
 // //投稿用マップ2
@@ -184,8 +187,8 @@ function mylistener(event) {
 //   //  document.getElementById('id_ido').innerHTML = ido;
 //   //  document.getElementById('id_keido').innerHTML = keido;
 //   //  document.getElementById('id_level').innerHTML = level;
-//     document.getelementbyid("post_lat").value= event.latlng.lat();
-//     document.getelementbyid("post_lng").value= event.latlng.lng();
+//     document.getElementById("post_lat").value= event.latlng.lat();
+//     document.getElementById("post_lng").value= event.latlng.lng();
 //   }
 //  }
  

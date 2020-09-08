@@ -1,0 +1,25 @@
+//fat controllerを防ぐリファクタリング手法
+//モデル側でもサービス側でもいい。
+//これを強いて呼ぶなら
+//#デザインコード#条件分岐
+//ただ、名称が就くようなものではなく、一般的なコードの書き方。
+//gemのコードを参照するとよい。gemコードは簡潔な為読みにくいものが多い。
+//ransack当たりは読みやすくおすすめ。
+  def index
+    @items = get_items(params)
+  end
+
+
+  private
+
+  def get_items(parmas)
+    if params[:item] == 'posts'
+        Post.new(params)
+    elsif params[:item] == 'mymap'
+        MyMap.new(params)
+    elsif params[:item] == 'post_all'
+        Post.all
+        # view
+        # render 'items/post_all'
+    end
+  end

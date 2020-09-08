@@ -1,26 +1,25 @@
 h1
   | Users#edit
 
-
-  .profile_icon
+.profile
+=form_with model: @user do |form|
+  / .profile_icon
     / =current_user.avator
-  .name
-    =current_user.name
-
-  h5
-  |プロフィール写真を変更
-
-  h4
-  |ユーザーネーム
-  =form_with model: current_user.name do |u|
-    =u.text_field :name
-    h4
-    |自己紹介
-    =u.text_field :profile
-
-    h4
-    |メールアドレス
-    =u.text_field :email
-
-    =u.submit
-
+  .field
+    h3
+      |プロフィール写真を変更
+    =form.file_field :avatar
+  .field
+    h3
+      |ユーザーネーム
+    =form.text_field :name
+  .field
+    h3
+      |自己紹介
+    =form.text_field :profile
+  .field
+    h3
+      |メールアドレス
+    =form.text_field :email
+    br
+    =form.submit "更新"

@@ -2,28 +2,28 @@
 aside.sidebar#sidebar
   ul.slidemenu#slidemenu
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#"
+      a.slidemenu_nav_date href="#home"
         i.slidemenu_nav_icon.fas.fa-home.fa-3x
         span.slidemenu_nav_txt
         | ホーム
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#"
+      a.slidemenu_nav_date href="#contents-on-map"
         i.slidemenu_nav_icon.fas.fa-map-marker-alt.fa-3x
         span.slidemenu_nav_txt
         |地図上の<br>
           コンテンツ
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#"
+      a.slidemenu_nav_date href="#posts"
         i.slidemenu_nav_icon.fas.fa-video.fa-3x
         span.slidemenu_nav_txt
         |投稿
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#"
+      a.slidemenu_nav_date href="#favorites"
         i.slidemenu_nav_icon.fas.fa-heart.fa-3x
         span.slidemenu_nav_txt
         |お気に入り
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#"
+      a.slidemenu_nav_date href="#mymap"
         i.slidemenu_nav_icon.fas.fa-user.fa-3x
         span.slidemenu_nav_txt
         |マイマップ
@@ -32,12 +32,12 @@ aside.sidebar#sidebar
   /<ーーサインインしている時ーー>
   -if user_signed_in?
     #slidemenu_contents
-      .slidemenu_contents_detail#home
+      .slidemenu_contents_detail#home.active
         p
         |動画一覧<br>
         span
         |皆が見ているコンテンツ
-      .slidemenu_contents_detail#contents-on-map.active
+      .slidemenu_contents_detail#contents-on-map
         p
         |地図上のコンテンツ一覧
         span

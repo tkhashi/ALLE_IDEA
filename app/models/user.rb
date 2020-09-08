@@ -7,6 +7,10 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..20 }
   validates :profile, length: { maximum: 50 }
 
+  #動画･画像アップローダー用(アップローダークラスとの紐付け)
+  mount_uploader :avatar, AvatarUploader
+
+  #諸々のアソシエーション
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy

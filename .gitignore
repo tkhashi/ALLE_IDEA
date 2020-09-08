@@ -76,3 +76,4 @@ yarn-debug.log*
 
 #環境変数
 /.env
+/public/uploads

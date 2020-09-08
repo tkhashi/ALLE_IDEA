@@ -1,0 +1,22 @@
+h1
+  | Users#following
+
+
+=@user.name
+=link_to followings_path(@user.id)
+  =@user.followings.count
+=link_to followings_path(@user.id)
+  =@user.followings.count
+
+=@user.followings.each do |following|
+  =following.name
+  |投稿:
+  =following.post.count
+  |フォロー:
+  =following.followings.count
+  |件
+  |フォロワー: 
+  =following.followings.count
+  |件
+  /link_to post_path(following.id) do
+  / following.post.image

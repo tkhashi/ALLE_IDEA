@@ -73,10 +73,11 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
-
+#デバックツール
 gem 'pry-byebug', group: :development
-
-
+#devise
 gem 'devise'
-
+#jquery
 gem 'jquery-rails'
+#動画･画像アップローダー
+gem 'carrierwave', '~> 2.0'

@@ -2,25 +2,19 @@ h1
   | Posts#new
 
 .form_new
-  =form_with model: @post_new do |f|
-    =f.label :body, "説明"
-    =f.text_field :body
+  =form_with model: @post_new do |form|
+    =form.label :body, "説明"
+    =form.text_field :body
     //座標をフォームに入れる
-    p#latlng　style="font-size:10px;"
-      =f.hidden_field :lat
-      =f.hidden_field :lng
-    =f.submit "投稿"
+    p#latlng style="font-size:10px;"
+      =form.hidden_field :lat
+      =form.hidden_field :lng
+    =form.submit "投稿"
 
-//投稿用マップ
-/ body onload="init()"
-/   #map style="height:560px"
-/   table border="1" cellspacing="0"
-/     //座標を表示
-/     tr
-/       th
-/         |LAT
-/       td#show_lat
-/       th
-/         |LNG
-/       td#show_lng
+javascript:
+  $(document).ready(function(){
+    alert("AAAAAA")
+    init()
+  });
 
+#map_canvas

@@ -1,5 +1,7 @@
 h1
   | Posts#new
+
+.form_new
   =form_with model: @post_new do |f|
     =f.label :body, "説明"
     =f.text_field :body
@@ -10,15 +12,15 @@ h1
     =f.submit "投稿"
 
 //投稿用マップ
-body onload="init()"
-  #map style="height:560px"
-  table border="1" cellspacing="0"
-    //座標を表示
-    tr
-      th
-        |LAT
-      td#show_lat
-      th
-        |LNG
-      td#show_lng
+/ body onload="init()"
+/   #map style="height:560px"
+/   table border="1" cellspacing="0"
+/     //座標を表示
+/     tr
+/       th
+/         |LAT
+/       td#show_lat
+/       th
+/         |LNG
+/       td#show_lng
 

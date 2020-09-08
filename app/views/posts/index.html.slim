@@ -1,37 +1,39 @@
 / =render "slidemenu"
-p|これはテストですのでいっぱい描いてください。
 
-table
-  thead
-    tr
-      th
-      | ユーザーネーム
-      th
-      | 説明
-  -@posts.each do |post|
-    tr
-      td
-        =post.user.name
-      td
-        =post.body
-      td id='favorites_buttons_#{ post.id }'
-         = render partial: 'favorites/favorite', locals: { post: post }
+  p |これはテストですのでいっぱい描いてください。
 
-    / -if post.favorited_by?(current_user)
-    /   p
-    /     span
-    /       |お気に入り解除:
-    /     |link_to post.favorites.count, post_favorites_path(post.id), method: :delete, remote: true
-    / -else
-    /   p
-    /     span
-    /       |お気に入り登録:
-    /     |link_to post.favorites.count, post_favorites_path(post.id), method: :post, remote: true
+  table
+    thead
+      tr
+        th
+        | ユーザーネーム
+        th
+        | 説明
+    -@posts.each do |post|
+      tr
+        td
+          =post.user.name
+        td
+          =post.body
+        //いいねボタンAjax
+        td id='favorites_buttons_#{ post.id }'
+          = render partial: 'favorites/favorite', locals: { post: post }
 
-    tr
-      th
-        =post.comments.count
-      | 件のコメント
-      th
-        =post.body
-      | 件のいいね
+      / -if post.favorited_by?(current_user)
+      /   p
+      /     span
+      /       |お気に入り解除:
+      /     |link_to post.favorites.count, post_favorites_path(post.id), method: :delete, remote: true
+      / -else
+      /   p
+      /     span
+      /       |お気に入り登録:
+      /     |link_to post.favorites.count, post_favorites_path(post.id), method: :post, remote: true
+
+      tr
+        th
+          =post.comments.count
+        | 件のコメント
+        th
+          =post.body
+        | 件のいいね

@@ -3,11 +3,17 @@ h1
   =form_with model: @post_new do |f|
     =f.label :body, "説明"
     =f.text_field :body
+    //座標をフォームに入れる
+    p#latlng　style="font-size:10px;"
+      =f.hidden_field :lat
+      =f.hidden_field :lng
+    =f.submit "投稿"
 
 //投稿用マップ
 body onload="init()"
   #map style="height:560px"
   table border="1" cellspacing="0"
+    //座標を表示
     tr
       th
         |LAT
@@ -16,5 +22,3 @@ body onload="init()"
         |LNG
       td#show_lng
 
-
-   =f.submit "投稿"

@@ -4,19 +4,34 @@ javascript:
     initialize()
   });
 #map_canvas
-/ table.post_index
+
+table.post_index
   thead
     tr
       th
       | ユーザーネーム
       th
       | 説明
-  -@posts.each do |post|
-    tr
-      td
-        =post.user.name
-      td
-        =post.body
+  .post_index
+    -@posts.each do |post|
+      .post_index_post
+        -if post.road?
+          -if post.road.file.content_type.include?('image/')
+            =image_tag post.road.url, width: "170px"
+          -else
+            =video_tag post.road.url, width: "170px", controls: true, loop: false
+        -else
+          =image_tag "road.jpg"
+      .post_index_user
+        span.post_index_user_avatar
+          -if post.user.avatar?
+            =image_tag post.user.avatar.url, class: "index_avatar"
+          -else
+            =image_tag "face.jpg"
+        span.post_index_user_name
+          |ユーザー名: #{post.user.name}
+      .post_index_disc
+        |説明: #{post.body}
       //いいねボタンAjax
-      td id='favorites_buttons_#{ post.id }'
+      div id='favorites_buttons_#{ post.id }'
         = render partial: 'favorites/favorite', locals: { post: post }

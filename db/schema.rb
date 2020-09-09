@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_071514) do
+ActiveRecord::Schema.define(version: 2020_09_09_045807) do
 
   create_table "comments", force: :cascade do |t|
     t.string "comment"
@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 2020_09_08_071514) do
   end
 
   create_table "maps", force: :cascade do |t|
-    t.integer "latitude"
-    t.integer "longitude"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "post_id"
   end
 
   create_table "post_maps", force: :cascade do |t|
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_071514) do
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "road"
   end
 
   create_table "relationships", force: :cascade do |t|

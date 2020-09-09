@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def new
     @post_new = Post.new
+    @post_new.maps.build
   end
 
 
@@ -16,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
@@ -42,7 +43,9 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:body, :road,
+                                  maps_attributes: [:latitude,
+                                                    :longitude])
   end
 
 end

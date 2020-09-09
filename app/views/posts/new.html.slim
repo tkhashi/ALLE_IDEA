@@ -1,19 +1,30 @@
 h1
   | Posts#new
 
-.form_new
-  =form_with model: @post_new do |form|
-    =form.label :body, "説明"
-    =form.text_field :body
-    //座標をフォームに入れる
+=render "slidemenu"
+
+.post_new
+  .post_new_form
     p#latlng style="font-size:10px;"
-      =form.hidden_field :lat
-      =form.hidden_field :lng
-    =form.submit "投稿"
+    =form_with model: @post_new do |form|
+      =form.label :body, "説明"
+      =form.text_field :body
+      br
+      =form.label :road
+      =form.file_field :road, :accept => 'image/*,video/*'
+
+
+      //座標をフォームに入れる
+      =form.fields_for :map do |map_form|
+        =map_form.hidden_field :lat
+        =map_form.hidden_field :lng
+      br
+      =form.submit "投稿"
+
+//選択した座標表示
 
 javascript:
   $(document).ready(function(){
-    alert("AAAAAA")
     init()
   });
 

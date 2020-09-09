@@ -1,20 +1,17 @@
 h1
   | Posts#show
 
-//閲覧用マップ
-/ body onload="initialize()"
-/     p
-/       |Google Maps APIを使ったサンプル地図。<br>表示例 東京タワーを座標設定</p>
-/     #map_canvas
-
-
-tr
-  td
-    p
-    |ユーザーネーム #{ @post.user.name }
-  td
-    p
-    |説明 #{ @post.body }
+.post_show
+  .post_show_image
+    -if @post.road?
+      =image_tag @post.road.url, width: "170px"
+      =video_tag @post.road.url, width: "170px"
+    -else
+      =image_tag "no-image.jpg", width: "170px"
+  .post_show_user_name
+    p|ユーザーネーム #{ @post.user.name }
+  .post_show_user_name
+    p|説明 #{ @post.body }
 
 
 //いいね

@@ -28,15 +28,14 @@ class PostsController < ApplicationController
     @arr=[]                  #空の配列
     @map.each do |m|        # m はMapのレコード
       @arr.push({lat: m.latitude, lng: m.longitude })
-
-    user = current_user
-    @favorite_posts=user.favorite_posts
-    end
     #空の配列に m の緯度･経度を入れて廻す
     #gon.latlngarr = latlngarr[{lat,lng},{lat,lng},{lat,lng},,,)こんな配列
     # @idokeido_list = []
     # @idokeido_list.push({lat: "35.681382", lng: "139.766084", name:"東京駅"})
     # @idokeido_list.push({lat: "35.684801", lng: "139.766086", name:"大手町駅"})
+    end
+    @user = current_user
+    @favorite_posts = @user.favorite_posts
   end
 
   def show
@@ -46,7 +45,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
 
-    @user = current_user
+    @user = @post.user
+    @favorite_posts=@user.favorite_posts
   end
 
   def edit

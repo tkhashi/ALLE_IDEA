@@ -1,6 +1,6 @@
 
 //サイドバー
-=render "posts/slidemenu", {posts: @posts, post_new: @post_new, favorite_posts: @favorite_posts, user: current_user}
+=render "posts/slidemenu", {posts: @posts, post_new: @post_new, favorite_posts: @favorite_posts, user: @user}
 //GoogleMap閲覧用
 javascript:
   $(document).ready(function(){

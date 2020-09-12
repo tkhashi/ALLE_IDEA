@@ -1,7 +1,11 @@
 h1
   | Posts#show
+#map
+
 //投稿画像
 .post_show
+  =link_to posts_path
+    |aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   .post_show_image
     -if @post.road?
       =image_tag @post.road.url, width: "170px"
@@ -40,12 +44,12 @@ ol
 aside.sidebar#sidebar
   ul.slidemenu#slidemenu
     li.slidemenu_nav
-      =link_to posts_path, class: "slidemenu_nav_date" do
+      a.slidemenu_nav_date href="#home" class="active"
         i.slidemenu_nav_icon.fas.fa-home.fa-3x
         span.slidemenu_nav_txt
         | ホーム
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#contents-on-map" class="active"
+      a.slidemenu_nav_date href="#contents-on-map"
         i.slidemenu_nav_icon.fas.fa-map-marker-alt.fa-3x
         span.slidemenu_nav_txt
         |投稿詳細
@@ -102,7 +106,7 @@ aside.sidebar#sidebar
         |マイマップ<br>
         span
         |あなたが集めた｢道｣一覧
-        =render "users/user_show", user: current_user
+        =render "users/user_show", {user: @user, favorite_posts: @favorite_posts}
   /<ーーサインインしている時ーー>
 
   /<ーーサインインしていない時ーー>

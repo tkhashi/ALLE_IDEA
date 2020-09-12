@@ -148,6 +148,9 @@ html{
     min-width: 270px;
     &_title{
       text-align: center;
+      h2,h3{
+        display: inline-block;
+      }
     }
     &#posts{
       width: 100%;

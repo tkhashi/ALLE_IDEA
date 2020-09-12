@@ -27,14 +27,12 @@
 
 
 //slidemenu用
-$(document).ready(function () {
+$(document).on('turbolinks:load', function() { 
   $('#slidemenu_contents .slidemenu_contents_detail[id != "home"]').hide();
-
   $("#slidemenu a").on("click", function(event){
     $("#slidemenu_contents .slidemenu_contents_detail").hide();
     $("#slidemenu .active").removeClass("active");
     $(this).addClass("active");
-    console.log(this)
 
     $($(this).attr("href")).show();
     event.preventDefault();
@@ -230,3 +228,53 @@ function mylistener(event) {
   document.getElementById("post_maps_attributes_0_latitude").value= event.latLng.lat();
   document.getElementById("post_maps_attributes_0_longitude").value= event.latLng.lng();
 };
+
+
+
+
+
+
+
+
+
+//テストマップ
+// //吹き出し表示
+// var map = null;
+// var infowindow = new google.maps.InfoWindow();
+
+// function init() {
+
+//   //マップの初期状態を設定
+//   var option = {
+//   zoom: 6,
+//   center: new google.maps.LatLng(35.4093320, 136.7566470),
+//   mapTypeId: google.maps.MapTypeId.ROADMAP,
+//   disableDefaultUI: true
+//   };
+// 　
+//   // 吹き出しを閉じる処理
+//   map = new google.maps.Map(document.getElementById("map"), option);
+//   google.maps.event.addListener(map, "click", function() {infowindow.close();});
+
+//   // 任意の位置にマーカーを追加
+//   var point = new google.maps.LatLng(35.673264, 139.760668);
+//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
+
+//   var point = new google.maps.LatLng(34.6545182, 135.4289645);
+//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
+
+//   var point = new google.maps.LatLng(35.1709150, 136.8815369);
+//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
+// }
+
+// function create_maker(latlng, label, html) {
+//   // マーカーを生成
+//   var marker = new google.maps.Marker({position: latlng, map: map, title: label});
+//   // マーカーをマウスオーバーした時の処理
+//   google.maps.event.addListener(marker, "mouseover", function() {
+//   infowindow.setContent(html);
+//   infowindow.open(map, marker);
+//   });
+// }
+
+// google.maps.event.addDomListener(window, "load", init);

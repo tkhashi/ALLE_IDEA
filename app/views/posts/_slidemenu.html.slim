@@ -24,7 +24,7 @@ aside.sidebar#sidebar
         |お気に入り
     li.slidemenu_nav
       =link_to "マイページへ移動", user_path(current_user.id)
-      / a.slidemenu_nav_date href="#mymap"
+      a.slidemenu_nav_date href="#mymap"
         i.slidemenu_nav_icon.fas.fa-user.fa-3x
         span.slidemenu_nav_txt
         |マイページ
@@ -52,7 +52,7 @@ aside.sidebar#sidebar
       .slidemenu_contents_detail id="mymap"
         .slidemenucontent_detail_title
           h2 マイマップ
-        =render "users/user_show", user: current_user
+        =render "users/user_show", {user: user, favorite_posts: favorite_posts}
   /<ーーサインインしている時ーー>
 
   /<ーーサインインしていない時ーー>

@@ -1,0 +1,58 @@
+.container_searchform
+  =form_tag search_path, method: :get do
+    =select_tag :option, options_for_select([["ユーザー", "1"],["投稿","2"]])
+    =select_tag :choice, options_for_select([["あいまい検索", "1" ],["後方一致検索", "2" ],["前方一致検索", "3" ],["完全一致検索", "4" ]])
+    =text_field_tag :search
+    =submit_tag "検索", name: nil
+
+
+-if @user_or_post == "1"
+  h1
+    |User
+  table
+    -@users.each do |user|
+      thead
+        tr
+          th
+          th
+            -if user.avatar?
+              =image_tag user.avatar.url, width: "160px"
+            -else
+              =image_tag "face.jpg", width: "40px"
+          th =user.name
+          th =user.posts.count
+          th =user.followings.count
+          th =user.followers.count
+          th = render partial: 'follow_button', locals: { user: user }
+-elsif @user_or_post == "2"
+  h2
+    |Post
+  table
+    -@posts.each do |post|
+      thead
+        tr
+          td
+        tr
+          th
+            -if post.road?
+              -if post.road.file.content_type.include?('image/')
+                =image_tag post.road.url, width: "250px"
+              -else
+                =video_tag post.road.url, width: "250px", controls: true, loop: false
+            -else
+              =image_tag "road.jpg", width: "250px"
+          th
+            |ユーザー名: 
+            =post.user.name
+          th = render partial: 'follow_button', locals: { user: user }
+          th
+            |説明: 
+            =post.body
+          th
+            |いいね 
+            =post.favorites.count
+            | 件
+          th
+            |コメント
+            =post.comments.count
+            | 件

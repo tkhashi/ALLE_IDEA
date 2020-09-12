@@ -1,0 +1,4 @@
+-tag_list.each do |tag|
+  span.tags
+    //タグ検索用link_to
+    = link_to tag, posts_path(tag_name: tag)

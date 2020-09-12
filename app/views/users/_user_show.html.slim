@@ -1,0 +1,26 @@
+main#user_show
+  .profile_container.clearfix
+    .profile_container_avatar
+      .user_show_avatar
+        -if user.avatar?
+          =image_tag user.avatar.url, class: "profile_avatar", width: "150px"
+        -else
+          =image_tag "face.jpg", class: "profile_avatar", width: "40px"
+    .profile_container_info
+      .profile_container_info_upside
+        span.user_show_name
+          =user.name
+        span.user_show_edit
+          =link_to edit_user_path(current_user)
+            i.fas.fa-cog.fa-2x
+      .profile_container_info_downside
+        span.user_post_count
+          |投稿 #{user.posts.count} 件
+        span.followers_count
+          =link_to user_followers_path(user.id) do
+            |フォロワー #{user.followers.count} 人
+        span.followings_count
+          =link_to user_followings_path(user.id) do
+            |フォロー中 #{user.followings.count} 人 
+
+  =render "users/user_contents", {user: user}

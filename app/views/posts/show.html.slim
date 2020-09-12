@@ -1,6 +1,6 @@
 h1
   | Posts#show
-
+//投稿画像
 .post_show
   .post_show_image
     -if @post.road?
@@ -9,10 +9,127 @@ h1
     -else
       =image_tag "no-image.jpg", width: "170px"
   .post_show_user_name
-    p|ユーザーネーム #{ @post.user.name }
+    p
+      |ユーザーネーム #{ @post.user.name }
   .post_show_user_name
-    p|説明 #{ @post.body }
+    p
+      |説明: #{ @post.body }
+//コメント投稿フォーム
+-if user_signed_in?
+  =form_with url: post_comments_path(@post.id), model: [@post, @comment],　method: :post, local: true do |f|
+    =f.text_area :comment, class: "form-control", placeholder: "コメントを書こう!"
+    =f.submit "送信"
 
+//コメント一覧
+ol
+  -@post.comments.each do |c|
+    li.comment
+      .comment_body
+        .comment_avatar
+          =image_tag("no-image.jpg", style: "width: 60px; height: 60px;")
+        .comment_text
+          .comment_user.clearfix
+              .comment_user_name
+                =c.user.name
+              .comment_entry
+                =c.comment
+                -if c.user == current_user
+                  .delete_btn
+                    = link_to  "削除", post_comment_path(c.post_id, c.id), method: :delete
+
+aside.sidebar#sidebar
+  ul.slidemenu#slidemenu
+    li.slidemenu_nav
+      =link_to posts_path, class: "slidemenu_nav_date" do
+        i.slidemenu_nav_icon.fas.fa-home.fa-3x
+        span.slidemenu_nav_txt
+        | ホーム
+    li.slidemenu_nav
+      a.slidemenu_nav_date href="#contents-on-map" class="active"
+        i.slidemenu_nav_icon.fas.fa-map-marker-alt.fa-3x
+        span.slidemenu_nav_txt
+        |投稿詳細
+    li.slidemenu_nav
+      a.slidemenu_nav_date href="#posts"
+        i.slidemenu_nav_icon.fas.fa-video.fa-3x
+        span.slidemenu_nav_txt
+        |投稿
+    li.slidemenu_nav
+      a.slidemenu_nav_date href="#favorites"
+        i.slidemenu_nav_icon.fas.fa-heart.fa-3x
+        span.slidemenu_nav_txt
+        |お気に入り
+    li.slidemenu_nav
+      a.slidemenu_nav_date href="#mymap"
+        i.slidemenu_nav_icon.fas.fa-user.fa-3x
+        span.slidemenu_nav_txt
+        |マイマップ
+
+  //スライドサイドバーの中身
+  /<ーーサインインしている時ーー>
+  -if user_signed_in?
+    #slidemenu_contents
+      .slidemenu_contents_detail id="home"
+      .slidemenu_contents_detail id="contents-on-map"
+        p
+        |地図上のコンテンツ一覧
+        span
+        |今地図上に表示されているコンテンツ
+      .slidemenu_contents_detail id="posts"
+        p
+        |あなたの｢道｣を投稿
+        =render "post_new", post_new: @post_new
+      .slidemenu_contents_detail id="favorites"
+        p
+        |お気に入りコンテンツ一覧
+      .slidemenu_contents_detail id="mymap"
+        .name
+          =current_user.name
+          =link_to edit_user_path(current_user.id) do
+            i.fas.fa-cog
+        .post_counts
+          |投稿
+            =@posts_counts
+          |件
+          |フォロー
+            =current_user.followings 
+          |人
+          |フォロワー 
+            =current_user.followers 
+          |人
+
+        p
+        |マイマップ<br>
+        span
+        |あなたが集めた｢道｣一覧
+        =render "users/user_show", user: current_user
+  /<ーーサインインしている時ーー>
+
+  /<ーーサインインしていない時ーー>
+  -else
+    #slidemenu_contents
+      .slidemenu_contents_detail#home
+        p
+        |動画一覧<br>
+        span
+        |皆が見ているコンテンツ
+      .slidemenu_contents_detail#contents-on-map
+        p
+        |地図上のコンテンツ一覧
+        span
+        |今地図上に表示されているコンテンツ
+      .slidemenu_contents_detail#posts
+        p
+        |あなたの｢道｣を投稿
+      .slidemenu_contents_detail#favorites
+        p
+        |お気に入りコンテンツ一覧
+      .slidemenu_contents_detail#mymap
+        p
+        |マイマップ<br>
+        span
+        |あなたが集めた｢道｣一覧 
+  /<ーーサインインしていない時ーー>
 
 //いいね
 
@@ -32,31 +149,6 @@ h1
 / #favorites_buttons_#{ @post.id }
   == render  "favorites/favorite", post: @post
 
-//コメント一覧
 
-ol
-  -@post.comments.each do |c|
-    li.comment
-      .comment_body
-        .comment_avatar
-          =image_tag("no-image.jpg", style: "width: 60px; height: 60px;")
-        .comment_text
-          .comment_user.clearfix
-              .comment_user_name
-                =c.user.name
-              .comment_entry
-                =c.comment
-                -if c.user == current_user
-                  .delete_btn
-                    = link_to  "削除", post_comment_path(c.post_id, c.id), method: :delete
-
-//コメント投稿フォーム
-
--if user_signed_in?
-  =form_with url: post_comments_path(@post.id), model: [@post, @comment],　method: :post, local: true do |f|
-    =f.text_area :comment, class: "form-control", placeholder: "コメントを書こう!"
-    =f.submit "送信"
-
-div id="map_canvas" style="width:500px; height:300px"
 
 

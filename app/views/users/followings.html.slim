@@ -1,22 +1,53 @@
-h1
-  | Users#following
+main#user_following
+  .profile_container.clearfix
+    .profile_container_avatar
+      .user_show_avatar
+        -if @user.avatar?
+          =image_tag @user.avatar.url, class: "profile_avatar", width: "150px"
+        -else
+          =image_tag "face.jpg", class: "profile_avatar", width: "40px"
+    .profile_container_info
+      .profile_container_info_upside
+        span.user_show_name
+          =@user.name
+        span.user_show_edit
+          =link_to edit_user_path(current_user)
+            i.fas.fa-cog.fa-2x
+      .profile_container_info_downside
+        span.user_post_count
+          |投稿 #{@user.posts.count} 件
+        span.followers_count
+          =link_to user_followers_path(@user.id) do
+            |フォロワー #{@user.followers.count} 人
+        span.followings_count
+          =link_to user_followings_path(@user.id) do
+            |フォロー中 #{@user.followings.count} 人 
 
-
-=@user.name
-=link_to followings_path(@user.id)
-  =@user.followings.count
-=link_to followings_path(@user.id)
-  =@user.followings.count
-
-=@user.followings.each do |following|
-  =following.name
-  |投稿:
-  =following.post.count
-  |フォロー:
-  =following.followings.count
-  |件
-  |フォロワー: 
-  =following.followings.count
-  |件
-  /link_to post_path(following.id) do
-  / following.post.image
+  .following
+    h3.following_title
+      |フォロー中
+    -@user.followings.each do |following|
+      .following_container
+        =link_to user_path (following.id)
+          .following_avatar
+            -if following.avatar?
+              =image_tag following.avatar.url, class: "profile_avatar", width: "150px"
+            -else
+              =image_tag "face.jpg", class: "profile_avatar", width: "40px"
+        .following_info
+          =link_to user_path (following.id)
+            .following_name
+              =following.name
+          .following_post_count
+            |投稿: 
+            =following.posts.count
+          .following_followings
+            |フォロー: 
+            =following.followings.count
+            |件
+          .following_followings
+            |フォロワー: 
+            =following.followings.count
+            |件
+        .following_button
+          = render partial: 'users/follow_button', locals: { user: @user }

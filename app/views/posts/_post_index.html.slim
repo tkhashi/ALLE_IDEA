@@ -1,0 +1,45 @@
+.post_index
+  -posts.each do |post|
+    //投稿ユーザー情報
+    .post_index_user
+      =link_to user_path(post.user.id) do
+        span.post_index_user_avatar
+          -if post.user.avatar?
+            =image_tag post.user.avatar.url, class: "index_avatar"
+          -else
+            =image_tag "face.jpg", class: "index_avatar"
+        span.post_index_user_name
+          |ユーザー名: #{post.user.name}
+    //投稿動画･画像
+    .post_index_post
+      -if post.road?
+        -if post.road.file.content_type.include?('image/')
+          =image_tag post.road.url, width: "250px"
+        -else
+          =video_tag post.road.url, width: "250px", controls: true, loop: false
+      -else
+        =image_tag "road.jpg", width: "250px"
+    //いいねボタンAjax
+    .post_index_favorites_count
+      div id='favorites_buttons_#{ post.id }'
+        = render partial: 'favorites/favorite', locals: { post: post }
+    //コメント数
+    .post_index_comments_count
+      =link_to post_path(post.id) do
+        i.navmenu_nav_icon.fas.fa-comment.fa-lg
+        |コメント
+        =post.comments.count
+    //編集･削除ボタン
+    -if post.user == current_user
+      .post_index_edit
+        = link_to '編集', edit_post_path(post), class: 'btn btn-primary mr-3'
+        = link_to '削除', post_path(post), method: :delete, remote: true, data: {confirm: "タスク「#{post.body}」を削除します。よろしいですか？"}, class: 'btn btn-danger delete', id: "delete_link_#{post.id}"
+    //投稿の説明
+    .post_index_disc
+      |説明: #{post.body}
+    //投稿日時
+    .post_index_created
+      =post.created_at.to_s(:datetime_jp) 
+    //タグ
+    .post_index_tags
+      =render 'posts/tag_list', tag_list: post.tag_list

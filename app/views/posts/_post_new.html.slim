@@ -1,10 +1,7 @@
-h1
-  | Posts#new
-
 .post_new
   .post_new_form
     p#latlng style="font-size:10px;"
-    =form_with model: @post_new do |form|
+    =form_with model: post_new do |form|
       =form.label :body, "説明"
       br
       =form.text_field :body
@@ -15,9 +12,7 @@ h1
       br
       =form.label :tag_list
       br
-      =form.text_field :tag_list, value: @post_new.tag_list.join(','), class: "form-control"
-
-
+      =form.text_field :tag_list, value: post_new.tag_list.join(','), class: "form-control"
       //座標をフォームに入れる
       =form.fields_for :maps do |map_form|
         =map_form.hidden_field :latitude
@@ -25,16 +20,5 @@ h1
       br
       =form.submit "投稿"
 
-//選択した座標表示
-
 //ページ読み込みで投稿用マップ表示
-/ javascript:
-/   $("#slidemenu a").on("click", function(){
-/     init()
-/   });
-javascript:
-  $(document).ready(function(){
-    init()
-  });
-
 #post_map_canvas

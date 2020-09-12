@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @favorite_posts=@user.favorite_posts
+
   end
 
   def edit
@@ -43,6 +45,15 @@ class UsersController < ApplicationController
   def thanks
   end
 
+  def search
+    @user_or_post = params[:option]
+    @how_search = params[:choice]
+    if @user_or_post == "1"
+      @users = User.search(params[:search], @user_or_post, @how_search)
+    else
+      @posts = Post.search(params[:search], @user_or_post, @how_search)
+    end
+  end
 
   private
   #======共通化=======

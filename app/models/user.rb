@@ -13,6 +13,7 @@ class User < ApplicationRecord
   #諸々のアソシエーション
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
   has_many :comments, dependent: :destroy
 
   #自己完結アソシエーション(フォローモデル)
@@ -36,6 +37,23 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
+
+  #検索機能
+    def User.search(search, user_or_post, how_search)
+        if user_or_post == "1"
+            if how_search == "1"
+                    User.where(['name LIKE ?', "%#{search}%"])
+            elsif how_search == "2"
+                    User.where(['name LIKE ?', "%#{search}"])
+            elsif how_search == "3"
+                    User.where(['name LIKE ?', "#{search}%"])
+            elsif how_search == "4"
+                    User.where(['name LIKE ?', "#{search}"])
+            else
+                    User.all
+            end
+        end
+    end
 
 end
 

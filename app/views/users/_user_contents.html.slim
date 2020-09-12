@@ -1,0 +1,86 @@
+
+//ナビバーのアイコンと表示名
+aside.navbar#navbar
+  ul.clearfix#navmenu
+    li.navmenu_nav
+      a.navmenu_nav_date href="#profile" class="active"
+        i.navmenu_nav_icon.fas.fa-map-marker-alt.fa-3x
+        br
+        span.navmenu_nav_txt
+        |投稿
+    li.navmenu_nav
+      a.navmenu_nav_date href="#favorite"
+        i.navmenu_nav_icon.fas.fa-heart.fa-3x
+        br
+        span.navmenu_nav_txt
+        |お気に入り
+    -if user == current_user
+      li.navmenu_nav
+        a.navmenu_nav_date href="#mention"
+          i.navmenu_nav_icon.fas.fa-bell.fa-3x
+          br
+          span.navmenu_nav_txt
+          |通知
+
+  //ナビバーの中身
+  /ーーサインインしている時ーー>
+  -if user_signed_in?
+    #navmenu_contents.clearfixa
+      .navmenu_contents_detail id="profile"
+        -user.posts.each do |post|
+          .navmenu_contents_post
+            //投稿動画･画像
+            .user_show_post
+              -if post.road?
+                -if post.road.file.content_type.include?('image/')
+                  =image_tag post.road.url, width: "300px"
+                -else
+                  =video_tag post.road.url, width: "300px", controls: true, loop: false
+              -else
+                =image_tag "road.jpg", width: "300px"
+            //投稿の説明
+            .user_show_disc
+              |説明: #{post.body}
+            //いいね
+            span.user_show_fav
+              i.navmenu_nav_icon.fas.fa-heart.fa-lg
+              =post.favorites.count
+            //コメント数
+            span.user_show_comments_count
+              i.navmenu_nav_icon.fas.fa-comment.fa-lg
+              =post.comments.count
+
+      .navmenu_contents_detail id="favorite"
+        =render "users/favorites_index", {user: user, favorite_posts: @favorite_posts}
+      .navmenu_contents_detail id="mention"
+
+
+  /<ーーサインインしている時ーー
+
+  /ーーサインインしていない時ーー>
+  -else
+    h1
+      |好きな道を発信しよう!
+    / #navmenu_contents
+    /   .navmenu_contents_detail#home
+    /     p
+    /     |動画一覧<br>
+    /     span
+    /     |皆が見ているコンテンツ
+    /   .navmenu_contents_detail#contents-on-map
+    /     p
+    /     |地図上のコンテンツ一覧
+    /     span
+    /     |今地図上に表示されているコンテンツ
+    /   .navmenu_contents_detail#posts
+    /     p
+    /     |あなたの｢道｣を投稿
+    /   .navmenu_contents_detail#favorites
+    /     p
+    /     |お気に入りコンテンツ一覧
+    /   .navmenu_contents_detail#mymap
+    /     p
+    /     |マイマップ<br>
+    /     span
+    /     |あなたが集めた｢道｣一覧 
+  /<ーーサインインしていない時ーー

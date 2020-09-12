@@ -1,25 +1,19 @@
 Rails.application.routes.draw do
 
-  #ホーム
-  root 'home#top'
-  get 'home/about'
+  root 'home#about'
 
-  #devise
   devise_for :users
-  #ユーザー
   resources :users, only: [:index, :show, :edit, :update] do
-    #フォローページ
+    resources :relationships, only: [:create, :destroy]
     get 'followings'
     get 'followers'
-    #フォロー(リレーションシップ)
-    resources :relationships, only: [:create, :destroy]
   end
   get 'users/last_confirm'
   get 'users/please_signin'
   get 'users/thanks'
+  get 'search' => 'users#search'
 
-  #投稿
-  resources :posts, only: [:new, :index, :show, :create, :update, :destroy] do
+  resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end

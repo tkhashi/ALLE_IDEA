@@ -14,18 +14,24 @@
  *= require_self
  */
 
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+  }
 
 html{
   font-size: 10px;
+  background-color: rgba(var(--b3f,250,250,250),1);
   main{
     aside{
       display: block;
       height: 100%;
-      ul{
-      }
     }
   }
-  .header{
+  //全ページのヘッダー
+  .header_nav{
+    z-index: 999;
     .container{
     position: absolute;
     top: 0;
@@ -38,10 +44,34 @@ html{
     &_indexlink{
       float: left;
       font-size: 3rem;
+      font-family: kufam;
+      width: 33%;
+      .app_logo{
+      }
+    }
+    &_searchform{
+      position: absolute;
+      top: 8px;
+      left: 360px;
     }
     &_loginlink{
       float: right;
       font-size: 1.5rem;
+      .user_avatar{
+        display: inline-block;
+        .profile_avatar{
+        border-radius: 50%;
+        height: 100%;
+        width: 40px;
+        }
+      }
+      .user_info{
+        display: inline-block;
+        vertical-align: top;
+      }
+      .user_link{
+        display: inline-block;
+      }
     }
     }
   }
@@ -53,25 +83,40 @@ html{
 }
 
 
+//サイドバー本体
+#slidemenu{
+  li{
+    background-color: #f75586;
+    z-index: 99;
+  }
+  //サイドバー本体active時のアイコンと文字
+  .active{
+    color: #ccFF00;
+    .fas{
+      color: #ccFF00;
+
+    }
+  }
+}
 .slidemenu{
-  float: none;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background-color: #f75586;
-  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
   position: absolute;
   left: 0;
   top: 50px;
-  width: 78px;
   z-index: 99;
+  height: 100%;
+  width: 55px;
+  float: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
   &_nav{
+    height: 20%;
     border-top: 1px solid #FFF;
     line-height: 5rem;
     text-align: center;
     &_icon{
-      background-color: #f75586;
+      // background-color: #f75586;
       color: #FFF;
     }
     &_txt{
@@ -79,53 +124,113 @@ html{
       font-size: 1rem;
       color: #FFF;
     }
+    &_date{
+      .active{
+        // background-color: #ccFF00;
+      }
+    }
   }
   &_nav:first_child{
     border-top: none;
   }
 }
 
-.slidemenu_contents_detail{
-  position: absolute;
-  left: 78px;
-  top: 50px;
-  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
-  height:100%;
-  max-width: 1080px;
-  min-width: 168px;
+//サイドバー中身
+#slidemenu_contents{
+  .slidemenu_contents_detail{
+    background-color: #ccFF00;
+    position: absolute;
+    left: 55px;
+    top: 50px;
+    z-index: 2;
+    box-shadow: 0 0 0 3px rgba(0,0,0,.1);
+    height:100%;
+    min-width: 270px;
+    &_title{
+      text-align: center;
+    }
+    &#posts{
+      width: 100%;
+    }
+    &#mymap{
+    }
   }
-  .active{
-  background-color: #ccFF00;
-  color: #000000;
-  }
+}
+//開いているサイドバーの中身
+.active{
+// background-color: #ccFF00;
+color: #000000;
+}
 
+//home
+//home_about
+.home_about{
+  position: absolute;
+  top: 50px;
+  left: auto;
+  .home_about_container{
+    text-align: center;
+    .home_about_midashi{
+      display: inline-block;
+    }
+  }
+}
+
+//GoogleMap
+.googlemap{
+  z-index: 1;
   #map_canvas{
     position: absolute;
     right: 0;
     top: 50px;
-    width: 1000px;
+    width: 955px;
     height: 100%;
   }
-
-// #slidemenu_contents{
-//   display: none;
-// }
+}
 
 
-.post_index{
+
+
+
+//タグCSS
+.tags {
+  background: #5cd;
+  border-radius: 8px 0 0 8px;
+  color: #fff;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 1em 0 2em;
+  position: relative;
+  margin-right: 1em;
+}
+.tags::before {
+  border: 10px solid transparent;
+  border-left-color: #5cd;
+  border-right-width: 0;
+  content: '';
+  display: block;
+  height: 0;
   position: absolute;
-  left: 78px;
-  top: 100px;
-}
-.post_new{
-  position: absolute;
-  left: 78px;
-  top: 100px;
+  right: -10px;
+  top: 0;
+  width: 0;
 }
 
-.index_avatar{
-  width: 40px;
+.tags::after {
+  background: #28c;
+  border-radius: 8px 0 0 8px;
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1em;
 }
-.post_index_post{
-  width: 160px;
+
+.container_searchform {
+  position: relative;
+  top: 50px;
+  left: 200px;
 }

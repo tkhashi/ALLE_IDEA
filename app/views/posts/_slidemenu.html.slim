@@ -2,7 +2,7 @@
 aside.sidebar#sidebar
   ul.slidemenu#slidemenu
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#home"
+      a.slidemenu_nav_date href="#home" class="active"
         i.slidemenu_nav_icon.fas.fa-home.fa-3x
         span.slidemenu_nav_txt
         | ホーム
@@ -23,51 +23,36 @@ aside.sidebar#sidebar
         span.slidemenu_nav_txt
         |お気に入り
     li.slidemenu_nav
-      a.slidemenu_nav_date href="#mymap"
+      =link_to "マイページへ移動", user_path(current_user.id)
+      / a.slidemenu_nav_date href="#mymap"
         i.slidemenu_nav_icon.fas.fa-user.fa-3x
         span.slidemenu_nav_txt
-        |マイマップ
+        |マイページ
 
   //スライドサイドバーの中身
   /<ーーサインインしている時ーー>
   -if user_signed_in?
     #slidemenu_contents
-      .slidemenu_contents_detail#home.active
-        p
-        |動画一覧<br>
-        span
-        |皆が見ているコンテンツ
-      .slidemenu_contents_detail#contents-on-map
-        p
-        |地図上のコンテンツ一覧
-        span
-        |今地図上に表示されているコンテンツ
-      .slidemenu_contents_detail#posts
-        p
-        |あなたの｢道｣を投稿
-      .slidemenu_contents_detail#favorites
-        p
-        |お気に入りコンテンツ一覧
-      .slidemenu_contents_detail#mymap
-        .name
-          =current_user.name
-          =link_to edit_user_path(current_user.id) do
-            i.fas.fa-cog
-        .post_counts
-          投稿 
-            =@posts_counts
-          件
-          フォロー 
-            =current_user.followings 
-          人
-          フォロワー 
-            =current_user.followers 
-          人
-
-        p
-        |マイマップ<br>
-        span
-        |あなたが集めた｢道｣一覧
+      .slidemenu_contents_detail id="home"
+        .slidemenucontent_detail_title
+          h2 動画一覧<br>
+        =render "posts/post_index", posts: posts
+      .slidemenu_contents_detail id="contents-on-map"
+        .slidemenucontent_detail_title
+          h2 地図上のコンテンツ一覧
+          h3 地図上のマーカーをクリックしよう！
+      .slidemenu_contents_detail id="posts"
+        .slidemenucontent_detail_title
+          h2 あなたの｢道｣を投稿
+        =render "posts/post_new", post_new: post_new
+      .slidemenu_contents_detail id="favorites"
+        .slidemenucontent_detail_title
+          h2 お気に入りコンテンツ一覧
+        =render "users/favorites_index", {user: user, favorite_posts: favorite_posts}
+      .slidemenu_contents_detail id="mymap"
+        .slidemenucontent_detail_title
+          h2 マイマップ
+        =render "users/user_show", user: current_user
   /<ーーサインインしている時ーー>
 
   /<ーーサインインしていない時ーー>
@@ -78,7 +63,7 @@ aside.sidebar#sidebar
         |動画一覧<br>
         span
         |皆が見ているコンテンツ
-      .slidemenu_contents_detail#contents-on-map.active
+      .slidemenu_contents_detail#contents-on-map
         p
         |地図上のコンテンツ一覧
         span

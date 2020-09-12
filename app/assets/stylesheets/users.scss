@@ -1,3 +1,274 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+main{
+  position: relative;
+  top: 50px;
+
+  //showページ //上部プロフィール
+  //avatar部分
+  .profile_container{
+    text-align: center;
+    margin: 30px 150px 40px;
+  .profile_container_avatar{
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+    margin-right: 30px;
+    .user_show_avatar{
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
+      .profile_avatar{
+        height: 100%;
+        width: 150px;
+        border-radius: 50%;
+      }
+    }
+  }
+  //showページ //上部プロフィール
+  //ユーザー情報部分
+  .profile_container_info{
+      display: inline-block;
+      font: inherit;
+      position: relative;
+      top: -30px;
+      .profile_container_info_upside{
+        margin-bottom: 20px;
+        .user_show_name{
+          display: inline-block;
+          margin-right: 20px;
+          font-size: 28px;
+        }
+        .user_show_follower_button{
+          display: inline-block;
+        }
+        .user_show_edit{
+          display: inline-block;
+          margin-left: 20px;
+        }
+      }
+      .profile_container_info_downside{
+        font-size: 12px;
+        .user_post_count{
+          margin-right: 40px;
+        }
+        .followers_count{
+          margin-right: 40px;
+        }
+        .following_count{
+          margin-right: 40px;
+        }
+      }
+    }
+  }
+}
+
+//ナビバー
+#navbar{
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+#navmenu{
+  list-style-type: none;
+  padding-left: 0;
+  margin: auto;
+  li{
+    float: left;
+    width: 33%;
+  }
+  a{
+    height: 30px;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 20px;
+    text-align: center;
+    background: #000;
+    border: 1px solid #000;
+    border-bottom: none;
+  }
+  .active{
+    background: #fff;
+    color: #000;
+  }
+}
+//ナビバーの中身
+//自分の投稿
+#navmenu_contents{
+  width: 100%;
+  margin-top: 30px;
+  .navmenu_contents_detail{
+    width: 100%;
+    .navmenu_contents_post{
+      display: inline-block;
+      margin-right: 30px;
+      margin-bottom: 20px;
+      &:nth-of-type(3){
+        margin-right: 0;
+      }
+      .user_show_post{
+        width: 300px;
+      }
+      .user_show_disc{
+        font-size: 14px;
+        font: inherit;
+      }
+      .user_show_fav{
+        margin-right: 10px;
+        .fas{
+          margin-right: 5px;
+        }
+      }
+      .user_show_comments_count{
+        .fas{
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+}
+
+//ナビバーの中身
+//自分のお気に入り一覧
+#navmenu_contents{
+  width: 100%;
+  margin-top: 30px;
+  .navmenu_contents_detail{
+    width: 100%;
+    .navmenu_contents_favorite{
+      display: inline-block;
+      margin-right: 30px;
+      margin-bottom: 20px;
+      &:nth-of-type(3){
+        margin-right: 0;
+      }
+      .user_show_favorite{
+        width: 300px;
+      }
+      .user_show_disc{
+        font-size: 14px;
+        font: inherit;
+      }
+      .user_show_fav{
+        margin-right: 10px;
+        .fas{
+          margin-right: 5px;
+        }
+      }
+      .user_show_comments_count{
+        .fas{
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+}
+
+//フォロワー一覧
+.follower{
+  h3{
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: solid 1px #000;
+  }
+  .follower_container{
+    height: 120px;
+    margin: 0 100px 10px;
+    .follower_avatar{
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top;
+      .profile_avatar{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
+    .follower_info{
+      display: inline-block;
+      vertical-align: top;
+      .follower_name{
+        font-size: 14px;
+      }
+      .follower_post_count{
+        font-size: 14px;
+      }
+      .follower_followings{
+        font-size: 14px;
+      }
+      .follower_followers{
+        font-size: 14px;
+      }
+    }
+    .follower_button{
+      display: inline-block;
+      margin:  0 0 20px 70px;
+      vertical-align: top;
+    }
+  }
+}
+
+//フォローしている一覧
+.following{
+  h3{
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: solid 1px #000;
+  }
+  .following_container{
+    height: 120px;
+    margin: 0 100px 10px;
+    .following_avatar{
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top;
+      .profile_avatar{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
+    .following_info{
+      display: inline-block;
+      vertical-align: top;
+      .following_name{
+        font-size: 14px;
+      }
+      .following_post_count{
+        font-size: 14px;
+      }
+      .following_followings{
+        font-size: 14px;
+      }
+      .following_followings{
+        font-size: 14px;
+      }
+    }
+    .following_button{
+      display: inline-block;
+      margin:  0 0 20px 70px;
+    }
+  }
+}
+
+//editページ
+.user_edit{
+  position: absolute;
+  top: 50px;
+  .user_edit_container{
+    margin: 0 200px;
+    .avatar_field{
+      .user_edit_avatar{
+      }
+    }
+    .neme_field{
+    }
+    .profile_field{
+    }
+    .email_field{
+    }
+  }
+}

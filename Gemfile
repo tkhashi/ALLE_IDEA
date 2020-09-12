@@ -81,3 +81,9 @@ gem 'devise'
 gem 'jquery-rails'
 #動画･画像アップローダー
 gem 'carrierwave', '~> 2.0'
+#タグ機能
+gem 'acts-as-taggable-on', '~> 6.0' 
+#HTML=>JSデータ受け渡しgem
+gem 'gon'
+
+gem 'fog-aws'

@@ -1,37 +1,53 @@
-=render "slidemenu"
+
+//サイドバー
+=render "posts/slidemenu", {posts: @posts, post_new: @post_new, favorite_posts: @favorite_posts, user: current_user}
+//GoogleMap閲覧用
 javascript:
   $(document).ready(function(){
     initialize()
   });
-#map_canvas
+.googlemap
+  #map_canvas
 
-table.post_index
-  thead
-    tr
-      th
-      | ユーザーネーム
-      th
-      | 説明
-  .post_index
-    -@posts.each do |post|
-      .post_index_post
-        -if post.road?
-          -if post.road.file.content_type.include?('image/')
-            =image_tag post.road.url, width: "170px"
-          -else
-            =video_tag post.road.url, width: "170px", controls: true, loop: false
-        -else
-          =image_tag "road.jpg"
-      .post_index_user
-        span.post_index_user_avatar
-          -if post.user.avatar?
-            =image_tag post.user.avatar.url, class: "index_avatar"
-          -else
-            =image_tag "face.jpg"
-        span.post_index_user_name
-          |ユーザー名: #{post.user.name}
-      .post_index_disc
-        |説明: #{post.body}
-      //いいねボタンAjax
-      div id='favorites_buttons_#{ post.id }'
-        = render partial: 'favorites/favorite', locals: { post: post }
+  javascript:
+    var data = #{raw @arr.to_json};
+
+/ .post_index
+/   -@posts.each do |post|
+/     //投稿動画･画像
+/     .post_index_post
+/       -if post.road?
+/         -if post.road.file.content_type.include?('image/')
+/           =image_tag post.road.url, width: "250px"
+/         -else
+/           =video_tag post.road.url, width: "250px", controls: true, loop: false
+/       -else
+/         =image_tag "road.jpg", width: "250px"
+/     //投稿の説明
+/     .post_index_disc
+/       |説明: #{post.body}
+/     //編集･削除ボタン
+/     .post_index_edit
+/       = link_to '編集', edit_post_path(post), class: 'btn btn-primary mr-3'
+/       = link_to '削除', post_path(post), method: :delete, remote: true, data: {confirm: "タスク「#{post.body}」を削除します。よろしいですか？"}, class: 'btn btn-danger delete', id: "delete_link_#{post.id}"
+/     //いいねボタンAjax
+/     div id='favorites_buttons_#{ post.id }'
+/       = render partial: 'favorites/favorite', locals: { post: post }
+/     //コメント数
+/     .post_index_comments_count
+/       =post.comments.count
+/     //投稿日時
+/     .post_index_created
+/       =post.created_at.to_s(:datetime_jp) 
+/     //タグ
+/     .post_index_tags
+/       =render 'posts/tag_list', tag_list: post.tag_list
+/     //投稿ユーザー情報
+/     .post_index_user
+/       span.post_index_user_avatar
+/         -if post.user.avatar?
+/           =image_tag post.user.avatar.url, class: "index_avatar", width: "40px"
+/         -else
+/           =image_tag "face.jpg", width: "40px"
+/       span.post_index_user_name
+/         |ユーザー名: #{post.user.name}

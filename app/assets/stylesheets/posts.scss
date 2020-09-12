@@ -1,3 +1,48 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.post_index{
+  position: absolute;
+  left: 10px;
+  top: 50px;
+  height: 615px;
+  width: 250px;
+  overflow: scroll;
+  &_favorites_count{
+    display: inline-block;
+    list-style: none;
+    margin-right: 10px;
+  }
+  &_comments_count{
+    display: inline-block;
+  }
+  &_edit{
+    display: inline-block;
+    float: right;
+  }
+  &_tags{
+    margin-bottom: 15px;
+  }
+}
+
+.post_index_post{
+  width: 160px;
+}
+.index_avatar{
+  width: 35px;
+  border-radius: 50%;
+}
+
+.post_new{
+  position: absolute;
+  left: 10px;
+  top: 50px;
+}
+
+#post_map_canvas{
+  position: absolute;
+  left: 270px;
+  top: 0px;
+  width: 955px;
+  height: 100%;
+}

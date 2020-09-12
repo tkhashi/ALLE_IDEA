@@ -1,0 +1,23 @@
+-favorite_posts.each do |favorite|
+  .navmenu_contents_favorite
+    //投稿動画･画像
+    .user_show_favorite
+      -if favorite.road?
+        -if favorite.road.file.content_type.include?('image/')
+          =image_tag favorite.road.url, width: "300px"
+        -else
+          =video_tag favorite.road.url, width: "300px", controls: true, loop: false
+      -else
+        =image_tag "road.jpg", width: "300px"
+    //投稿の説明
+    .user_show_disc
+      |説明: 
+      =favorite.body
+    //いいね
+    span.user_show_fav
+      i.navmenu_nav_icon.fas.fa-heart.fa-3x
+      =favorite.favorites.count
+    //コメント数
+    span.user_show_comments_count
+      i.navmenu_nav_icon.fas.fa-comment.fa-3x
+      =favorite.comments.count

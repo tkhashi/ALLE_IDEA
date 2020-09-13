@@ -1,15 +1,18 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.1"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "ALLE_IDEA"
+set :repo_url, "git@github.com:tkhashi/ALLE_IDEA.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
-
+# set :deploy_to, "/home/ec2-user/アプリケーション名"
+set :deploy_to, "/home/ec2-user/ALLE_IDEA"
+set :rbenv_ruby, '2.5.7'
+set :linked_files, %w{config/master.key .env}
+append :linked_dirs, "log", "public", "tmp"
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 

@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+  
   end
+  get 'latlngsearch/:lat/:lng' => 'posts#search', constraints: { lat: /\d+\.\d+/, lng: /\d+\.\d+/ }
 
 
 end

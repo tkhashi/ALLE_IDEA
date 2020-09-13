@@ -36,6 +36,23 @@ class PostsController < ApplicationController
     @favorite_posts = user.favorite_posts
   end
 
+  def search
+    @maps = Map.where(latitude: params[:lat]).where(longitude: params[:lng])
+    @marker_arr =[]
+    @maps.each do |map|
+      @marker_arr.push(map.post)
+    end
+    @mark = @marker_arr[0]
+
+   # #同一緯度経度に投稿があった場合が考慮されていない。下記の要領で対応できるか?
+   # @map_posts = []
+   # maps.each do |map|
+   #   # @map_posts.push(map.post)
+   #   @map_posts.push(map.post.id)
+   # end
+   # # @posts = map.post
+  end
+
   def show
     @post_new = Post.new
     @post_new.maps.build

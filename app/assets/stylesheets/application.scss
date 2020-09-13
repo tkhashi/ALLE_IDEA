@@ -41,7 +41,10 @@ html{
     // background-color: #33CCCC;
     box-shadow: 0 3px 0 0 rgba(0,0,0,.1);
     z-index: 100;
+    //ヘッダー左
     &_indexlink{
+      display: inline-block;
+      vertical-align: middle;
       float: left;
       font-size: 3rem;
       font-family: kufam;
@@ -49,16 +52,19 @@ html{
       .app_logo{
       }
     }
+    //ヘッダー中央
     &_searchform{
       position: absolute;
       top: 8px;
       left: 360px;
     }
+    //ヘッダー右
     &_loginlink{
       float: right;
       font-size: 1.5rem;
       .user_avatar{
         display: inline-block;
+        margin-right: 15px;
         .profile_avatar{
         border-radius: 50%;
         height: 100%;
@@ -68,6 +74,7 @@ html{
       .user_info{
         display: inline-block;
         vertical-align: top;
+        margin-right: 15px;
       }
       .user_link{
         display: inline-block;

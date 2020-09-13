@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
+
   def new
     @post_new = Post.new
     @post_new.maps.build
@@ -29,8 +32,8 @@ class PostsController < ApplicationController
     @map.each do |m|        # m はMapのレコード
       @arr.push({lat: m.latitude, lng: m.longitude })
     end
-    @user = current_user
-    @favorite_posts = @user.favorite_posts
+    user = current_user
+    @favorite_posts = user.favorite_posts
   end
 
   def show

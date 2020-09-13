@@ -5,9 +5,10 @@ html lang="en"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     link href="https://fonts.googleapis.com/css2?family=Kufam&display=swap" rel="stylesheet"
-
     script src="https://kit.fontawesome.com/0babdef10f.js" crossorigin="anonymous"
     script src="https://maps.google.com/maps/api/js?key=AIzaSyDWDjyEGK8bqyz9QtpkvhPImNLcGAqcr5c&libraries=drawing"
+    script src="http://maps.google.com/maps/api/js?sensor=true"
+
     title ALLE_IDEA
 
 body
@@ -32,23 +33,25 @@ body
         .container_loginlink
           -if user_signed_in?
             =link_to user_path(current_user) do
-              .user_avatar
+              span.user_avatar
                 -if current_user.avatar?
                   =image_tag current_user.avatar.url, class: "profile_avatar", width: "40px"
                 -else
                   =image_tag "face.jpg", class: "profile_avatar", width: "40px"
-              .user_info
+            span.user_info
+              .user_info_name
                 |ユーザー名: 
                 =current_user.name
-                |  ユーザーID: 
+              .user_info_name
+                |ユーザーID: 
                 =current_user.id
-              .user_link
-                span.link_logout
-                  =link_to destroy_user_session_path, method: :delete
-                    |ログアウト
-                span.link_logout
-                  =link_to users_last_confirm_path
-                    |退会
+            span.user_link
+              .user_link_logout
+                =link_to destroy_user_session_path, method: :delete
+                  |ログアウト
+              .user_link_destroy
+                =link_to users_last_confirm_path
+                  |退会
           -else
             =link_to new_user_registration_path
               |会員登録

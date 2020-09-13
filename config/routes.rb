@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'posts#index'
+  root 'home#top'
   get 'home/about'
 
   devise_for :users

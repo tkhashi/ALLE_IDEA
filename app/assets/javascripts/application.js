@@ -54,6 +54,10 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
+var map = null;
+var infowindow = new google.maps.InfoWindow();
+
+
 // 閲覧用マップ
 function initialize() {
   //緯度と経度の配列
@@ -112,11 +116,45 @@ function initialize() {
 
   //投稿用マップ
     // google mapで利用する初期設定用の変数
-    var latlng = new google.maps.LatLng(39, 138);
+    var latlng = new google.maps.LatLng(35.691574, 139.704647);
     var opts = {
-      zoom: 6,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: latlng
+      zoom: 13,
+      center: latlng,
+      styles: [
+        //全てのラベルを非表示
+        {
+          featureType: 'all',
+          elementType: 'labels',
+          stylers: [
+            {visibility: 'off'},
+          ],
+        },
+        {
+          featureType: 'transit',
+          elementType: 'labels',
+          stylers: [
+            {visibility: 'on'},
+          ],
+        },
+        //「poi=観光スポットや施設など」のアイコンのみ再表示
+        {
+          featureType: 'poi',
+          elementType: 'labels.icon',
+          stylers: [
+            {visibility: 'inherit'},
+          ],
+        },
+        //地図全体の色味をカスタマイズ
+        //基本色を赤に統一 + 彩度を落とす
+        {
+          featureType: 'all',
+          elementType: 'all',
+          stylers: [
+            {hue: '#5f0285'},
+            {saturation : -50},
+          ],
+        }
+      ]
     };
 
     // getElementById("map")の"map"は、body内の<div id="map">より
@@ -130,15 +168,50 @@ function initialize() {
     document.getElementById("post_maps_attributes_0_longitude").value= event.latLng.lng();
   };
 
+
+
+
+
+  // 吹き出しを閉じる処理
+  map = new google.maps.Map(document.getElementById("map"), option);
+  google.maps.event.addListener(map, "click", function() {infowindow.close();});
+
+  // 任意の位置にマーカーを追加
+  var point = new google.maps.LatLng(35.673264, 139.760668);
+  var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
+
+  var point = new google.maps.LatLng(34.6545182, 135.4289645);
+  var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
+
+  var point = new google.maps.LatLng(35.1709150, 136.8815369);
+  var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
 }
 
-function dispInfo(marker,name) {
-google.maps.event.addListener(marker, 'click',
-function(event) {
-new google.maps.InfoWindow
-({content:name}).open(marker.getMap(), marker);
-})
+function create_maker(latlng, label, html) {
+  // マーカーを生成
+  var marker = new google.maps.Marker({position: latlng, map: map, title: label});
+  // マーカーをマウスオーバーした時の処理
+  google.maps.event.addListener(marker, "mouseover", function() {
+  infowindow.setContent(html);
+  infowindow.open(map, marker);
+  });
 }
+
+google.maps.event.addDomListener(window, "load", init);
+
+
+
+
+
+
+//これだけで吹き出し表示できる。。。
+// function dispInfo(marker,name) {
+// google.maps.event.addListener(marker, 'click',
+// function(event) {
+// new google.maps.InfoWindow
+// ({content:name}).open(marker.getMap(), marker);
+// })
+// }
 
 //投稿用マップ
 function init() {
@@ -170,42 +243,3 @@ function mylistener(event) {
 
 //テストマップ
 // //吹き出し表示
-// var map = null;
-// var infowindow = new google.maps.InfoWindow();
-
-// function init() {
-
-//   //マップの初期状態を設定
-//   var option = {
-//   zoom: 6,
-//   center: new google.maps.LatLng(35.4093320, 136.7566470),
-//   mapTypeId: google.maps.MapTypeId.ROADMAP,
-//   disableDefaultUI: true
-//   };
-// 　
-//   // 吹き出しを閉じる処理
-//   map = new google.maps.Map(document.getElementById("map"), option);
-//   google.maps.event.addListener(map, "click", function() {infowindow.close();});
-
-//   // 任意の位置にマーカーを追加
-//   var point = new google.maps.LatLng(35.673264, 139.760668);
-//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
-
-//   var point = new google.maps.LatLng(34.6545182, 135.4289645);
-//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
-
-//   var point = new google.maps.LatLng(35.1709150, 136.8815369);
-//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
-// }
-
-// function create_maker(latlng, label, html) {
-//   // マーカーを生成
-//   var marker = new google.maps.Marker({position: latlng, map: map, title: label});
-//   // マーカーをマウスオーバーした時の処理
-//   google.maps.event.addListener(marker, "mouseover", function() {
-//   infowindow.setContent(html);
-//   infowindow.open(map, marker);
-//   });
-// }
-
-// google.maps.event.addDomListener(window, "load", init);

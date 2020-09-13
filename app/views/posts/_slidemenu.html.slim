@@ -24,10 +24,16 @@ aside.sidebar#sidebar
         |お気に入り
     li.slidemenu_nav
       / a.slidemenu_nav_date href="#mymap"
-      =link_to user_path(current_user)
+      -if user_signed_in?
+        =link_to user_path(current_user)
+          i.slidemenu_nav_icon.fas.fa-user.fa-3x
+          span.slidemenu_nav_txt
+          |マイページ
+      -else
         i.slidemenu_nav_icon.fas.fa-user.fa-3x
         span.slidemenu_nav_txt
         |マイページ
+
 
   //スライドサイドバーの中身
   /<ーーサインインしている時ーー>
@@ -59,24 +65,20 @@ aside.sidebar#sidebar
   -else
     #slidemenu_contents
       .slidemenu_contents_detail#home
-        p
-        |動画一覧<br>
-        span
-        |皆が見ているコンテンツ
+        .slidemenucontent_detail_title
+          h2 みんなの動画一覧<br>
+        =render "posts/post_index", posts: posts
       .slidemenu_contents_detail#contents-on-map
-        p
-        |地図上のコンテンツ一覧
-        span
-        |今地図上に表示されているコンテンツ
+        .slidemenucontent_detail_title
+          h2 地図上のコンテンツ一覧
+          h3 地図上のマーカーをクリックしよう！
       .slidemenu_contents_detail#posts
-        p
-        |あなたの｢道｣を投稿
+        .slidemenucontent_detail_title
+          h2 あなたの｢道｣を投稿
       .slidemenu_contents_detail#favorites
-        p
-        |お気に入りコンテンツ一覧
+        .slidemenucontent_detail_title
+          h2 お気に入りコンテンツ一覧
       .slidemenu_contents_detail#mymap
-        p
-        |マイマップ<br>
-        span
-        |あなたが集めた｢道｣一覧 
+        .slidemenucontent_detail_title
+          h2 自分の投稿
   /<ーーサインインしていない時ーー>

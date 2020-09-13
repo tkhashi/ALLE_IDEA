@@ -1,158 +1,93 @@
-h1
-  | Posts#show
-#map
-
 //投稿画像
 .post_show
-  =link_to posts_path
-    |aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   .post_show_image
     -if @post.road?
-      =image_tag @post.road.url, width: "170px"
-      =video_tag @post.road.url, width: "170px"
+      -if @post.road.file.content_type.include?('image/')
+        =image_tag @post.road.url, width: "640px"
+      -else
+        =video_tag @post.road.url, width: "640px"
     -else
-      =image_tag "no-image.jpg", width: "170px"
-  .post_show_user_name
-    p
-      |ユーザーネーム #{ @post.user.name }
-  .post_show_user_name
-    p
-      |説明: #{ @post.body }
-//コメント投稿フォーム
--if user_signed_in?
-  =form_with url: post_comments_path(@post.id), model: [@post, @comment],　method: :post, local: true do |f|
-    =f.text_area :comment, class: "form-control", placeholder: "コメントを書こう!"
-    =f.submit "送信"
-
-//コメント一覧
-ol
-  -@post.comments.each do |c|
-    li.comment
-      .comment_body
-        .comment_avatar
-          =image_tag("no-image.jpg", style: "width: 60px; height: 60px;")
-        .comment_text
+      =image_tag "no-image.jpg", width: "640px"
+  //タグ
+  .post_show_tags
+    =render 'posts/tag_list', tag_list: @post.tag_list
+  //説明
+  .post_show_disc
+    =@post.body
+  //投稿日時
+  .post_show_created
+    =@post.created_at.to_s(:datetime_jp) 
+  .post_show_responce
+    //いいね
+    .post_show_responce_favorite
+      div id='favorites_buttons_#{ @post.id }'
+        = render partial: 'favorites/favorite', locals: { post: @post }
+    //コメント数
+    .post_show_responce_comments_count
+      i.navmenu_nav_icon.fas.fa-comment.fa-lg
+      |コメント数
+      = @post.comments.count
+  //投稿ユーザー情報
+  .post_show_user
+    =link_to user_path(@post.user.id) do
+      .post_show_user_avatar
+        -if @post.user.avatar?
+          =image_tag @post.user.avatar.url, class: "index_avatar"
+        -else
+          =image_tag "face.jpg", class: "index_avatar"
+    .post_show_user_info
+      .post_show_user_info_name
+        |ユーザー名: #{@post.user.name}
+      .post_show_user_info_disc
+        =@post.user.profile
+    .post_show_user_info_follow_button
+      = render partial: 'users/follow_button', locals: { user: @user }
+  //コメント投稿フォーム
+  .post_show_comment_form
+    .post_show_comment_form_user
+      -if current_user.avatar?
+        =image_tag  curren_user.avatar.url, class: "index_avatar"
+      -else
+        =image_tag "face.jpg", class: "index_avatar"
+    .post_show_comment_form_form
+      -if user_signed_in?
+        =form_with url: post_comments_path(@post.id), model: [@post, @comment],　method: :post, local: true do |f|
+          =f.text_area :comment, class: "form-control", placeholder: "コメントを書こう!"
+          =f.submit "送信"
+  //コメント一覧
+  ol.post_show_comment_index
+    -@post.comments.each do |c|
+      li.comment
+        .comment_body
+          //コメント投稿者情報
           .comment_user.clearfix
-              .comment_user_name
-                =c.user.name
-              .comment_entry
-                =c.comment
-                -if c.user == current_user
-                  .delete_btn
-                    = link_to  "削除", post_comment_path(c.post_id, c.id), method: :delete
-
-aside.sidebar#sidebar
-  ul.slidemenu#slidemenu
-    li.slidemenu_nav
-      a.slidemenu_nav_date href="#home" class="active"
-        i.slidemenu_nav_icon.fas.fa-home.fa-3x
-        span.slidemenu_nav_txt
-        | ホーム
-    li.slidemenu_nav
-      a.slidemenu_nav_date href="#contents-on-map"
-        i.slidemenu_nav_icon.fas.fa-map-marker-alt.fa-3x
-        span.slidemenu_nav_txt
-        |投稿詳細
-    li.slidemenu_nav
-      a.slidemenu_nav_date href="#posts"
-        i.slidemenu_nav_icon.fas.fa-video.fa-3x
-        span.slidemenu_nav_txt
-        |投稿
-    li.slidemenu_nav
-      a.slidemenu_nav_date href="#favorites"
-        i.slidemenu_nav_icon.fas.fa-heart.fa-3x
-        span.slidemenu_nav_txt
-        |お気に入り
-    li.slidemenu_nav
-      a.slidemenu_nav_date href="#mymap"
-        i.slidemenu_nav_icon.fas.fa-user.fa-3x
-        span.slidemenu_nav_txt
-        |マイマップ
-
-  //スライドサイドバーの中身
-  /<ーーサインインしている時ーー>
-  -if user_signed_in?
-    #slidemenu_contents
-      .slidemenu_contents_detail id="home"
-      .slidemenu_contents_detail id="contents-on-map"
-        p
-        |地図上のコンテンツ一覧
-        span
-        |今地図上に表示されているコンテンツ
-      .slidemenu_contents_detail id="posts"
-        p
-        |あなたの｢道｣を投稿
-        =render "post_new", post_new: @post_new
-      .slidemenu_contents_detail id="favorites"
-        p
-        |お気に入りコンテンツ一覧
-      .slidemenu_contents_detail id="mymap"
-        .name
-          =current_user.name
-          =link_to edit_user_path(current_user.id) do
-            i.fas.fa-cog
-        .post_counts
-          |投稿
-            =@posts_counts
-          |件
-          |フォロー
-            =current_user.followings 
-          |人
-          |フォロワー 
-            =current_user.followers 
-          |人
-
-        p
-        |マイマップ<br>
-        span
-        |あなたが集めた｢道｣一覧
-        =render "users/user_show", {user: @user, favorite_posts: @favorite_posts}
-  /<ーーサインインしている時ーー>
-
-  /<ーーサインインしていない時ーー>
-  -else
-    #slidemenu_contents
-      .slidemenu_contents_detail#home
-        p
-        |動画一覧<br>
-        span
-        |皆が見ているコンテンツ
-      .slidemenu_contents_detail#contents-on-map
-        p
-        |地図上のコンテンツ一覧
-        span
-        |今地図上に表示されているコンテンツ
-      .slidemenu_contents_detail#posts
-        p
-        |あなたの｢道｣を投稿
-      .slidemenu_contents_detail#favorites
-        p
-        |お気に入りコンテンツ一覧
-      .slidemenu_contents_detail#mymap
-        p
-        |マイマップ<br>
-        span
-        |あなたが集めた｢道｣一覧 
-  /<ーーサインインしていない時ーー>
-
-//いいね
-
-//いいねボタンhtml
-  -if @post.favorited_by?(current_user)
-    li
-      =link_to post_favorites_path(@post), method: :delete do
-        i.fa.fa-heart area-hidden="true" style="color: red;"
-        いいね #{ @post.favorites.count } 
-  -else
-    li
-      =link_to post_favorites_path(@post), method: :post do
-        i.fa.fa-heart area-hidden="true"
-        いいね #{ @post.favorites.count }
-
-//いいねボタン Ajax
-/ #favorites_buttons_#{ @post.id }
-  == render  "favorites/favorite", post: @post
+            span.comment_user_avatar
+              =link_to user_path(c.id) do
+                span.comment_user_avatar_image
+                  -if c.user.avatar?
+                    =image_tag c.user.avatar.url, class: "index_avatar"
+                  -else
+                    =image_tag "face.jpg", class: "index_avatar"
+            span.comment_body_block
+              .comment_user_info
+                span.comment_user_info_name
+                  =c.user.name
+                span.comment_user_info_date
+                  =c.created_at.to_s(:datetime_jp) 
+                //コメント内容
+              .comment_user_text
+                  =c.comment
+                  -if c.user == current_user
+                    span.delete_btn
+                      = link_to  "削除", post_comment_path(c.post_id, c.id), method: :delete
 
 
+  javascript:
+    var data = #{raw @arr.to_json};
+  javascript:
+    $(document).ready(function(){
+      initialize()
+    });
 
-
+  .google_map
+    #map_canvas

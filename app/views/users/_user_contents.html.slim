@@ -31,16 +31,14 @@ aside.navbar#navbar
           .navmenu_contents_post
             //投稿動画･画像
             .user_show_post
-              -if post.road?
-                -if post.road.file.content_type.include?('image/')
-                  =image_tag post.road.url, width: "300px"
+              =link_to post_path(post.id)
+                -if post.road?
+                  -if post.road.file.content_type.include?('image/')
+                    =image_tag post.road.url, width: "300px"
+                  -else
+                    =video_tag post.road.url, width: "300px", controls: true, loop: false
                 -else
-                  =video_tag post.road.url, width: "300px", controls: true, loop: false
-              -else
-                =image_tag "road.jpg", width: "300px"
-            //投稿の説明
-            .user_show_disc
-              |説明: #{post.body}
+                  =image_tag "road.jpg", width: "300px"
             //いいね
             span.user_show_fav
               i.navmenu_nav_icon.fas.fa-heart.fa-lg
@@ -48,7 +46,13 @@ aside.navbar#navbar
             //コメント数
             span.user_show_comments_count
               i.navmenu_nav_icon.fas.fa-comment.fa-lg
+            //投稿の説明
+            .user_show_disc
+              |説明: #{post.body}
               =post.comments.count
+            //タグ
+            .user_show_tags
+              =render 'posts/tag_list', tag_list: post.tag_list
 
       .navmenu_contents_detail id="favorite"
         =render "users/favorites_index", {favorite_posts: favorite_posts}

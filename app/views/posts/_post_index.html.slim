@@ -12,13 +12,14 @@
           |ユーザー名: #{post.user.name}
     //投稿動画･画像
     .post_index_post
-      -if post.road?
-        -if post.road.file.content_type.include?('image/')
-          =image_tag post.road.url, width: "250px"
+      =link_to post_path(post.id) do
+        -if post.road?
+          -if post.road.file.content_type.include?('image/')
+            =image_tag post.road.url, width: "250px"
+          -else
+            =video_tag post.road.url, width: "250px", controls: true, loop: false
         -else
-          =video_tag post.road.url, width: "250px", controls: true, loop: false
-      -else
-        =image_tag "road.jpg", width: "250px"
+          =image_tag "road.jpg", width: "250px"
     //いいねボタンAjax
     .post_index_favorites_count
       div id='favorites_buttons_#{ post.id }'
@@ -36,7 +37,8 @@
         = link_to '削除', post_path(post), method: :delete, remote: true, data: {confirm: "タスク「#{post.body}」を削除します。よろしいですか？"}, class: 'btn btn-danger delete', id: "delete_link_#{post.id}"
     //投稿の説明
     .post_index_disc
-      |説明: #{post.body}
+      =link_to post_path(post.id)
+        |説明: #{post.body}
     //投稿日時
     .post_index_created
       =post.created_at.to_s(:datetime_jp) 

@@ -96,36 +96,47 @@ main{
   }
 }
 //ナビバーの中身
-//自分の投稿
 #navmenu_contents{
   width: 100%;
   margin-top: 30px;
   .navmenu_contents_detail{
     width: 100%;
-    .navmenu_contents_post{
+    //自分の投稿//自分のお気に入り一覧
+    .navmenu_contents_post, .navmenu_contents_favorites{
       display: inline-block;
       margin-right: 30px;
       margin-bottom: 20px;
       &:nth-of-type(3){
         margin-right: 0;
       }
-      .user_show_post{
+      .user_show_post, .user_show_favorites_post{
         width: 300px;
+        vertical-align: top;
+        &_user{
+          vertical-align: top;
+        }
+        img, video{
+          width: 300px;
+        }
       }
       .user_show_disc{
         font-size: 14px;
         font: inherit;
       }
-      .user_show_fav{
+      .user_show_fav, .user_show_favorites_count{
         margin-right: 10px;
+        list-style: none;
         .fas{
           margin-right: 5px;
         }
       }
-      .user_show_comments_count{
+      .user_show_comments_count, .user_show_favorites_comments_count{
         .fas{
           margin-right: 7px;
         }
+      }
+      .user_show_tags, .user_show_favorites_tags{
+        margin-bottom: 15px;
       }
     }
   }

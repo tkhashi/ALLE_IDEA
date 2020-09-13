@@ -1,23 +1,44 @@
--favorite_posts.each do |favorite|
-  .navmenu_contents_favorite
-    //投稿動画･画像
-    .user_show_favorite
-      -if favorite.road?
-        -if favorite.road.file.content_type.include?('image/')
-          =image_tag favorite.road.url, width: "300px"
-        -else
-          =video_tag favorite.road.url, width: "300px", controls: true, loop: false
-      -else
-        =image_tag "road.jpg", width: "300px"
-    //投稿の説明
-    .user_show_disc
-      |説明: 
-      =favorite.body
-    //いいね
-    span.user_show_fav
-      i.navmenu_nav_icon.fas.fa-heart.fa-3x
-      =favorite.favorites.count
-    //コメント数
-    span.user_show_comments_count
-      i.navmenu_nav_icon.fas.fa-comment.fa-3x
-      =favorite.comments.count
+.user_show_favorites
+  -favorite_posts.each do |favorite|
+    .navmenu_contents_favorites
+      //投稿ユーザー情報
+      .user_show_favorites_post_user
+        =link_to user_path(favorite.user.id) do
+          span.post_favorites_user_avatar
+            -if favorite.user.avatar?
+              =image_tag favorite.user.avatar.url, class: "index_avatar"
+            -else
+              =image_tag "face.jpg", class: "index_avatar"
+          span.post_favorites_user_name
+            |ユーザー名: 
+            =favorite.user.name
+      //投稿動画･画像
+      .user_show_favorites_post
+        =link_to post_path(favorite.id)
+          -if favorite.road?
+            -if favorite.road.file.content_type.include?('image/')
+              =image_tag favorite.road.url, width: "250px"
+            -else
+              =video_tag favorite.road.url, width: "250px", controls: true, loop: false
+          -else
+            =image_tag "road.jpg", width: "250px"
+      //いいねボタンAjax
+      .user_show_favorites_count
+        div id='favorites_buttons_#{ favorite.id }'
+          = render partial: 'favorites/favorite', locals: { post: favorite}
+      //コメント数
+      .user_show_favorites_comments_count
+        =link_to post_path( favorite.id) do
+          i.navmenu_nav_icon.fas.fa-comment.fa-lg
+        |コメント
+        =favorite.comments.count
+      //投稿の説明
+      .user_show_disc
+        |説明: 
+        =favorite.body
+      //投稿日時
+      .user_show_created
+        =favorite.created_at.to_s(:datetime_jp) 
+      //タグ
+      .user_show_favorites_tags
+        =render 'posts/tag_list', tag_list: favorite.tag_list

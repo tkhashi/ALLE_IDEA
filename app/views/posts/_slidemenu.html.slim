@@ -23,8 +23,8 @@ aside.sidebar#sidebar
         span.slidemenu_nav_txt
         |お気に入り
     li.slidemenu_nav
-      =link_to "マイページへ移動", user_path(current_user.id)
-      a.slidemenu_nav_date href="#mymap"
+      / a.slidemenu_nav_date href="#mymap"
+      =link_to user_path(current_user)
         i.slidemenu_nav_icon.fas.fa-user.fa-3x
         span.slidemenu_nav_txt
         |マイページ
@@ -35,7 +35,7 @@ aside.sidebar#sidebar
     #slidemenu_contents
       .slidemenu_contents_detail id="home"
         .slidemenucontent_detail_title
-          h2 動画一覧<br>
+          h2 みんなの動画一覧<br>
         =render "posts/post_index", posts: posts
       .slidemenu_contents_detail id="contents-on-map"
         .slidemenucontent_detail_title
@@ -49,10 +49,10 @@ aside.sidebar#sidebar
         .slidemenucontent_detail_title
           h2 お気に入りコンテンツ一覧
         =render "users/favorites_index", {user: user, favorite_posts: favorite_posts}
-      .slidemenu_contents_detail id="mymap"
-        .slidemenucontent_detail_title
-          h2 マイマップ
-        =render "users/user_show", {user: user, favorite_posts: favorite_posts}
+      / .slidemenu_contents_detail id="mymap"
+      /   .slidemenucontent_detail_title
+      /     h2 自分の投稿
+      /   =render "users/user_show", {user: user, favorite_posts: favorite_posts}
   /<ーーサインインしている時ーー>
 
   /<ーーサインインしていない時ーー>

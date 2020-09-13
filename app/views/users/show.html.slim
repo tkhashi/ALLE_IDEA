@@ -1,5 +1,4 @@
 main#user_show
-  =link_to "posts/indexへ移動", "/posts"
   .profile_container.clearfix
     .profile_container_avatar
       .user_show_avatar
@@ -28,4 +27,4 @@ main#user_show
           =link_to user_followings_path(@user.id) do
             |フォロー中 #{@user.followings.count} 人 
 
-  =render "user_contents", {user: @user}
+  =render "user_contents", {user: @user, favorite_posts: @favorite_posts}

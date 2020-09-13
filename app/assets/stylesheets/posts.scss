@@ -1,30 +1,34 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.post_index{
-  position: absolute;
-  left: 10px;
-  top: 50px;
-  height: 615px;
-  width: 250px;
-  overflow: scroll;
-  &_favorites_count{
-    display: inline-block;
-    list-style: none;
-    margin-right: 10px;
-  }
-  &_comments_count{
-    display: inline-block;
-  }
-  &_edit{
-    display: inline-block;
-    float: right;
-  }
-  &_tags{
-    margin-bottom: 15px;
+
+
+//indexページ新着投稿一覧
+#home{
+  .post_index{
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    height: 615px;
+    width: 250px;
+    overflow: scroll;
+    &_favorites_count{
+      display: inline-block;
+      list-style: none;
+      margin-right: 10px;
+    }
+    &_comments_count{
+      display: inline-block;
+    }
+    &_edit{
+      display: inline-block;
+      float: right;
+    }
+    &_tags{
+      margin-bottom: 15px;
+    }
   }
 }
-
 .post_index_post{
   width: 160px;
 }
@@ -39,6 +43,135 @@
   top: 50px;
 }
 
+//indexページお気に入り投稿一覧
+#favorites{
+  .user_show_favorites{
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    height: 615px;
+    width: 250px;
+    overflow: scroll;
+    &_count{
+      display: inline-block;
+      list-style: none;
+      margin-right: 10px;
+    }
+    &_comments_count{
+      display: inline-block;
+    }
+    &_edit{
+      display: inline-block;
+      float: right;
+    }
+    &_tags{
+      margin-bottom: 15px;
+    }
+  }
+}
+
+//showページ
+.post_show{
+  position: absolute;
+  top: 70px;
+  left: 30px;
+  &_image{
+  }
+  &_tags{
+    margin-bottom: 10px;
+  }
+  &_disc{
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  &_created{
+  }
+  &_responce{
+    text-align-last: left;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #000;
+    &_favorite{
+      min-width: 40px;
+      vertical-align: middle;
+      display: inline-block;
+      list-style: none;
+      margin-right: 10px;
+    }
+    &_comments_count{
+      min-width: 40px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+  }
+  &_user{
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #000;
+    &_avatar{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &_info{
+      display: inline-block;
+      vertical-align: middle;
+      &_name{
+      }
+      &_disc{
+        width: 500px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    &_follow_button{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    }
+  }
+  &_comment_form{
+    vertical-align: middle;
+    &_user{
+    display: inline-block;
+    }
+    &_form{
+    display: inline-block;
+    }
+  }
+  &_comment_index{
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    .comment{
+      &_body{
+        .comment_user{
+          &_avatar{
+            width: 40px;
+            &_image{
+            }
+          }
+          .comment_body_block{
+            width: 500px;
+            .comment_user_info{
+              &_name{
+              }
+              &_date{
+                flood-color: gray;
+              }
+            }
+            .comment_user_text{
+              list-style: none;
+              font-weight: bold;
+              .delete_btn{
+                width: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 #post_map_canvas{
   position: absolute;
   left: 270px;
@@ -47,8 +180,3 @@
   height: 100%;
 }
 
-
-#testmap{
-  width: 600px;
-  height: 400px;
-}

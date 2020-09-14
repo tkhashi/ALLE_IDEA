@@ -22,16 +22,18 @@
               =video_tag favorite.road.url, width: "250px", controls: true, loop: false
           -else
             =image_tag "road.jpg", width: "250px"
-      //いいねボタンAjax
-      .user_show_favorites_count
-        div id='favorites_buttons_#{ favorite.id }'
-          = render partial: 'favorites/favorite', locals: { post: favorite}
-      //コメント数
-      .user_show_favorites_comments_count
-        =link_to post_path( favorite.id) do
-          i.navmenu_nav_icon.fas.fa-comment.fa-lg
-        |コメント
-        =favorite.comments.count
+      .user_show_responce
+        //いいねボタンAjax
+        .user_show_responce_favorite_icon
+          div id='favorites_buttons_#{ favorite.id }'
+            = render partial: 'favorites/favorite', locals: { post: favorite}
+        .user_show_responce_favorite_count
+          =favorite.comments.count
+        //コメント数
+        .user_show_responce_favorite_comments_count
+          =link_to post_path( favorite.id) do
+            i.navmenu_nav_icon.fas.fa-comment.fa-lg
+          =favorite.comments.count
       //投稿の説明
       .user_show_disc
         |説明: 

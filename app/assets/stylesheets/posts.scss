@@ -75,6 +75,7 @@
   position: absolute;
   top: 70px;
   left: 30px;
+  color: #000;
   &_image{
   }
   &_tags{
@@ -97,6 +98,9 @@
       display: inline-block;
       list-style: none;
       margin-right: 10px;
+      a:link, a:visited, a:active {
+        color: #000;
+      }
     }
     &_comments_count{
       min-width: 40px;

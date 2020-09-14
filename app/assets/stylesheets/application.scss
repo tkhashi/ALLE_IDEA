@@ -13,16 +13,25 @@
  *= require_tree .
  *= require_self
  */
-
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
+*{
+  text-decoration: none;
+  a:hover{
+    color: #f1e204;
   }
+  .clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+    }
+}
 
 html{
   font-size: 10px;
   background-color: rgba(var(--b3f,250,250,250),1);
+  // color: white;
+  a:link, a:visited, a:active {
+    color: white;
+  }
   main{
     aside{
       display: block;
@@ -38,48 +47,84 @@ html{
     left: 0;
     height: 50px;
     width: 100%;
-    // background-color: #33CCCC;
+    background-color: #438d6485;
     box-shadow: 0 3px 0 0 rgba(0,0,0,.1);
     z-index: 100;
-    //ヘッダー左
-    &_indexlink{
-      display: inline-block;
-      vertical-align: middle;
-      float: left;
-      font-size: 3rem;
-      font-family: kufam;
-      width: 33%;
-      .app_logo{
-      }
-    }
-    //ヘッダー中央
-    &_searchform{
-      position: absolute;
-      top: 8px;
-      left: 360px;
-    }
-    //ヘッダー右
-    &_loginlink{
-      float: right;
-      font-size: 1.5rem;
-      .user_avatar{
-        display: inline-block;
-        margin-right: 15px;
-        .profile_avatar{
-        border-radius: 50%;
-        height: 100%;
-        width: 40px;
+      //ヘッダー左
+      &_indexlink{
+        float: left;
+        font-size: 3rem;
+        font-family: kufam;
+        width: 33%;
+        margin-top: 7px;
+        margin-left: 10px;
+        .app_logo{
         }
       }
-      .user_info{
-        display: inline-block;
-        vertical-align: top;
-        margin-right: 15px;
+      //ヘッダー中央
+      &_searchform{
+        position: absolute;
+        top: 8px;
+        left: 360px;
+        &_form{
+          select, input{
+            color: #000;
+          }
+        }
       }
-      .user_link{
-        display: inline-block;
+      //ヘッダー右
+      &_loginlink{
+        float: right;
+        font-size: 1rem;
+        .user_avatar{
+          margin-right: 15px;
+          .profile_avatar{
+          border-radius: 50%;
+          height: 100%;
+          width: 40px;
+          }
+        }
+        .user_info{
+          margin-right: 15px;
+          &_name{
+            margin-right: 10px;
+            position: relative;
+            display: inline-block;
+            font-weight: bold;
+            padding: 0.25em 0.5em;
+            text-decoration: none;
+            color: #5f3a8a;
+            background: #ECECEC;
+            transition: .4s;
+          }
+          &_name:hover{
+            background: #5f3a8a;
+            color: white;
+          }
+        }
+        .user_link{
+          &_logout{
+            margin-right: 10px;
+            position: relative;
+            display: inline-block;
+            font-weight: bold;
+            padding: 0.25em 0.5em;
+            text-decoration: none;
+            background: #ECECEC;
+            transition: .4s;
+            a{
+              color: #5f3a8a;
+            }
+          }
+          &_logout:hover{
+            background: #5f3a8a;
+            a{
+              color: #ECECEC;
+            }
+          }
+          display: inline-block;
+        }
       }
-    }
     }
   }
   .clearfix::after {
@@ -93,14 +138,14 @@ html{
 //サイドバー本体
 #slidemenu{
   li{
-    background-color: #f75586;
+    background-color: #438d6485;
     z-index: 99;
   }
   //サイドバー本体active時のアイコンと文字
   .active{
-    color: #ccFF00;
+    color: #5f3a8a;
     .fas{
-      color: #ccFF00;
+      color: #5f3a8a;
 
     }
   }
@@ -120,10 +165,10 @@ html{
   &_nav{
     height: 20%;
     border-top: 1px solid #FFF;
-    line-height: 5rem;
     text-align: center;
     &_icon{
       // background-color: #f75586;
+      padding-top: 30px;
       color: #FFF;
     }
     &_txt{
@@ -132,9 +177,6 @@ html{
       color: #FFF;
     }
     &_date{
-      .active{
-        // background-color: #ccFF00;
-      }
     }
   }
   &_nav:first_child{
@@ -144,8 +186,9 @@ html{
 
 //サイドバー中身
 #slidemenu_contents{
+  color: #fff;
   .slidemenu_contents_detail{
-    background-color: #ccFF00;
+    background-color: #704e97;
     position: absolute;
     left: 55px;
     top: 50px;
@@ -153,16 +196,21 @@ html{
     box-shadow: 0 0 0 3px rgba(0,0,0,.1);
     height:100%;
     min-width: 270px;
-    &_title{
-      text-align: center;
-      h2,h3{
-        display: inline-block;
-      }
+  }
+  #posts{
+    width: 100%;
+    h2{
+      position: relative;
+      left: 20px;
+      color: #fff;
     }
-    &#posts{
-      width: 100%;
-    }
-    &#mymap{
+  }
+  #home,#contents-on-map,#favorites{
+    h2,h3{
+      position: relative;
+      left: 20px;
+      display: inline-block;
+      color: #fff;
     }
   }
 }
@@ -198,13 +246,27 @@ color: #000000;
   }
 }
 
+//フォローボタン
+.follow_button{
+  background: #5f3a8a;
+  color: #ffffff;
+  &:hover{
+    background: #543e8685;
+  }
+}
 
-
+//いいねボタン
+.favorite_heart{
+  .fa-heart{
+    text-shadow:black 0.5px 0.5px 0px, black -0.5px 0.5px 0px,
+                black 0.5px -0.5px 0px, black -0.5px -0.5px 0px;
+  }
+}
 
 
 //タグCSS
 .tags {
-  background: #5cd;
+  background: #438d6485;
   border-radius: 8px 0 0 8px;
   color: #fff;
   display: inline-block;
@@ -216,7 +278,7 @@ color: #000000;
 }
 .tags::before {
   border: 10px solid transparent;
-  border-left-color: #5cd;
+  border-left-color: #438d6485;
   border-right-width: 0;
   content: '';
   display: block;
@@ -228,7 +290,7 @@ color: #000000;
 }
 
 .tags::after {
-  background: #28c;
+  background: #438d6485;
   border-radius: 8px 0 0 8px;
   content: '';
   display: block;
@@ -239,8 +301,11 @@ color: #000000;
   width: 1em;
 }
 
-.container_searchform {
-  position: relative;
+.search{
+  position: absolute;
   top: 50px;
   left: 200px;
+  &_result{
+   h1,th{ color: #000; }
+  }
 }

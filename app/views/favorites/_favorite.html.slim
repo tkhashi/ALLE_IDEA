@@ -8,7 +8,7 @@
     -else
       li
         =link_to post_favorites_path(post), method: :post, remote: true  do
-          i.fa.fa-heart area-hidden="true"
+          i.fa.fa-heart area-hidden="true" style="color: grey;"
           |いいね #{post.favorites.count}
   -else
     li

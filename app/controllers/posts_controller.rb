@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :search]
 
 
   def new
@@ -36,6 +36,7 @@ class PostsController < ApplicationController
     @favorite_posts = user.favorite_posts
   end
 
+  #マップマーカークリック時に投稿データを引っ張り出すアクション
   def search
     @maps = Map.where(latitude: params[:lat]).where(longitude: params[:lng])
     @marker_arr =[]
@@ -43,7 +44,6 @@ class PostsController < ApplicationController
       @marker_arr.push(map.post)
     end
     @mark = @marker_arr[0]
-
    # #同一緯度経度に投稿があった場合が考慮されていない。下記の要領で対応できるか?
    # @map_posts = []
    # maps.each do |map|
@@ -94,6 +94,6 @@ class PostsController < ApplicationController
     params.require(:post).permit(:body, :road, :tag_list,
                                   maps_attributes: [:latitude,
                                                     :longitude])
- end
+  end
 
 end

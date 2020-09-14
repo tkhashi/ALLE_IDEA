@@ -83,11 +83,12 @@
 
 
   javascript:
-    var data = #{raw @arr.to_json};
-  javascript:
     $(document).ready(function(){
       initialize()
     });
 
   .google_map
     #map_canvas
+
+  javascript:
+    var data = #{raw @arr.to_json};

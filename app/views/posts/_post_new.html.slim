@@ -1,24 +1,33 @@
-.post_new
-  .post_new_form
-    p#latlng style="font-size:10px;"
-    =form_with model: post_new do |form|
-      =form.label :body, "説明"
-      br
-      =form.text_field :body
-      br
-      =form.label :road
-      br
-      =form.file_field :road, :accept => 'image/*,video/*'
-      br
-      =form.label :tag_list
-      br
-      =form.text_field :tag_list, value: post_new.tag_list.join(','), class: "form-control"
-      //座標をフォームに入れる
-      =form.fields_for :maps do |map_form|
-        =map_form.hidden_field :latitude
-        =map_form.hidden_field :longitude
-      br
-      =form.submit "投稿"
 
-//ページ読み込みで投稿用マップ表示
-#post_map_canvas
+-if user_signed_in?
+  .post_new
+    .post_new_form
+      p#latlng style="font-size:10px;"
+      =form_with model: post_new do |form|
+        =form.label :body, "動画･画像選択"
+        br
+        =form.file_field :road, :accept => 'image/*,video/*'
+        br
+        =form.label :body, "説明"
+        br
+        =form.text_field :body
+        br
+        =form.label :tag_list, "タグ追加｢,(カンマ)｣で複数追加"
+        br
+        =form.text_field :tag_list, value: post_new.tag_list.join(','), class: "form-control"
+        //座標をフォームに入れる
+        =form.fields_for :maps do |map_form|
+          =map_form.hidden_field :latitude
+          =map_form.hidden_field :longitude
+        br
+        =form.submit "投稿"
+
+  //ページ読み込みで投稿用マップ表示
+  #post_map_canvas
+
+-else
+  .post_new
+    =link_to new_user_registration_path, class: "post_new_signup"
+      |会員登録して投稿しよう！
+    =link_to new_user_registration_path, class: "post_new_signin"
+      |会員の方はコチラ！

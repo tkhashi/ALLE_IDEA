@@ -24,7 +24,7 @@ body
 
         //バー中央
         .container_searchform
-          =form_tag search_path, method: :get do
+          =form_tag search_path, method: :get, class: "container_searchform_form" do
             =select_tag :option, options_for_select([["ユーザー", "1"],["投稿"]])
             =select_tag :choice, options_for_select([["あいまい検索", "1" ],["後方一致検索", "2" ],["前方一致検索", "3" ],["完全一致検索", "4" ]])
             =text_field_tag :search
@@ -38,25 +38,29 @@ body
                   =image_tag current_user.avatar.url, class: "profile_avatar", width: "40px"
                 -else
                   =image_tag "face.jpg", class: "profile_avatar", width: "40px"
-            span.user_info
-              .user_info_name
-                |ユーザー名: 
-                =current_user.name
-              .user_info_name
-                |ユーザーID: 
-                =current_user.id
+            span.user_link
+              .user_info
+                .user_info_name
+                  |ユーザー名: 
+                  =current_user.name
+                .user_info_name
+                  |ユーザーID: 
+                  =current_user.id
+              .user_link
+                .user_link_logout
+                  =link_to destroy_user_session_path, method: :delete
+                    |ログアウト
+                .user_link_logout
+                  =link_to users_last_confirm_path
+                    |退会
+          -else
             span.user_link
               .user_link_logout
-                =link_to destroy_user_session_path, method: :delete
-                  |ログアウト
-              .user_link_destroy
-                =link_to users_last_confirm_path
-                  |退会
-          -else
-            =link_to new_user_registration_path
-              |会員登録
-            =link_to new_user_session_path
-              |ログイン
+                =link_to new_user_registration_path
+                  |会員登録
+              .user_link_logout
+                =link_to new_user_session_path
+                  |ログイン
   == yield
 
   / script src="jquery.min.js"

@@ -11,6 +11,10 @@ main{
   .profile_container{
     text-align: center;
     margin: 30px 150px 40px;
+    color: #000;
+    a:link, a:visited, a:active {
+      color: #000;
+    }
   .profile_container_avatar{
     display: inline-block;
     height: 150px;
@@ -86,13 +90,13 @@ main{
     display: block;
     padding: 20px;
     text-align: center;
-    background: #000;
+    background: #5f3a8a;
     border: 1px solid #000;
     border-bottom: none;
   }
   .active{
     background: #fff;
-    color: #000;
+    color: #5f3a8a;
   }
 }
 //ナビバーの中身
@@ -106,6 +110,7 @@ main{
       display: inline-block;
       margin-right: 30px;
       margin-bottom: 20px;
+      color: #000;
       &:nth-of-type(3){
         margin-right: 0;
       }
@@ -123,16 +128,28 @@ main{
         font-size: 14px;
         font: inherit;
       }
-      .user_show_fav, .user_show_favorites_count{
-        margin-right: 10px;
-        list-style: none;
-        .fas{
-          margin-right: 5px;
+      .user_show_responce{
+        &_fav{
+          vertical-align: middle;
+          display: inline-block;
+          margin-right: 10px;
+          list-style: none;
+          &_count, &_icon{
+            li{
+              width: 10px;
+              height: 10px;
+            }
+            vertical-align: middle;
+            display: inline-block;
+            margin-right: 5px;
+          }
         }
-      }
-      .user_show_comments_count, .user_show_favorites_comments_count{
-        .fas{
-          margin-right: 7px;
+        &_comments_count, .user_show_favorites_comments_count{
+          vertical-align: middle;
+          display: inline-block;
+          i{
+            margin-right: 7px;
+          }
         }
       }
       .user_show_tags, .user_show_favorites_tags{
@@ -156,23 +173,29 @@ main{
       &:nth-of-type(3){
         margin-right: 0;
       }
-      .user_show_favorite{
-        width: 300px;
+      .user_show_responce{
+        &_favorite_icon{
+          width: 300px;
+        }
+        &_favorite_count{
+        }
+        &_favorite_comments_count{
+          .fas{
+            margin-right: 7px;
+        }
       }
       .user_show_disc{
         font-size: 14px;
-        font: inherit;
       }
       .user_show_fav{
         margin-right: 10px;
+        &_count{
+
+        }
         .fas{
           margin-right: 5px;
         }
       }
-      .user_show_comments_count{
-        .fas{
-          margin-right: 7px;
-        }
       }
     }
   }

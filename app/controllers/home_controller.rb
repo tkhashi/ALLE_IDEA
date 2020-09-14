@@ -6,8 +6,16 @@ class HomeController < ApplicationController
     @map.each do |m|        # m はMapのレコード
       @arr.push({lat: m.latitude, lng: m.longitude })
     end
+
   end
 
   def about
+  end
+
+  private
+  def home_params
+    params.require(:post).permit(:body, :road, :tag_list,
+                                  maps_attributes: [:latitude,
+                                                    :longitude])
   end
 end

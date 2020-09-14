@@ -216,12 +216,13 @@ var xhr = new XMLHttpRequest();
 // xhr.open('GET', "/latlngsearch/35/132")
 xhr.open('GET', "/latlngsearch/" + marker.position.lat() + "/" + marker.position.lng())
 xhr.send();
-// xhr.onreadystatechange = function() {
-//     if(xhr.readyState === 4 && xhr.status === 200) {
- 
-//         //データを取得後の処理を書く
-//     }
-// }
+xhr.onreadystatechange = function() {
+    if(xhr.readyState === 4 && xhr.status === 200) {
+ console.log("sss")
+        //データを取得後の処理を書く
+       $("#search_mark").html(xhr.response);
+    }
+}
 
 
 new google.maps.InfoWindow

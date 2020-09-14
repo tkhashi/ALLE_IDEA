@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :followings, :followers]
   before_action :set_find, only: [:show, :edit, :update]
   before_action :set_all, only: [:index, :show]
 
@@ -35,15 +35,6 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:user_id])
     @users = @user.followers
-  end
-
-  def last_confirm
-  end
-
-  def please_signin
-  end
-
-  def thanks
   end
 
   def search

@@ -3,7 +3,7 @@ lock "~> 3.14.1"
 
 set :application, "ALLE_IDEA"
 set :repo_url, "git@github.com:tkhashi/ALLE_IDEA.git"
-
+set :branch, ENV['BRANCH'] || "deve"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -13,6 +13,7 @@ set :deploy_to, "/home/ec2-user/ALLE_IDEA"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "public", "tmp"
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 

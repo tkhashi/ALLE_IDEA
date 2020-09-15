@@ -166,6 +166,9 @@ function initialize() {
   function mylistener(event) {
     document.getElementById("post_maps_attributes_0_latitude").value= event.latLng.lat();
     document.getElementById("post_maps_attributes_0_longitude").value= event.latLng.lng();
+    console.log("post_maps_attributes_0_longitude")
+    document.getElementById("show_lat").innerHTML = event.latLng.lat();
+    document.getElementById("show_lng").innerHTML = event.latLng.lng();
   };
 
 

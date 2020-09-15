@@ -1,0 +1,35 @@
+.regi
+  .regi_container
+    .regi_signin
+      .regi_signin_form
+        .regi_signin_form_header
+          |ALLE
+          i.fas.fa-road
+          |IDEA
+        .regi_signin_form_menu
+          .regi_signin_form_menu_info
+            p.regi_signin_desc
+              |｢良い道｣は｢良い街｣<br>
+              |あなたのお気に入りの｢道｣を<br>
+              |皆に教えてあげよう！
+            p.rige_signin_form_menu_title
+              |サインイン
+            .regi_signin_open
+              = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+                = render "devise/shared/error_messages", resource: resource
+                .field
+                  = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "field"
+                .field
+                  = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ニックネーム", class: "field"
+                .field
+                  = f.password_field :password, autocomplete: "new-password",
+                                      placeholder: "パスワード(#{@minimum_password_length}文字以上)", class: "field"
+                .field
+                  = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード確認", class: "field"
+                .actions
+                  = f.submit "会員登録"
+
+              .regi_signin_open_switch
+                =link_to new_user_registration_path
+                  .regi_signin_open_switch_icon
+                    |会員登録がまだの方はコチラ

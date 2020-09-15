@@ -294,6 +294,33 @@ main{
   top: 50px;
   .user_edit_container{
     margin: 0 200px;
+    input[type="text"],[type="email"],[type="password"] {
+      width: 200px;
+      height: 2px;
+      padding: 10px;
+      padding-left: 5px;
+      color: -internal-light-dark(black, white);
+    }
+    input[type="file"]{
+      color: #5f3a8a;
+      background: #ECECEC;
+      &:hover{
+        background: #5f3a8a;
+        color: #ECECEC;
+      }
+
+    }
+    input[type="submit"]{
+      margin: 20px 0;
+      width: 100px;
+      height: 30px;
+      color: #5f3a8a; background: #ECECEC;
+      transition: .4s;
+      &:hover{
+        background: #5f3a8a;
+        color: #ECECEC;
+      }
+    }
     .avatar_field{
       .user_edit_avatar{
       }
@@ -301,6 +328,13 @@ main{
     .neme_field{
     }
     .profile_field{
+      input[type="text"],[type="email"],[type="password"] {
+        width: 300px;
+        height: 100px;
+        padding: 10px;
+        padding-left: 5px;
+        color: -internal-light-dark(black, white);
+      }
     }
     .email_field{
     }

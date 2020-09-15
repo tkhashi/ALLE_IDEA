@@ -199,10 +199,11 @@ html{
   }
   #posts{
     width: 100%;
-    h2{
+    h2,h3{
       position: relative;
       left: 20px;
       color: #fff;
+      margin-bottom: 10px;
     }
   }
   #home,#contents-on-map,#favorites{

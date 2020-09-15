@@ -1,0 +1,62 @@
+//会員登録ページ
+//サインインページ
+.regi{
+  position: absolute;
+  top: 50px;
+  height: 100vh;
+  &_container{
+    margin: 0 400px;
+    text-align: center;
+    .regi_signup, .regi_signin{
+      padding: 5px 40px;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #704e97;
+      border: solid 3px #704e97;
+      &_form{
+        &_header{
+          font-size: 30px;
+          .fas{
+          }
+        }
+        &_menu{
+          &_info{
+            font-size: 14px;
+            p{
+              font-size: 20px;
+              text-align: center;
+            }
+            .regi_signup_open, .regi_signin_open{
+              color: #f0f;
+              input[type="text"],[type="email"],[type="password"] {
+                width: 305px;
+                height: 20px;
+                padding: 15px;
+                color: -internal-light-dark(black, white);
+              }
+              input[type="submit"]{
+                margin-top: 10px;
+                width: 325px;
+                height: 35px;
+                  
+              }
+              &_switch{
+                margin: 20px 0;
+                a{
+                  color: #5f3a8a; background: #ECECEC;
+                  transition: .4s;
+                  &:hover{
+                    background: #5f3a8a;
+                    color: #f1e204;
+                  }
+                  i{
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

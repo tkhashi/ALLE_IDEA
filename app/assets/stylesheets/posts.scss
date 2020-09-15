@@ -37,14 +37,29 @@
   border-radius: 50%;
 }
 
+//新規投稿
 .post_new{
   position: absolute;
   left: 10px;
-  top: 50px;
+  font-size: 14px;
+  &_form{
+    input[type="text"],[type="email"],[type="password"] {
+      width: 100px;
+      height: 20px;
+      padding: 15px;
+      color: -internal-light-dark(black, white);
+    }
+    input[type="submit"]{
+      margin-top: 10px;
+      width: 80px;
+      height: 35px;
+        
+    }
+  }
 }
 
 //indexページお気に入り投稿一覧
-#favorites{
+#favorites, post_index{
   .user_show_favorites{
     position: absolute;
     left: 10px;

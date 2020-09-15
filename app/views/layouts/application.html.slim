@@ -43,9 +43,9 @@ body
             =link_to user_path(current_user) do
               span.user_avatar
                 -if current_user.avatar?
-                  =image_tag current_user.avatar.url, class: "profile_avatar", width: "40px"
+                  =image_tag current_user.avatar.url, class: "profile_avatar", width: "40px", height: "40px"
                 -else
-                  =image_tag "face.jpg", class: "profile_avatar", width: "40px"
+                  =image_tag "face.jpg", class: "profile_avatar", width: "40px", height: "40px"
             span.user_link
               .user_info
                 .user_info_name
@@ -59,7 +59,7 @@ body
                   =link_to destroy_user_session_path, method: :delete
                     |ログアウト
                 .user_link_logout
-                  =link_to users_last_confirm_path
+                  =link_to destroy_user_session_path, method: :delete
                     |退会
           -else
             span.user_link

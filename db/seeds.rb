@@ -27,3 +27,14 @@ User.create!(
   profile: "岩手出身CAやってます！毎日チョベリグなんですけど〜〜どうなっちゃうわけ~~~~!!!???",
   is_active: "true",
 )
+
+Post.create!(
+  user_id: "1",
+  body: "これはseedです",
+  road: File.open('./app/assets/images/no-image.jpg'),
+)
+Map.create!(
+  latitude: "50.119303134699045",
+  longitude: "-92.67087524019047",
+  post_id: "1",
+)

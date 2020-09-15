@@ -12,7 +12,7 @@
   .post_show_tags
     =render 'posts/tag_list', tag_list: @post.tag_list
   //説明
-  .post_show_disc
+  .post_show_desc
     =@post.body
   //投稿日時
   .post_show_created
@@ -38,7 +38,7 @@
     .post_show_user_info
       .post_show_user_info_name
         |ユーザー名: #{@post.user.name}
-      .post_show_user_info_disc
+      .post_show_user_info_desc
         =@post.user.profile
     .post_show_user_info_follow_button
       = render partial: 'users/follow_button', locals: { user: @user }
@@ -46,7 +46,7 @@
   .post_show_comment_form
     .post_show_comment_form_user
       -if current_user.avatar?
-        =image_tag  curren_user.avatar.url, class: "index_avatar"
+        =image_tag  current_user.avatar.url, class: "index_avatar"
       -else
         =image_tag "face.jpg", class: "index_avatar"
     .post_show_comment_form_form

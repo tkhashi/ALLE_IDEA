@@ -15,19 +15,19 @@
             p.rige_signin_form_menu_title
               |サインイン
             .regi_signin_open
-              = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+              = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
                 = render "devise/shared/error_messages", resource: resource
                 .field
                   = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "field"
                 .field
                   = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ニックネーム", class: "field"
                 .field
-                  = f.password_field :password, autocomplete: "new-password",
+                  = f.password_field :password, autocomplete: "current-password",
                                       placeholder: "パスワード(#{@minimum_password_length}文字以上)", class: "field"
                 .field
-                  = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード確認", class: "field"
+                  = f.password_field :password_confirmation, autocomplete: "current-password", placeholder: "パスワード確認", class: "field"
                 .actions
-                  = f.submit "会員登録"
+                  = f.submit "サインイン"
 
               .regi_signin_open_switch
                 =link_to new_user_registration_path

@@ -96,7 +96,8 @@
   &_tags{
     margin-bottom: 10px;
   }
-  &_disc{
+  &_desc{
+    max-width: 300px;
     font-size: 20px;
     margin-bottom: 20px;
   }
@@ -136,7 +137,7 @@
       vertical-align: middle;
       &_name{
       }
-      &_disc{
+      &_desc{
         width: 500px;
         display: inline-block;
         vertical-align: middle;

@@ -8,8 +8,11 @@ main#user_show
           =image_tag "face.jpg", class: "profile_avatar"
     .profile_container_info
       .profile_container_info_upside
-        .user_show_name
-          =@user.name
+        .user_show_info
+          .user_show_info_name
+            =@user.name
+          .user_show_info_desc
+            =@user.profile
         -if @user == current_user
           .user_show_edit
             =link_to edit_user_path(current_user)

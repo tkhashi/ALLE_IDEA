@@ -4,21 +4,23 @@
     .post_new_form
       p#latlng style="font-size:10px;"
       =form_with model: post_new do |form|
-        =form.label :body, "動画･画像選択"
+        =form.label :body, "◆動画･画像選択"
         br
         =form.file_field :road, :accept => 'image/*,video/*'
         br
-        =form.label :body, "説明"
+        =form.label :body, "◆説明"
         br
         =form.text_field :body
         br
-        =form.label :tag_list, "タグ追加｢,(カンマ)｣で複数追加"
+        =form.label :tag_list, "◆タグ ｢,(カンマ)｣で複数追加"
         br
         =form.text_field :tag_list, value: post_new.tag_list.join(','), class: "form-control"
         //座標をフォームに入れる
         =form.fields_for :maps do |map_form|
           =map_form.hidden_field :latitude
           =map_form.hidden_field :longitude
+        br
+        h5 ◆撮影した場所をクリックしよう！
         br
         =form.submit "投稿"
 

@@ -224,6 +224,7 @@ xhr.onreadystatechange = function() {
  console.log("sss")
         //データを取得後の処理を書く
        $("#search_mark").html(xhr.response);
+ console.log("xhr.response")
     }
 }
 
@@ -233,25 +234,25 @@ new google.maps.InfoWindow
 })
 }
 
-//投稿用マップ
-function init() {
-  //マップ初期設定
-  var latlng = new google.maps.LatLng(39, 138);
-  var opts = {
-    zoom: 6,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: latlng
-  };
-  // getElementById("map")の"map"は、body内の<div id="map">より
-  var map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
-  //地図クリックイベントの登録
-  google.maps.event.addListener(map, 'click', mylistener);
-};
-//投稿フォームにクリック位置の座標を入れる
-function mylistener(event) {
-  document.getElementById("post_maps_attributes_0_latitude").value= event.latLng.lat();
-  document.getElementById("post_maps_attributes_0_longitude").value= event.latLng.lng();
-};
+// //投稿用マップ
+// function init() {
+//   //マップ初期設定
+//   var latlng = new google.maps.LatLng(39, 138);
+//   var opts = {
+//     zoom: 6,
+//     mapTypeId: google.maps.MapTypeId.ROADMAP,
+//     center: latlng
+//   };
+//   // getElementById("map")の"map"は、body内の<div id="map">より
+//   var map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
+//   //地図クリックイベントの登録
+//   google.maps.event.addListener(map, 'click', mylistener);
+// };
+// //投稿フォームにクリック位置の座標を入れる
+// function mylistener(event) {
+//   document.getElementById("post_maps_attributes_0_latitude").value= event.latLng.lat();
+//   document.getElementById("post_maps_attributes_0_longitude").value= event.latLng.lng();
+// };
 
 
 

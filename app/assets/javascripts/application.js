@@ -171,96 +171,51 @@ function initialize() {
     document.getElementById("show_lng").innerHTML = event.latLng.lng();
   };
 
-
-
-
-
-//   // 吹き出しを閉じる処理
-//   map = new google.maps.Map(document.getElementById("map"), option);
-//   google.maps.event.addListener(map, "click", function() {infowindow.close();});
-
-//   // 任意の位置にマーカーを追加
-//   var point = new google.maps.LatLng(35.673264, 139.760668);
-//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
-
-//   var point = new google.maps.LatLng(34.6545182, 135.4289645);
-//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
-
-//   var point = new google.maps.LatLng(35.1709150, 136.8815369);
-//   var marker = create_maker(point, "info", "<img src='画像パス' /><br><p>テキスト</p>");
-// }
-
-// function create_maker(latlng, label, html) {
-//   // マーカーを生成
-//   var marker = new google.maps.Marker({position: latlng, map: map, title: label});
-//   // マーカーをマウスオーバーした時の処理
-//   google.maps.event.addListener(marker, "mouseover", function() {
-//   infowindow.setContent(html);
-//   infowindow.open(map, marker);
-//   });
-// }
-
-// google.maps.event.addDomListener(window, "load", init);
-
 };
 
 
-
-
-
+//マーカークリック時の関数達
 //これだけで吹き出し表示できる。。。
 function dispInfo(marker,name) {
 google.maps.event.addListener(marker, 'click',
-function(event) {
-console.log(marker.position.lng());
-console.log(marker.position.lat());
+  function(event) {
+    console.log(marker.position.lng());
+    console.log(marker.position.lat());
 
-var xhr = new XMLHttpRequest();
-// xhr.open('GET', "/latlngsearch/35/132")
-xhr.open('GET', "/latlngsearch/" + marker.position.lat() + "/" + marker.position.lng())
-xhr.send();
-xhr.onreadystatechange = function() {
-    if(xhr.readyState === 4 && xhr.status === 200) {
- console.log("sss")
-        //データを取得後の処理を書く
-       $("#search_mark").html(xhr.response);
- console.log("xhr.response")
+    //マーカークリックでコンテンツを表示
+    var xhr = new XMLHttpRequest();
+    var search_mark = document.getElementById('search_mark')
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText)
+        var post_datas = JSON.parse(xhr.responseText)
+        if (post_datas === null){
+          search_mark.textContent = '投稿データがないよ'
+        }else{
+          for (i = 0; i < post_datas.length; i++) {
+            var post_data = post_datas[i];
+            $("#search_mark").append(post_data.body);
+              var anchor =document.createElement('a')
+                anchor.href = post_data.road.url;
+                var text = document.createTextNode("テスト");
+                anchor.appendChild(text);
+              search_mark.appendChild(anchor);
+              var video_tag = document.createElement('video_tag')
+                video_tag.width = 250;
+                video_tag.controls = controls;
+                video_tag.src = post_data.road.url;
+              search_mark.appendChild(src)
+
+            // $("#search_mark").append(post_data.road.url);
+          }
+        }
+      }
     }
-}
+    xhr.open('GET', "/latlngsearch/" + marker.position.lat() + "/" + marker.position.lng() + ".json", true)
+    xhr.send(null);
 
 
-new google.maps.InfoWindow
-({content:name}).open(marker.getMap(), marker);
+    new google.maps.InfoWindow
+    ({content:name}).open(marker.getMap(), marker);
 })
 }
-
-// //投稿用マップ
-// function init() {
-//   //マップ初期設定
-//   var latlng = new google.maps.LatLng(39, 138);
-//   var opts = {
-//     zoom: 6,
-//     mapTypeId: google.maps.MapTypeId.ROADMAP,
-//     center: latlng
-//   };
-//   // getElementById("map")の"map"は、body内の<div id="map">より
-//   var map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
-//   //地図クリックイベントの登録
-//   google.maps.event.addListener(map, 'click', mylistener);
-// };
-// //投稿フォームにクリック位置の座標を入れる
-// function mylistener(event) {
-//   document.getElementById("post_maps_attributes_0_latitude").value= event.latLng.lat();
-//   document.getElementById("post_maps_attributes_0_longitude").value= event.latLng.lng();
-// };
-
-
-
-
-
-
-
-
-
-//テストマップ
-// //吹き出し表示

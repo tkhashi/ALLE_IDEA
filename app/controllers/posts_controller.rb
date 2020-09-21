@@ -24,26 +24,28 @@ class PostsController < ApplicationController
     @post_new = Post.new
     @post_new.maps.build
     @post_new.user_id = current_user.id
+    user = current_user
+    @favorite_posts = user.favorite_posts
+    #タグ用
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")
     end
+    #マップ用
     @map = Map.all          #Mapの全レコード
     @arr=[]                  #空の配列
     @map.each do |m|        # m はMapのレコード
       @arr.push({lat: m.latitude, lng: m.longitude })
     end
-    user = current_user
-    @favorite_posts = user.favorite_posts
+    ##クリックしたマーカーのコンテンツ
   end
 
   #マップマーカークリック時に投稿データを引っ張り出すアクション
   def search
-    @maps = Map.where(latitude: params[:lat]).where(longitude: params[:lng])
+    maps = Map.where(latitude: params[:lat]).where(longitude: params[:lng])
     @marker_arr =[]
-    @maps.each do |map|
+    maps.each do |map|
       @marker_arr.push(map.post)
     end
-    @mark = @marker_arr[0]
    # #同一緯度経度に投稿があった場合が考慮されていない。下記の要領で対応できるか?
    # @map_posts = []
    # maps.each do |map|

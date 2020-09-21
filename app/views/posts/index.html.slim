@@ -1,6 +1,6 @@
 
 //サイドバー
-=render "posts/slidemenu", {posts: @posts, post_new: @post_new, favorite_posts: @favorite_posts, user: current_user}
+=render "posts/slidemenu", {posts: @posts, post_new: @post_new, favorite_posts: @favorite_posts, user: current_user, click_marker: @click_marker}
 
 //GoogleMap閲覧用
 javascript:
@@ -14,3 +14,4 @@ javascript:
 
   javascript:
     var data = #{raw @arr.to_json};
+    var click_marker = #{raw @marker_arr.to_json}

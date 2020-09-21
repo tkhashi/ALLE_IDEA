@@ -202,9 +202,9 @@ google.maps.event.addListener(marker, 'click',
               search_mark.appendChild(anchor);
               var video_tag = document.createElement('video_tag')
                 video_tag.width = 250;
-                video_tag.controls = controls;
+                video_tag.controls =true;
                 video_tag.src = post_data.road.url;
-              search_mark.appendChild(src)
+              search_mark.appendChild(video_tag);
 
             // $("#search_mark").append(post_data.road.url);
           }

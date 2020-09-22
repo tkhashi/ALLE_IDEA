@@ -61,7 +61,7 @@ $(document).on('turbolinks:load', function() {
 // 閲覧用マップ
 function initialize() {
   //緯度と経度の配列
-  var myLatlng = new google.maps.LatLng(data[0].lat, data[0].lng);
+  var myLatlng = new google.maps.LatLng(data.slice(-1)[0].lat, data.slice(-1)[0].lng);
   var opts = {
   zoom: 15,
   center: myLatlng,

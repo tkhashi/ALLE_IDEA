@@ -1,5 +1,22 @@
-p|korehatesutooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
--if click_marker == nil
-  |にるで~~~~~~~~~~すぅ
--else
-  値あり。
+div.post_index#post_index
+    div.post_index_user#post_index_user
+        span.post_index_user_name#post_index_user_name
+    //投稿動画･画像
+    .post_index_post
+      #search_mark
+    //いいねボタンAjax
+    .post_index_favorites_count
+      / div id='favorites_buttons_#{ marker_arr.id }'
+        = render partial: 'favorites/favorite', locals: { post: post }
+    //コメント数
+    .post_index_comments_count
+      i.navmenu_nav_icon.fas.fa-comment.fa-lg
+      |コメント
+    //編集･削除ボタン
+    .post_index_edit
+    //投稿の説明
+    .post_index_disc
+    //投稿日時
+    .post_index_created
+    //タグ
+    .post_index_tags

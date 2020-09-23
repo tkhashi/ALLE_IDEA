@@ -194,17 +194,18 @@ google.maps.event.addListener(marker, 'click',
         }else{
           for (i = 0; i < post_datas.length; i++) {
             var post_data = post_datas[i];
-            $("#search_mark").append(post_data.body);
-              var anchor =document.createElement('a')
-                anchor.href = post_data.road.url;
-                var text = document.createTextNode("テスト");
-                anchor.appendChild(text);
-              search_mark.appendChild(anchor);
-              var video_tag = document.createElement('video_tag')
-                video_tag.width = 250;
-                video_tag.controls =true;
-                video_tag.src = post_data.road.url;
-              search_mark.appendChild(video_tag);
+            //クリックしたマーカーの動画･画像
+            var video_tag = document.createElement('video')
+            video_tag.width = 250;
+            video_tag.controls =true;
+            video_tag.src = post_data.road.url;
+            search_mark.appendChild(video_tag);
+
+            // var post_index_user = document.getElementById('post_index_user');
+            // var user_name = document.createTextNode(post_data.user);
+            // post_index_user.appendChild(user_name);
+            // $("#search_mark").append(post_data.body);
+            $("#post_index_user_name").append(post_data.body);
 
             // $("#search_mark").append(post_data.road.url);
           }

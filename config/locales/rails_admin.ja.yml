@@ -1,4 +1,12 @@
 ja:
+  models:
+    Comment: コメント
+    Favorite: お気に入り
+    Map: マップ
+    Post: 投稿
+    Post map: 投稿_マップ
+    Relationship: リレーション
+    User: ユーザー
   admin:
     js:
       true: True

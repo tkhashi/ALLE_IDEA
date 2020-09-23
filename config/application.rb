@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'pp'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,5 +23,7 @@ module AlleIdea
 
     #東京時刻に変更
     config.time_zone = 'Tokyo'
+    #日本語化
+    config.i18n.default_locale = :ja
   end
 end

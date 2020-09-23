@@ -79,6 +79,14 @@ group :production do
 end
 #デバックツール
 gem 'pry-byebug', group: :development
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+  #console整形
+  gem "awesome_print"
+  #コーディングのベストプラクティスを提案
+  gem 'rails_best_practices', require: false
+end
 #devise
 gem 'devise'
 #jquery
@@ -86,8 +94,10 @@ gem 'jquery-rails'
 #動画･画像アップローダー
 gem 'carrierwave', '~> 2.0'
 #タグ機能
-gem 'acts-as-taggable-on', '~> 6.0' 
-#HTML=>JSデータ受け渡しgem
-gem 'gon'
-
-gem 'fog-aws'
+gem 'acts-as-taggable-on', '~> 6.0'
+#権限付与
+gem "cancancan"
+#管理者ページ作成
+gem 'rails_admin', '~> 2.0'
+#日本語化
+gem 'rails-i18n'

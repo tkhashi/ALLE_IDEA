@@ -9,6 +9,14 @@ ja:
     User: ユーザー
   admin:
     js:
+      admin: 管理
+      Comment: コメント
+      Favorite: お気に入り
+      Map: マップ
+      Post: 投稿
+      Post map: 投稿_マップ
+      Relationship: リレーション
+      User: ユーザー
       true: True
       false: False
       is_present: 存在する

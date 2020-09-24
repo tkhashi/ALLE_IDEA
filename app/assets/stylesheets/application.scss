@@ -138,8 +138,8 @@ html{
 
 //サイドバー本体
 #slidemenu{
+  background-color: #438d6485;
   li{
-    background-color: #438d6485;
     z-index: 99;
   }
   //サイドバー本体active時のアイコンと文字
@@ -164,7 +164,7 @@ html{
   list-style: none;
   box-shadow: 0 0 0 3px rgba(0,0,0,.1);
   &_nav{
-    height: 20%;
+    height: 16%;
     border-top: 1px solid #FFF;
     text-align: center;
     &_icon{

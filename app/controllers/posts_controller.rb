@@ -46,13 +46,13 @@ class PostsController < ApplicationController
     maps.each do |map|
       @marker_arr.push(map.post)
     end
-   # #同一緯度経度に投稿があった場合が考慮されていない。下記の要領で対応できるか?
-   # @map_posts = []
-   # maps.each do |map|
-   #   # @map_posts.push(map.post)
-   #   @map_posts.push(map.post.id)
-   # end
-   # # @posts = map.post
+    # #同一緯度経度に投稿があった場合が考慮されていない。下記の要領で対応できるか?
+    # @map_posts = []
+    # maps.each do |map|
+    #   # @map_posts.push(map.post)
+    #   @map_posts.push(map.post.id)
+    # end
+    # # @posts = map.post
   end
 
   def show
@@ -73,6 +73,9 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user.id != current_user.id
+      redirect_to user_path(current_user)
+    end
   end
 
   def update

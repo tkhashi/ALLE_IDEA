@@ -20,8 +20,6 @@
                 .field
                   = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "field"
                 .field
-                  = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ニックネーム", class: "field"
-                .field
                   = f.password_field :password, autocomplete: "current-password",
                                       placeholder: "パスワード(#{@minimum_password_length}文字以上)", class: "field"
                 .field

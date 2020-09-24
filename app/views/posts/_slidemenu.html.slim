@@ -47,7 +47,7 @@ aside.sidebar#sidebar
         .slidemenu_contents_detail_title
           h2 地図上のコンテンツ一覧
           h3 地図上のマーカーをクリックしよう！
-          =render "posts/post_on_map", marker_arr:  marker_arr
+          =render "posts/post_on_map", {marker_arr: marker_arr, user: user}
       .slidemenu_contents_detail id="posts"
         .slidemenu_contents_detail_title
           h2 あなたの｢道｣を投稿

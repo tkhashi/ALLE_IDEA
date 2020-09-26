@@ -4,11 +4,11 @@ class Ability
   include CanCan::Ability
   def initialize(user)
     if user.try(:admin?)
-　　　can :access, :rails_admin　//管理者ページへのアクセスを許可
-　　　can :manage, :all　　　　  //全ての権限を付与
+      can :access, :rails_admin #管理者ページへのアクセスを許可
+      can :manage, :all #全ての権限を付与
     else
       cannot :access, rails_admin
-  　　end
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

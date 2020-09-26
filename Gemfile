@@ -102,4 +102,4 @@ gem 'rails_admin', '~> 2.0'
 #日本語化
 gem 'rails-i18n'
 
-gem 'fog'
+gem 'fog-aws'

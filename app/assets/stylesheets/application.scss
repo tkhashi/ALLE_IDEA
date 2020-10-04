@@ -309,6 +309,25 @@ color: #000000;
     .home_about_about{
       position: absolute;
       top: 600px;
+        // color: white;
+        a:link, a:visited, a:active {
+          padding: 1.5em 1.5em;
+          margin-right: 10px;
+          display: inline-block;
+          text-decoration: none;
+          transition: .4s;
+          background-color: #ECECEC;
+          color: #5f3a8a;
+          font-size: 13px;
+          font-weight: bold;
+          &:hover{
+            background: #5f3a8a;
+            color: #ECECEC;
+            a{
+              color: #ECECEC;
+            }
+          }
+        }
     }
   }
 }

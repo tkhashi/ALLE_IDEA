@@ -1,65 +1,55 @@
 .home_about
+  .home_about_header
   .home_about_container
-    .home_about_header
-      .home_about_heading
-        |｢良い道｣は｢良い街｣
-      .home_about_subtitle
-          |あなたのお気に入りの｢道｣を<br>
-          |皆に教えてあげよう！
-      .user_link
-        .user_link_logout
-          =link_to new_user_registration_path
-            |会員登録
-        .user_link_logout
-          =link_to new_user_session_path
-            |ログイン
-        .user_link_nologin
-          =link_to root_path
-            |ログインせずに見る
+    .home_about_heading
+      |｢良い道｣は｢良い街｣
+    .home_about_subtitle
+        |あなたのお気に入りの｢道｣を<br>
+        |皆に教えてあげよう！
+    .user_link
+      .user_link_logout
+        =link_to new_user_registration_path
+          |会員登録
+      .user_link_logout
+        =link_to new_user_session_path
+          |ログイン
+      .user_link_nologin
+        =link_to root_path
+          |ログインせずに見る
 
-    .home_about_about
-      h2
-        |ALLE_IDEAとは
-      p
-        |ALLE_IDEA(アレイデア)は<br>
-          ｢道｣の良さを見つけるアプリです。
-
-      h2
-        |ALLE_IDEAの3つの魅力
-
-        h3
-          |①動画で雰囲気を感じる
-        p
-          |｢どこか旅行に行きたいけど、良い雰囲気の場所ないかな…｣<br>
+    .home_about_appeal
+      a href="#home_about_appeal_1" id= "appeal_1"
+        |▼動画で感じる
+      a href="#home_about_appeal_2" id= "appeal_2"
+        |▼マップで発見
+      a href="#home_about_appeal_3" id= "appeal_3"
+        |▼簡単に伝わる
+      #home_about_appeal_1
+        h3 ①動画で雰囲気を感じる
+        p ｢どこか旅行に行きたいけど、良い雰囲気の場所ないかな…｣<br>
             ｢皆が良いってオススメするけど、行っても楽しいのかな…｣<br>
-
             動画で見てみましょう。<br>
-
             行き先が曖昧なあなたにこそピッタリです。<br>
-        h3
-          |②マップ上で発見する
-        p
-          |｢行きたいお店はあるけど、その周辺に何があるのか知らないな…｣<br>
-            ｢デートコースを考えているけど<br>
-
-            マップで確認しましょう。<br>
-
-            マップで見れば各スポットの距離感がつかみやすいですね。<br>
-
-            ｢近く｣にある｢良い感じの場所｣を探すあなたにピッタリです。
-        h3
-          |③簡単に伝える
-        p
-        |｢特別面白い店があるわけじゃないけどいい所なんだよな…｣<br>
+      #home_about_appeal_1_image
+      #home_about_appeal_2
+        h3 ②マップ上で発見する
+        p ｢行きたいお店はあるけど、その周辺に何があるのか知らないな…｣<br>
+          ｢デートコースを考えているけど<br>
+          マップで確認しましょう。<br>
+          マップで見れば各スポットの距離感がつかみやすいですね。<br>
+          ｢近く｣にある｢良い感じの場所｣を探すあなたにピッタリです。
+      #home_about_appeal_2_image
+      #home_about_appeal_3
+        h3 ③簡単に伝える
+        p ｢特別面白い店があるわけじゃないけどいい所なんだよな…｣<br>
           ｢言葉や写真じゃ良さが伝わらないんだよな…｣<br>
-
           動画で投稿しましょう<br>
-
           写真や文章は苦手…でも魅力を発信したい！<br>
           そんな不器用なあなたにピッタリです。
-
-
-      h2
-        | まずは皆のお気に入りの道を見てみよう！<br>
-      =link_to root_path
-        |皆がお気に入りの道
+      #home_about_appeal_3_image
+      .home_about_enter_app
+        h2  まずは皆のお気に入りの道を見てみよう！<br>
+        =link_to root_path, id: "enter_app_link"
+          |ALLE
+          i.fas.fa-road
+          |IDEA

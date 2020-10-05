@@ -22,7 +22,7 @@
     content: "";
     display: block;
     clear: both;
-    }
+  }
 }
 
 html{
@@ -238,13 +238,11 @@ color: #000000;
   left: auto;
   &_container{
     padding: 50px 100px 0 100px;
-    margin-left: -10px;
-    background-image: image-url("about_header.jpg");
-    background-size: cover;
-    background-position: 0 -100px;
-    width: 100%;
-    height: 550px;
-    .home_about_header{
+    // background-image: image-url("about_header.jpg");
+    // background-size: cover;
+    // background-position: 0 -100px;
+    // width: 100%;
+    // height: 450px;
       .home_about_heading{
         position: absolute;
         top: 120px;
@@ -252,6 +250,7 @@ color: #000000;
         margin-bottom: 0;
         background: rgba(236, 236, 236, 0.7);
         font-size: 54px;
+        color: #5f3a8a;
       }
       .home_about_subtitle{
         position: absolute;
@@ -260,6 +259,7 @@ color: #000000;
         margin-bottom: 0;
         background: rgba(236, 236, 236, 0.7);
         font-size: 30px;
+        color: #5f3a8a;
       }
       .user_link{
         position: absolute;
@@ -301,34 +301,62 @@ color: #000000;
             a{
               color: #ECECEC;
             }
-
           }
         }
       }
     }
-    .home_about_about{
+    .home_about_appeal{
       position: absolute;
-      top: 600px;
-        // color: white;
-        a:link, a:visited, a:active {
-          padding: 1.5em 1.5em;
-          margin-right: 10px;
-          display: inline-block;
-          text-decoration: none;
-          transition: .4s;
-          background-color: #ECECEC;
-          color: #5f3a8a;
-          font-size: 13px;
-          font-weight: bold;
-          &:hover{
-            background: #5f3a8a;
-            color: #ECECEC;
-            a{
-              color: #ECECEC;
-            }
-          }
+      top: 500px;
+      width: 1100px;
+      margin-top: 20px;
+      a:link, a:visited, a:active {
+        padding: 1.5em 1.5em;
+        margin-right: 10px;
+        display: inline-block;
+        text-decoration: none;
+        transition: .4s;
+        background-color: #ECECEC;
+        color: #5f3a8a;
+        font-size: 13px;
+        font-weight: bold;
+        &:hover{
+          background: #5f3a8a;
+          color: #ECECEC;
         }
+      }
+      #appeal_1,#appeal_2,#appeal_3{
+        width: 27%;
+        font-size: 18px;
+      }
+      #home_about_appeal_1,#home_about_appeal_2,#home_about_appeal_3{
+        h3{
+          font-size: 40px;
+          color: #5f3a8a;
+        }
+        p{
+          font-size: 20px;
+          color: #5f3a8a;
+        }
+      }
+      .home_about_enter_app{
+        margin: 100px 0;
+        font-size: 20px;
+        #enter_app_link{
+          width: 100%;
+          text-align: center;
+          font-size: 40px;
+          padding: 1.5em 0;
+        }
+      }
     }
+  .home_about_header{
+    background-image: image-url("about_header.jpg");
+    background-size: cover;
+    background-position: 0 -100px;
+    width: 100%;
+    height: 500px;
+    margin-left: -10px;
   }
 }
 

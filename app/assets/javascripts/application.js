@@ -104,6 +104,8 @@ function initialize() {
   //マップを表示
   var map = new google.maps.Map
     (document.getElementById("map_canvas"),opts);
+
+
   //マーカの作成
   var markers = new Array();
     for (i = 0; i < data.length; i++) {

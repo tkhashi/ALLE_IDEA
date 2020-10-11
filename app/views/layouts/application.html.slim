@@ -6,7 +6,7 @@ html lang="en"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     link href="https://fonts.googleapis.com/css2?family=Kufam&display=swap" rel="stylesheet"
     script src="https://kit.fontawesome.com/0babdef10f.js" crossorigin="anonymous"
-    script src="https://maps.google.com/maps/api/js?key=AIzaSyDWDjyEGK8bqyz9QtpkvhPImNLcGAqcr5c&callback=initAutocomplete&libraries=places&v=weekly"
+    script src="https://maps.google.com/maps/api/js?key=AIzaSyDWDjyEGK8bqyz9QtpkvhPImNLcGAqcr5c&libraries=places"
     / script src="http://maps.google.com/maps/api/js?sensor=true"
 
     title ALLE_IDEA
@@ -42,6 +42,7 @@ body
               =select_tag :choice, options_for_select([["あいまい検索", "1" ],["後方一致検索", "2" ],["前方一致検索", "3" ],["完全一致検索", "4" ]])
               =text_field_tag :search
               =submit_tag "検索", name: nil
+        input id="pac-input" class="controls" type="text" placeholder="Search Box"
 
         //バー右側
         .container_loginlink

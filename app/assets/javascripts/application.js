@@ -63,58 +63,124 @@ function initialize() {
   //緯度と経度の配列
   var myLatlng = new google.maps.LatLng(data.slice(-1)[0].lat, data.slice(-1)[0].lng);
   var opts = {
-  zoom: 15,
-  center: myLatlng,
-  styles: [
-    //全てのラベルを非表示
-    {
-      featureType: 'all',
-      elementType: 'labels',
-      stylers: [
-        {visibility: 'off'},
-      ],
-    },
-    {
-      featureType: 'transit',
-      elementType: 'labels',
-      stylers: [
-        {visibility: 'on'},
-      ],
-    },
-    //「poi=観光スポットや施設など」のアイコンのみ再表示
-    {
-      featureType: 'poi',
-      elementType: 'labels.icon',
-      stylers: [
-        {visibility: 'inherit'},
-      ],
-    },
-    //地図全体の色味をカスタマイズ
-    //基本色を赤に統一 + 彩度を落とす
-    {
-      featureType: 'all',
-      elementType: 'all',
-      stylers: [
-        {hue: '#5f0285'},
-        {saturation : -50},
-      ],
-    }
-  ]
-};
+    zoom: 15,
+    center: myLatlng,
+    styles: [
+      //全てのラベルを非表示
+      {
+        featureType: 'all',
+        elementType: 'labels',
+        stylers: [
+          {visibility: 'off'},
+        ],
+      },
+      {
+        featureType: 'transit',
+        elementType: 'labels',
+        stylers: [
+          {visibility: 'on'},
+        ],
+      },
+      //「poi=観光スポットや施設など」のアイコンのみ再表示
+      {
+        featureType: 'poi',
+        elementType: 'labels.icon',
+        stylers: [
+          {visibility: 'inherit'},
+        ],
+      },
+      //地図全体の色味をカスタマイズ
+      //基本色を赤に統一 + 彩度を落とす
+      {
+        featureType: 'all',
+        elementType: 'all',
+        stylers: [
+          {hue: '#5f0285'},
+          {saturation : -50},
+        ],
+      }
+    ]
+  };
   //マップを表示
   var map = new google.maps.Map
     (document.getElementById("map_canvas"),opts);
 
+  // Create the search box and link it to the UI element.
+  const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener("bounds_changed", () => {
+      searchBox.setBounds(map.getBounds());
+    });
+
+  let searched_markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
+    console.log(places);
+    if (places.length == 0) {
+      return;
+    }
+    // Clear out the old markers.
+    searched_markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    searched_markers = [];
+    // For each place, get the icon, name and location.
+    const bounds = new google.maps.LatLngBounds();
+    places.forEach((place) => {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      const icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25),
+      };
+      // Create a marker for each place.
+      console.log(place.geometry.location.lat());
+      console.log(place.geometry.location.lng());
+
+      searched_markers.push(
+        new google.maps.Marker({
+          map,
+          icon,
+          title: place.name,
+          position: place.geometry.location,
+        })
+      );
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }bounds.extend(place.geometry.location);
+      }
+      console.log(bounds);
+    });
+    map.fitBounds(bounds);
+  });
+
 
   //マーカの作成
   var markers = new Array();
-    for (i = 0; i < data.length; i++) {
+  for (i = 0; i < data.length; i++) {
     markers[i] = new google.maps.Marker({
       position: new google.maps.LatLng(data[i].lat, data[i].lng),
       map: map
     });
     dispInfo(markers[i],data[i].name);
-    }
+  }
 
   //投稿用マップ
     // google mapで利用する初期設定用の変数
@@ -160,10 +226,10 @@ function initialize() {
     };
 
     // getElementById("map")の"map"は、body内の<div id="map">より
-    var map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
+    var post_map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
 
     //地図クリックイベントの登録
-    google.maps.event.addListener(map, 'click', mylistener);
+    google.maps.event.addListener(post_map, 'click', mylistener);
   //投稿フォームにクリック位置の座標を入れる
   function mylistener(event) {
     document.getElementById("post_maps_attributes_0_latitude").value= event.latLng.lat();

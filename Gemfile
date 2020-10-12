@@ -101,5 +101,7 @@ gem "cancancan"
 gem 'rails_admin', '~> 2.0'
 #日本語化
 gem 'rails-i18n'
-
+#S3への保存
 gem 'fog-aws'
+#exif情報取得
+gem 'exifr'

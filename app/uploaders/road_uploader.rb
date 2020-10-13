@@ -12,11 +12,10 @@ class RoadUploader < CarrierWave::Uploader::Base
   end
 
   process :get_exif_info
-
   def get_exif_info
     require 'exifr/jpeg'
     exif = EXIFR::JPEG::new(self.file.file)
-    binding.pry
+    byebug
   end
 
   # Override the directory where uploaded files will be stored.

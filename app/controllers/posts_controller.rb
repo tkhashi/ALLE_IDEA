@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def new
     @post_new = Post.new
     @post_new.maps.build
+
   end
 
 

@@ -107,12 +107,12 @@ function initialize() {
 
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
-    const searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener("bounds_changed", () => {
-      searchBox.setBounds(map.getBounds());
-    });
+  const searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
+  });
 
   let searched_markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
@@ -146,14 +146,15 @@ function initialize() {
       console.log(place.geometry.location.lat());
       console.log(place.geometry.location.lng());
 
-      searched_markers.push(
-        new google.maps.Marker({
-          map,
-          icon,
-          title: place.name,
-          position: place.geometry.location,
-        })
-      );
+      //マーカー表示したい場合コメントアウト外す
+      // searched_markers.push(
+      //   new google.maps.Marker({
+      //     map,
+      //     icon,
+      //     title: place.name,
+      //     position: place.geometry.location,
+      //   })
+      // );
 
       if (place.geometry.viewport) {
         // Only geocodes have viewport.

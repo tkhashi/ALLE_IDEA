@@ -78,6 +78,48 @@ html{
           select, input{
             color: #000;
           }
+          select{
+            height: 30px;
+            border: 1px solid #acacac;
+            color: #000;
+            opacity: .7;
+            border-radius: 1px;
+            text-align: center;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+            outline: none;
+          }
+          input#search{
+            width: 220px;
+            height: 28px;
+            border: 1px solid #acacac;
+            margin: 0 5px;
+            color: #000;
+            opacity: .7;
+            border-radius: 5px;
+            text-align: center;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+            outline: none;
+          }
+          #search:focus{
+            width: 1000px;
+            outline: none;
+          }
+          input#button{
+            height: 30px;
+            border: 1px solid #acacac;
+            color: #000;
+            opacity: .7;
+            border-radius: 1px;
+            text-align: center;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+            outline: none;
+          }
         }
       }
       //ヘッダー右

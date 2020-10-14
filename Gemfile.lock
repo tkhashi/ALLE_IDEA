@@ -132,6 +132,7 @@ GEM
     erubis (2.7.0)
     excon (0.76.0)
     execjs (2.7.0)
+    exifr (1.3.8)
     ffi (1.13.1)
     fog-aws (3.6.7)
       fog-core (~> 2.1)
@@ -385,6 +386,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  exifr
   fog-aws
   html2slim
   jbuilder (~> 2.5)

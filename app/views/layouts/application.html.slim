@@ -42,7 +42,8 @@ body
               =select_tag :choice, options_for_select([["あいまい検索", "1" ],["後方一致検索", "2" ],["前方一致検索", "3" ],["完全一致検索", "4" ]])
               =text_field_tag :search
               =submit_tag "検索", name: nil
-        input id="pac-input" class="controls" type="text" placeholder="Search Box"
+        input id="pac-input" class="controls" type="text" placeholder="地図を検索"
+        input id="post_pac-input" class="controls" type="text" placeholder="投稿場所を探す"
 
         //バー右側
         .container_loginlink

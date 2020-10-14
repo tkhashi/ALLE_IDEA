@@ -107,12 +107,12 @@ function initialize() {
 
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
-    const searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener("bounds_changed", () => {
-      searchBox.setBounds(map.getBounds());
-    });
+  const searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
+  });
 
   let searched_markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
@@ -146,14 +146,15 @@ function initialize() {
       console.log(place.geometry.location.lat());
       console.log(place.geometry.location.lng());
 
-      searched_markers.push(
-        new google.maps.Marker({
-          map,
-          icon,
-          title: place.name,
-          position: place.geometry.location,
-        })
-      );
+      //マーカー表示したい場合コメントアウト外す
+      // searched_markers.push(
+      //   new google.maps.Marker({
+      //     map,
+      //     icon,
+      //     title: place.name,
+      //     position: place.geometry.location,
+      //   })
+      // );
 
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
@@ -183,50 +184,118 @@ function initialize() {
   }
 
   //投稿用マップ
-    // google mapで利用する初期設定用の変数
-    var latlng = new google.maps.LatLng(35.691574, 139.704647);
-    var opts = {
-      zoom: 13,
-      center: latlng,
-      styles: [
-        //全てのラベルを非表示
-        {
-          featureType: 'all',
-          elementType: 'labels',
-          stylers: [
-            {visibility: 'off'},
-          ],
-        },
-        {
-          featureType: 'transit',
-          elementType: 'labels',
-          stylers: [
-            {visibility: 'on'},
-          ],
-        },
-        //「poi=観光スポットや施設など」のアイコンのみ再表示
-        {
-          featureType: 'poi',
-          elementType: 'labels.icon',
-          stylers: [
-            {visibility: 'inherit'},
-          ],
-        },
-        //地図全体の色味をカスタマイズ
-        //基本色を赤に統一 + 彩度を落とす
-        {
-          featureType: 'all',
-          elementType: 'all',
-          stylers: [
-            {hue: '#5f0285'},
-            {saturation : -50},
-          ],
-        }
-      ]
-    };
+  var latlng = new google.maps.LatLng(35.691574, 139.704647);
+  var opts = {
+    zoom: 13,
+    center: latlng,
+    styles: [
+      //全てのラベルを非表示
+      {
+        featureType: 'all',
+        elementType: 'labels',
+        stylers: [
+          {visibility: 'off'},
+        ],
+      },
+      {
+        featureType: 'transit',
+        elementType: 'labels',
+        stylers: [
+          {visibility: 'on'},
+        ],
+      },
+      //「poi=観光スポットや施設など」のアイコンのみ再表示
+      {
+        featureType: 'poi',
+        elementType: 'labels.icon',
+        stylers: [
+          {visibility: 'inherit'},
+        ],
+      },
+      //地図全体の色味をカスタマイズ
+      //基本色を赤に統一 + 彩度を落とす
+      {
+        featureType: 'all',
+        elementType: 'all',
+        stylers: [
+          {hue: '#5f0285'},
+          {saturation : -50},
+        ],
+      }
+    ]
+  };
 
-    // getElementById("map")の"map"は、body内の<div id="map">より
-    var post_map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
+  //投稿用マップを表示
+  var post_map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
+
+  //検索ボックス
+  // Create the search box and link it to the UI element.
+  const post_input = document.getElementById("post_pac-input");
+  const post_searchBox = new google.maps.places.SearchBox(post_input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(post_input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", () => {
+    post_searchBox.setBounds(map.getBounds());
+  });
+
+  let post_searched_markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  post_searchBox.addListener("places_changed", () => {
+    const post_places = post_searchBox.getPlaces();
+    console.log(post_places);
+    if (post_places.length == 0) {
+      return;
+    }
+    // Clear out the old markers.
+    post_searched_markers.forEach((post_marker) => {
+      post_marker.setMap(null);
+    });
+    post_searched_markers = [];
+    // For each place, get the icon, name and location.
+    const post_bounds = new google.maps.LatLngBounds();
+    post_places.forEach((post_place) => {
+      if (!post_place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      const post_icon = {
+        url: post_place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25),
+      };
+      // Create a marker for each place.
+      console.log(post_place.geometry.location.lat());
+      console.log(post_place.geometry.location.lng());
+
+      //マーカー表示したい場合コメントアウト外す
+      // post_searched_markers.push(
+      //   new google.maps.Marker({
+      //     post_map,
+      //     post_icon,
+      //     title: post_place.name,
+      //     position: post_place.geometry.location,
+      //   })
+      // );
+
+      if (post_place.geometry.viewport) {
+        // Only geocodes have viewport.
+        post_bounds.union(post_place.geometry.viewport);
+      } else {
+        if (post_place.geometry.viewport) {
+          // Only geocodes have viewport.
+          post_bounds.union(post_place.geometry.viewport);
+        } else {
+          post_bounds.extend(post_place.geometry.location);
+        }post_bounds.extend(post_place.geometry.location);
+      }
+      console.log(post_bounds);
+    });
+    map.fitBounds(post_bounds);
+  });
+
 
     //地図クリックイベントの登録
     google.maps.event.addListener(post_map, 'click', mylistener);

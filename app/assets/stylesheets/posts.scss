@@ -229,19 +229,33 @@
 
 #pac-input {
   position: absolute;
-  left: 500px;
+  left: 530px;
+  top: 60px;
   z-index: 9999999;
-  background-color: #fff;
+  height: 30px;
+  width: 200px;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
   margin-left: 12px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  width: 400px;
+
+  border: 1px solid #acacac;
+  color: #000;
+  opacity: .7;
+  border-radius: 10px;
+  text-align: center;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  outline: none;
+
 }
 
 #pac-input:focus {
-  border-color: #4d90fe;
+  border-color: #5f3a8a;
+  width: 300px;
+  outline: none;
 }
 

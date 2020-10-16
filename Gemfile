@@ -105,3 +105,5 @@ gem 'rails-i18n'
 gem 'fog-aws'
 #exif情報取得
 gem 'exifr'
+#exif情報取得
+gem 'exiftool_vendored'

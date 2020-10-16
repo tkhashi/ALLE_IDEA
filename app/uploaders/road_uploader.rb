@@ -15,8 +15,12 @@ class RoadUploader < CarrierWave::Uploader::Base
   def get_exif_info
     require 'exifr/jpeg'
     exif = EXIFR::JPEG::new(self.file.file)
-    byebug
+    # byebug
   end
+  require 'exiftool'
+  e = Exiftool.new(Dir["**/*.jpg"])
+
+
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

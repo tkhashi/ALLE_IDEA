@@ -192,52 +192,38 @@
   }
 }
 
-//マップ
-#post_map_canvas{
-  position: absolute;
-  left: 270px;
-  top: 0px;
-  width: 955px;
-  height: 100%;
+//閲覧用マップ
+.googlemap{
+  #map_canvas{
+    // z-index: 999;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 955px;
+    height: 100%;
+  }
 }
-.pac-card {
-  margin: 10px 10px 0 0;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  font-family: Roboto;
-}
-
 #pac-container {
   padding-bottom: 12px;
   margin-right: 12px;
 }
-
 .pac-controls {
   display: inline-block;
   padding: 5px 11px;
 }
-
 .pac-controls label {
   font-family: Roboto;
   font-size: 13px;
   font-weight: 300;
 }
-
 #pac-input {
-  position: absolute;
-  left: 530px;
-  top: 60px;
-  z-index: 9999999;
+  display: block;
+  margin: 0 auto;
   height: 30px;
   width: 200px;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
-  margin-left: 12px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
 
@@ -250,9 +236,17 @@
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
   outline: none;
-
 }
-
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+}
 #pac-input:focus {
   border-color: #5f3a8a;
   width: 300px;
@@ -260,18 +254,44 @@
 }
 
 //投稿用マップ
-#post_pac-input {
+#post_map_canvas{
   position: absolute;
-  left: 500px;
-  z-index: 9999999;
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 400px;
+  left: 270px;
+  top: 0px;
+  width: 955px;
+  height: 100%;
+  // z-index: 999;
+}
+#post_pac-input {
+//   display: block;
+//   margin: 0 auto;
+//   background-color: #fff;
+//   font-family: Roboto;
+//   font-size: 15px;
+//   font-weight: 300;
+//   padding: 0 11px 0 13px;
+//   text-overflow: ellipsis;
+//   width: 400px;
+      display: block;
+      display: none;
+      margin: 0 auto;
+      height: 30px;
+      width: 200px;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+      padding: 0 11px 0 13px;
+      text-overflow: ellipsis;
+
+      border: 1px solid #acacac;
+      color: #000;
+      opacity: .7;
+      border-radius: 10px;
+      text-align: center;
+      transition: all .3s;
+      -webkit-transition: all .3s;
+      -moz-transition: all .3s;
+      outline: none;
 }
 
 #post_pac-input:focus {

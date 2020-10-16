@@ -57,6 +57,22 @@ $(document).on('turbolinks:load', function() {
 // var map = null;
 // var infowindow = new google.maps.InfoWindow();
 
+$(document).on('turbolinks:load', function() { 
+  $(".js-posts-map").on("click", function(event){
+    $('#post_pac-input').css('display', 'block');
+    $('#pac-input').css('display', 'none');
+    console.log('post')
+  })
+})
+$(document).on('turbolinks:load', function() { 
+  $(".js-home-map").on("click", function(event){
+    $('#post_pac-input').css('display', 'none');
+    $('#pac-input').css('display', 'block');
+    console.log('browsing')
+  })
+})
+
+
 
 // 閲覧用マップ
 function initialize() {
@@ -108,10 +124,11 @@ function initialize() {
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
   const searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
+    console.log("input_cahange");
   });
 
   let searched_markers = [];
@@ -232,10 +249,11 @@ function initialize() {
   // Create the search box and link it to the UI element.
   const post_input = document.getElementById("post_pac-input");
   const post_searchBox = new google.maps.places.SearchBox(post_input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(post_input);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(post_input);
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener("bounds_changed", () => {
-    post_searchBox.setBounds(map.getBounds());
+  post_map.addListener("bounds_changed", () => {
+    post_searchBox.setBounds(post_map.getBounds());
+    console.log("post_input_cahange");
   });
 
   let post_searched_markers = [];
@@ -243,7 +261,7 @@ function initialize() {
   // more details for that place.
   post_searchBox.addListener("places_changed", () => {
     const post_places = post_searchBox.getPlaces();
-    console.log(post_places);
+    
     if (post_places.length == 0) {
       return;
     }
@@ -293,7 +311,7 @@ function initialize() {
       }
       console.log(post_bounds);
     });
-    map.fitBounds(post_bounds);
+    post_map.fitBounds(post_bounds);
   });
 
 

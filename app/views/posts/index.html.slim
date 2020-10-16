@@ -1,10 +1,12 @@
 
 //サイドバー
 =render "posts/slidemenu", {posts: @posts, post_new: @post_new, favorite_posts: @favorite_posts, user: current_user, marker_arr: @marker_arr }
-
-input id="pac-input" class="controls" type="text" placeholder="地図を検索"
-
-//GoogleMap閲覧用
+.map_searchbox
+  .browsing_map
+    input id="pac-input" class="controls" type="text" placeholder="地図を検索"
+  .post_map
+    input id="post_pac-input" class="controls" type="text" placeholder="投稿場所を探す"
+//閲覧用
 javascript:
   $(document).ready(function(){
     initialize()

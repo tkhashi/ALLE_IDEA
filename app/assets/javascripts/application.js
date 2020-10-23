@@ -54,25 +54,20 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
-// var map = null;
-// var infowindow = new google.maps.InfoWindow();
-
+//slidebar"新着"をクリックで"投稿"用検索ボックスを隠す
 $(document).on('turbolinks:load', function() { 
   $(".js-posts-map").on("click", function(event){
     $('#post_pac-input').css('display', 'block');
     $('#pac-input').css('display', 'none');
-    console.log('post')
   })
 })
+//slidebar"投稿"をクリックで"新着"用検索ボックスを隠す
 $(document).on('turbolinks:load', function() { 
   $(".js-home-map").on("click", function(event){
     $('#post_pac-input').css('display', 'none');
     $('#pac-input').css('display', 'block');
-    console.log('browsing')
   })
 })
-
-
 
 // 閲覧用マップ
 function initialize() {
@@ -128,7 +123,6 @@ function initialize() {
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
-    console.log("input_cahange");
   });
 
   let searched_markers = [];
@@ -245,7 +239,7 @@ function initialize() {
   //投稿用マップを表示
   var post_map = new google.maps.Map(document.getElementById("post_map_canvas"), opts);
 
-  //検索ボックス
+  //投稿用マップ検索ボックス
   // Create the search box and link it to the UI element.
   const post_input = document.getElementById("post_pac-input");
   const post_searchBox = new google.maps.places.SearchBox(post_input);
@@ -339,15 +333,20 @@ function dispInfo(marker,name) {
 
       //マーカークリックでコンテンツを表示
       var xhr = new XMLHttpRequest();
+
       var search_mark = document.getElementById('search_mark')
       xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
+          //xhr.responseTextはハッシュ。ハッシュの投稿データ。
           console.log(xhr.responseText)
+          //post_datesはハッシュ。キー=｢数字｣:バリュー=｢投稿データハッシュ｣
           var post_datas = JSON.parse(xhr.responseText)
+          console.log(post_datas)
           if (post_datas === null){
             search_mark.textContent = '投稿データがないよ'
           }else{
             for (i = 0; i < post_datas.length; i++) {
+              //post_date[i]はハッシュ。ハッシュの投稿データ。
               var post_data = post_datas[i];
                 console.log(post_datas[i])
               //クリックしたマーカーの動画･画像
@@ -355,13 +354,23 @@ function dispInfo(marker,name) {
               video_tag.width = 250;
               video_tag.controls =true;
               video_tag.src = post_data.road.url;
+              console.log(post_data.road.url)
               search_mark.appendChild(video_tag);
+
+              //本番環境で表示されない問題
+              //1.
+
+              //1.aタグでリンクを作る
+              //2.createTextNodeで
+
+
 
               // var post_index_user = document.getElementById('post_index_user');
               // var user_name = document.createTextNode(post_data.user);
               // post_index_user.appendChild(user_name);
               // $("#search_mark").append(post_data.body);
-              $("#post_index_user_name").append(user.post_data);
+              $("#post_index_user_name").append(post_data[i].user_id.name);
+              console.log(post_data[i].user)
 
               // $("#search_mark").append(post_data.road.url);
             }

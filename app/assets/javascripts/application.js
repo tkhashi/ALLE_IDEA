@@ -92,7 +92,7 @@ function initialize() {
           {visibility: 'on'},
         ],
       },
-      //「poi=観光スポットや施設など」のアイコンのみ再表示
+      //poi=観光スポットや施設など」のアイコンのみ再表示
       {
         featureType: 'poi',
         elementType: 'labels.icon',

@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     get 'followings'
     get 'followers'
   end
-  get 'users/last_confirm'
-  get 'users/please_signin'
-  get 'users/thanks'
+  resources :notifications, only: :index
   get 'search' => 'users#search'
 
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do

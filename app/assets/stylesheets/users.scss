@@ -105,7 +105,8 @@ main{
     color: #5f3a8a;
   }
 }
-//ナビバーの中身
+//ナビバーの中身1
+//投稿一覧
 #navmenu_contents{
   width: 100%;
   margin-top: 30px;
@@ -166,7 +167,7 @@ main{
   }
 }
 
-//ナビバーの中身
+//ナビバーの中身2
 //自分のお気に入り一覧
 #navmenu_contents{
   width: 100%;
@@ -207,6 +208,15 @@ main{
       }
     }
   }
+}
+
+//ナビバーの中身3
+//通知一覧
+.n-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
 }
 
 //フォロワー一覧

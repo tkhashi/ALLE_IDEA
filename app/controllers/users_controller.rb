@@ -9,7 +9,11 @@ class UsersController < ApplicationController
 
   def show
     @favorite_posts=@user.favorite_posts
-
+    @notifications = current_user.passive_notifications.page(params[:page]).per(20)
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
+    @visitor_ex_current_user= @notifications.where.not(visitor_id: current_user.id)
   end
 
   def edit

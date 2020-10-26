@@ -30,4 +30,4 @@ main#user_show
           =link_to user_followings_path(@user.id) do
             |フォロー中 #{@user.followings.count} 人 
 
-  =render "user_contents", {user: @user, favorite_posts: @favorite_posts}
+  =render "user_contents", {user: @user, favorite_posts: @favorite_posts, notifications: @visitor_ex_current_user}

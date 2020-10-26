@@ -107,3 +107,5 @@ gem 'fog-aws'
 gem 'exifr'
 #exif情報取得
 gem 'exiftool_vendored'
+# kaminari
+gem 'kaminari'

@@ -25,4 +25,4 @@ main#user_show
           =link_to user_followings_path(user.id) do
             |フォロー中 #{user.followings.count} 人 
 
-  =render "users/user_contents", {user: user, favorite_posts: favorite_posts}
+  =render "users/user_contents", { notifications:  notifications, user: user, favorite_posts: favorite_posts}

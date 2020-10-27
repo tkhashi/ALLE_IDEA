@@ -14,6 +14,9 @@ class UsersController < ApplicationController
       notification.update_attributes(checked: true)
     end
     @visitor_ex_current_user= @notifications.where.not(visitor_id: current_user.id)
+    # @visitor= Notification.visitor
+    # @visited= Notification.visited
+    
   end
 
   def edit

@@ -10,7 +10,10 @@ Rails.application.routes.draw do
     get 'followings'
     get 'followers'
   end
+
   resources :notifications, only: :index
+
+  #ユーザー･投稿検索
   get 'search' => 'users#search'
 
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do

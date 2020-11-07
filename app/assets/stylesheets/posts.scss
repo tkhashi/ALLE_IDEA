@@ -183,6 +183,10 @@
               font-weight: bold;
               .delete_btn{
                 width: 20px;
+                a:link, a:visited, a:active{
+                color: black;
+
+                }
               }
             }
           }

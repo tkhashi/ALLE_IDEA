@@ -31,6 +31,8 @@ ol.post_show_comment_index
                 =c.user.name
               span.comment_user_info_date
                 =c.created_at.to_s(:datetime_jp) 
+              span.comment_delete_btn
+                = link_to  "削除", post_comment_path(c.post_id, c.id), method: :delete
               //コメント内容
             .comment_user_text
               =c.comment

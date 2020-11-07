@@ -149,6 +149,7 @@
     }
   }
   &_comment_form{
+    margin: 30px;
     vertical-align: middle;
     &_user{
     display: inline-block;
@@ -162,6 +163,7 @@
     margin-left: 0;
     padding-left: 0;
     .comment{
+      margin-bottom: 20px;
       &_body{
         .comment_user{
           &_avatar{
@@ -177,17 +179,20 @@
               &_date{
                 flood-color: gray;
               }
+              .comment_delete_btn{
+                justify-content:center;
+                width: 20px;
+                a:link, a:visited, a:active{
+                color: #5f3a8a;
+                font-weight: bold;
+                margin-left: 10px;
+                }
+              }
             }
             .comment_user_text{
               list-style: none;
               font-weight: bold;
-              .delete_btn{
-                width: 20px;
-                a:link, a:visited, a:active{
-                color: black;
-
-                }
-              }
+              font-size: 12px;
             }
           }
         }

@@ -39,9 +39,3 @@ ol.post_show_comment_index
               -if c.user == current_user
                 span.delete_btn
                   = link_to  "削除", post_comment_path(c.post_id, c.id), method: :delete
-             
-              / //編集･削除ボタン
-              / -if post.user == current_user
-              /   .post_index_edit
-              /     = link_to '編集', edit_post_path(post), class: 'btn btn-primary mr-3'
-              /     = link_to '削除', post_path(post), method: :delete, remote: true, data: {confirm: "タスク「#{post.body}」を削除します。よろしいですか？"}, class: 'btn btn-danger delete', id: "delete_link_#{post.id}"

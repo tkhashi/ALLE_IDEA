@@ -10,11 +10,6 @@ Rails.application.routes.draw do
     get 'followings'
     get 'followers'
   end
-<<<<<<< Updated upstream
-  resources :notifications, only: :index
-  get 'search' => 'users#search'
-=======
->>>>>>> Stashed changes
 
   resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :comments, only: [:create, :destroy]

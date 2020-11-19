@@ -30,7 +30,6 @@ aside.sidebar#sidebar
 
 
   //スライドサイドバーの中身
-  /<ーーサインインしている時ーー>
   -if user_signed_in?
     #slidemenu_contents
       .slidemenu_contents_detail id="home"
@@ -58,4 +57,3 @@ aside.sidebar#sidebar
       /   .slidemenucontent_detail_title
       /     h2 自分の投稿
       /   =render "users/user_show", {user: user, favorite_posts: favorite_posts}
-  /<ーーサインインしている時ーー>

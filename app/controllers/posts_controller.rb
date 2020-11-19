@@ -32,15 +32,14 @@ class PostsController < ApplicationController
       @posts = Post.tagged_with("#{params[:tag_name]}")
     end
     #マップ用
-    @map = Map.all          #Mapの全レコード
-    @arr=[]                  #空の配列
-    @map.each do |m|        # m はMapのレコード
+    @map = Map.all
+    @arr=[]
+    @map.each do |m|
       @arr.push({lat: m.latitude, lng: m.longitude })
     end
-    ##クリックしたマーカーのコンテンツ
   end
 
-  #マップマーカークリック時に投稿データを引っ張り出すアクション
+  #マップマーカークリック時、緯度経度が一致するpostを引っ張り出す
   def search
     maps = Map.where(latitude: params[:lat]).where(longitude: params[:lng])
     @marker_arr =[]

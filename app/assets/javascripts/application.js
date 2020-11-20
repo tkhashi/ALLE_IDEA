@@ -16,16 +16,6 @@
 //= require turbolinks
 //= require_tree .
 
-
-// var title = "javascriptが使えました";
-// alert(title);
-
-
-// $(document).ready(function () {
-//   $('body').html('<h1>Hello jQuery!!</h1>');
-// });
-
-
 //slidemenu用
 $(document).on('turbolinks:load', function() { 
   $('#slidemenu_contents .slidemenu_contents_detail[id != "home"]').hide();

@@ -67,6 +67,10 @@ body
                   =link_to destroy_user_session_path, method: :delete
                     |退会
           -else
+            span.guest_user_link
+              .user_link_guest_login
+                =link_to users_guest_sign_in_path, method: :post
+                  |ゲストログイン
             span.user_link
               .user_link_logout
                 =link_to new_user_registration_path

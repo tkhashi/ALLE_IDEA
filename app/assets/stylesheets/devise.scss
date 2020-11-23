@@ -1,12 +1,11 @@
 //会員登録ページ
 //サインインページ
 .regi{
-  position: absolute;
-  top: 50px;
   height: 100vh;
+  margin: 80px auto;
+  text-align: center;
+  width: 500px;
   &_container{
-    margin: 0 400px;
-    text-align: center;
     .regi_signup, .regi_signin{
       padding: 5px 40px;
       margin: 20px 0;

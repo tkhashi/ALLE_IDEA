@@ -9,9 +9,10 @@
     position: absolute;
     left: 10px;
     top: 50px;
-    height: 100%;
+    height: calc( 100% - 50px);
     width: 250px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     &_favorites_count{
       display: inline-block;
       list-style: none;
@@ -209,7 +210,7 @@
     right: 0;
     top: 50px;
     width: 955px;
-    height: 100%;
+    height: calc(100% - 50px);
   }
 }
 #pac-container {
@@ -265,9 +266,9 @@
 //投稿用マップ
 #post_map_canvas{
   position: absolute;
-  left: 270px;
+  left: 325px;
   top: 0px;
-  width: 955px;
+  width: calc(100% - 325px);
   height: 100%;
   // z-index: 999;
 }

@@ -209,7 +209,7 @@
     position: absolute;
     right: 0;
     top: 50px;
-    width: 955px;
+    width: calc(100% - 320px);
     height: calc(100% - 50px);
   }
 }
@@ -266,9 +266,10 @@
 //投稿用マップ
 #post_map_canvas{
   position: absolute;
-  left: 325px;
+  left: 270px;
   top: 0px;
-  width: calc(100% - 325px);
+  width: calc(100% - 270px);
+
   height: 100%;
   // z-index: 999;
 }

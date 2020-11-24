@@ -153,6 +153,27 @@ html{
             color: white;
           }
         }
+        .guest_user_link{
+          font-weight: bold;
+          padding: 0.5em 1.5em;
+          margin-right: 10px;
+          margin-top: 10px;
+          display: inline-block;
+          text-decoration: none;
+          background: #ECECEC;
+          transition: .4s;
+          border-radius: 8px;
+          a{
+            font-size: 13px;
+            color: #5f3a8a;
+          }
+          &:hover{
+            background: #5f3a8a;
+            a{
+              color: #ECECEC;
+            }
+          }
+        }
         .user_link{
           &_logout{
             margin-right: 10px;
@@ -247,21 +268,22 @@ html{
     box-shadow: 0 0 0 3px rgba(0,0,0,.1);
     height: calc(100% - 50px);
     min-width: 270px;
-  }
-  #posts{
-    h2,h3{
-      position: relative;
-      left: 20px;
-      height: calc(100% - 50px);
-      color: #fff;
-      margin-bottom: 10px;
+    &#posts{
+      width: calc(100% - 50px);
+      h2,h3{
+        position: relative;
+        left: 20px;
+        height: calc(100% - 50px);
+        color: #fff;
+        margin-bottom: 10px;
+      }
     }
-  }
-  #home,#contents-on-map,#favorites{
-    h2,h3{
-      position: relative;
-      left: 20px;
-      color: #fff;
+    &#home,&#contents-on-map,&#favorites{
+      h2,h3{
+        position: relative;
+        left: 20px;
+        color: #fff;
+      }
     }
   }
 }

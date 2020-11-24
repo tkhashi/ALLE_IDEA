@@ -278,11 +278,20 @@ html{
         margin-bottom: 10px;
       }
     }
-    &#home,&#contents-on-map,&#favorites{
+    &#home, &#contents-on-map, &#favorites{
       h2,h3{
         position: relative;
         left: 20px;
         color: #fff;
+      }
+      .user_show_favorites{
+        .navmenu_contents_favorites{
+          .user_show_responce{
+            &_favorite_icon{
+              list-style: none;
+            }
+          }
+        }
       }
     }
   }

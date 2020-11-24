@@ -137,13 +137,14 @@ main{
         font: inherit;
       }
       .user_show_responce{
-        &_fav{
+        &_favorite{
           vertical-align: middle;
           display: inline-block;
           margin-right: 10px;
           list-style: none;
           &_count, &_icon{
             li{
+              list-style: none;
               width: 10px;
               height: 10px;
             }
@@ -182,6 +183,7 @@ main{
         margin-right: 0;
       }
       .user_show_responce{
+        list-style: none;
         &_favorite_icon{
           width: 300px;
         }

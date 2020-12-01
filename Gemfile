@@ -62,6 +62,7 @@ group :test do
   gem 'chromedriver-helper'
   #consoleでpryが使える
   gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

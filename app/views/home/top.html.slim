@@ -38,15 +38,15 @@ ul.slidemenu#slidemenu
     .slidemenucontent_detail_title
       h2 地図上のコンテンツ一覧
       h3 地図上のマーカーをクリックしよう！
+      =render "home/no_login"
   .slidemenu_contents_detail#posts
     .slidemenucontent_detail_title
       h2 あなたの｢道｣を投稿
+      =render "home/no_login"
   .slidemenu_contents_detail#favorites
     .slidemenucontent_detail_title
       h2 お気に入りコンテンツ一覧
-  .slidemenu_contents_detail#mymap
-    .slidemenucontent_detail_title
-      h2 自分の投稿
+      =render "home/no_login"
 
 //GoogleMap閲覧用
 javascript:

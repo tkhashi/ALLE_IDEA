@@ -1,3 +1,34 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.no_login{
+  margin: 40px 0;
+  h2{
+    position: relative;
+    color: #fff;
+  }
+  .guest_user_link, .user_link{
+    position: relative;
+    left: 20px;
+    .user_link_login, .user_link_logout, .user_link_guest_login{
+      font-weight: bold;
+      padding: 1.5em 1.5em;
+      margin: 5px 10px 0;
+      display: inline-block;
+      text-decoration: none;
+      background: #ECECEC;
+      transition: .4s;
+      a{
+        font-size: 13px;
+        color: #5f3a8a;
+      }
+      &:hover{
+        background: #5f3a8a;
+        a{
+          color: #ECECEC;
+        }
+      }
+    }
+  }
+}

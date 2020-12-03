@@ -1,0 +1,15 @@
+.no_login
+  h2.recommend_login
+    |これは会員のみ利用できる機能です。<br>
+    |会員登録して皆の道を見てみよう！
+  .guest_user_link
+    .user_link_guest_login
+      =link_to users_guest_sign_in_path, method: :post
+        |ゲストログイン
+  .user_link
+    .user_link_login
+      =link_to new_user_registration_path
+        |会員登録
+    .user_link_logout
+      =link_to new_user_session_path
+        |ログイン

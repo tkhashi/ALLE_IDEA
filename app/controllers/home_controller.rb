@@ -5,8 +5,10 @@ class HomeController < ApplicationController
     @arr=[]                  #空の配列
     @map.each do |m|        # m はMapのレコード
       @arr.push({lat: m.latitude, lng: m.longitude })
+    if user_signed_in?
+      redirect_to posts_path and return
     end
-
+    end
   end
 
   def about

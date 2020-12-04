@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @post_new = Post.new(post_params)
     @post_new.user_id = current_user.id
-    if @post_new.save
+    if @post_new.save!
       redirect_to post_path(@post_new.id)
     else
       @posts = Post.all

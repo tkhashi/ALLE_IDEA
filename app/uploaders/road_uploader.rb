@@ -11,14 +11,14 @@ class RoadUploader < CarrierWave::Uploader::Base
     storage :file # 本番環境以外
   end
 
-  process :get_exif_info
-  def get_exif_info
-    require 'exifr/jpeg'
-    exif = EXIFR::JPEG::new(self.file.file)
-    # byebug
-  end
-  require 'exiftool'
-  e = Exiftool.new(Dir["**/*.jpg"])
+  # process get_exif_info
+  # def get_exif_info
+  #   require 'exifr/jpeg'
+  #   exif = EXIFR::JPEG::new(self.file.file)
+  #   # byebug
+  # end
+  # require 'exiftool'
+  # e = Exiftool.new(Dir["**/*.jpg"])
 
 
 
@@ -51,7 +51,7 @@ class RoadUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(JPEG JPG jpg jpeg gif png mov )
+    %w(JPEG JPG jpg jpeg gif png mov mp4)
   end
 
   # Override the filename of the uploaded files:

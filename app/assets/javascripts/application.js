@@ -314,7 +314,6 @@ function initialize() {
 
 
 //マーカークリック時の関数達
-//これだけで吹き出し表示できる。。。
 function dispInfo(marker,name) {
   google.maps.event.addListener(marker, 'click',
     function(event) {
@@ -322,57 +321,39 @@ function dispInfo(marker,name) {
       console.log(marker.position.lat());
 
       //マーカークリックでコンテンツを表示
-      var xhr = new XMLHttpRequest();
-
       var search_mark = document.getElementById('search_mark')
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', "/latlngsearch/" + marker.position.lat() + "/" + marker.position.lng() + ".json", true)
+      xhr.send(null);
       xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-          //xhr.responseTextはハッシュ。ハッシュの投稿データ。
-          console.log(xhr.responseText)
-          //post_datesはハッシュ。キー=｢数字｣:バリュー=｢投稿データハッシュ｣
           var post_datas = JSON.parse(xhr.responseText)
-          console.log(post_datas)
           if (post_datas === null){
             search_mark.textContent = '投稿データがないよ'
           }else{
             for (i = 0; i < post_datas.length; i++) {
-              //post_date[i]はハッシュ。ハッシュの投稿データ。
               var post_data = post_datas[i];
-                console.log(post_datas[i])
               //クリックしたマーカーの動画･画像
               var video_tag = document.createElement('video')
               video_tag.width = 250;
               video_tag.controls =true;
               video_tag.src = post_data.road.url;
-              console.log(post_data.road.url)
               search_mark.appendChild(video_tag);
-
-              //本番環境で表示されない問題
-              //1.
-
-              //1.aタグでリンクを作る
-              //2.createTextNodeで
-
-
-
               // var post_index_user = document.getElementById('post_index_user');
               // var user_name = document.createTextNode(post_data.user);
               // post_index_user.appendChild(user_name);
               // $("#search_mark").append(post_data.body);
-              $("#post_index_user_name").append(post_data[i].user_id.name);
+              // $("#post_index_user_name").append(post_data[i].user_id.name);
               console.log(post_data[i].user)
-
               // $("#search_mark").append(post_data.road.url);
             }
           }
         }
       }
-      xhr.open('GET', "/latlngsearch/" + marker.position.lat() + "/" + marker.position.lng() + ".json", true)
-      xhr.send(null);
 
-
-      new google.maps.InfoWindow
-      ({content:name}).open(marker.getMap(), marker);
+      //吹き出し表示
+      // new google.maps.InfoWindow
+      // ({content:name}).open(marker.getMap(), marker);
     }
   )
 }

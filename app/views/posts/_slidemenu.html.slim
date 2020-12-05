@@ -39,8 +39,34 @@ aside.sidebar#sidebar
       .slidemenu_contents_detail id="contents-on-map"
         .slidemenu_contents_detail_title
           h2 地図上のコンテンツ一覧
-          h3 地図上のマーカーをクリックしよう！
-          =render "posts/post_on_map", {marker_arr: marker_arr, user: user}
+          -if marker_arr.nil?
+            h3 地図上のマーカーをクリックしよう！
+            = marker_arr
+          -else
+            =render "posts/post_on_map", {marker_arr: marker_arr, user: user}
+            div.post_index#post_index
+                div.post_index_user#post_index_user
+                    span.post_index_user_name#post_index_user_name
+                //投稿動画･画像
+                .post_index_post
+                  #search_mark
+                //いいねボタンAjax
+                .post_index_favorites_count
+                  / div id='favorites_buttons_#{ marker_arr.id }'
+                    = render partial: 'favorites/favorite', locals: { post: post }
+                //コメント数
+                .post_index_comments_count
+                  / i.navmenu_nav_icon.fas.fa-comment.fa-lg
+                  / |コメント
+                //編集･削除ボタン
+                .post_index_edit
+                //投稿の説明
+                .post_index_disc
+                //投稿日時
+                .post_index_created
+                //タグ
+                .post_index_tags
+
           .post_index_post
             #search_mark
              |テスト

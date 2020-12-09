@@ -320,6 +320,18 @@ function dispInfo(marker,name) {
       console.log(marker.position.lng());
       console.log(marker.position.lat());
 
+      $(document).on('turbolinks:load', function() { 
+        $('#slidemenu_contents .slidemenu_contents_detail[id != "home"]').hide();
+        $("#slidemenu a").on("click", function(event){
+          $("#slidemenu_contents .slidemenu_contents_detail").hide();
+          $("#slidemenu .active").removeClass("active");
+          $(this).addClass("active");
+
+          $($(this).attr("href")).show();
+          event.preventDefault();
+        });
+      });
+
       //マーカークリックでコンテンツを表示
       var search_mark = document.getElementById('search_mark')
       var xhr = new XMLHttpRequest();
@@ -328,23 +340,28 @@ function dispInfo(marker,name) {
       xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
           var post_datas = JSON.parse(xhr.responseText)
+          console.log(JSON.parse(xhr.responseText))
           if (post_datas === null){
             search_mark.textContent = '投稿データがないよ'
           }else{
             for (i = 0; i < post_datas.length; i++) {
-              var post_data = post_datas[i];
+              var post_data = post_datas[0];
+              var post_user = post_datas[1];
               //クリックしたマーカーの動画･画像
               var video_tag = document.createElement('video')
               video_tag.width = 250;
               video_tag.controls =true;
               video_tag.src = post_data.road.url;
+              // if post_data
               search_mark.appendChild(video_tag);
+              console.log(post_data.user_id)
+              console.log(post_data)
+              console.log(post_user.name)
               // var post_index_user = document.getElementById('post_index_user');
               // var user_name = document.createTextNode(post_data.user);
               // post_index_user.appendChild(user_name);
               // $("#search_mark").append(post_data.body);
               // $("#post_index_user_name").append(post_data[i].user_id.name);
-              console.log(post_data[i].user)
               // $("#search_mark").append(post_data.road.url);
             }
           }

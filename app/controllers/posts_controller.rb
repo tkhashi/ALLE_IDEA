@@ -45,7 +45,9 @@ class PostsController < ApplicationController
     @marker_arr =[]
     maps.each do |map|
       @marker_arr.push(map.post)
+      @marker_arr.push(map.post.user)
     end
+    
     # #同一緯度経度に投稿があった場合が考慮されていない。下記の要領で対応できるか?
     # @map_posts = []
     # maps.each do |map|

@@ -347,16 +347,69 @@ function dispInfo(marker,name) {
             for (i = 0; i < post_datas.length; i++) {
               var post_data = post_datas[0];
               var post_user = post_datas[1];
-              //クリックしたマーカーの動画･画像
-              var video_tag = document.createElement('video')
+              //クリックしたマーカー(投稿)のユーザー
+              var a_tag = document.createElement('a');
+              var img_tag = document.createElement('img')
+              if (post_user.avatar.url == null){
+                img_tag.src = "/assets/face-f462ad15b7f05b572f6f6e7ff662787e2d3377954ecbfd077ba1260dd180c38d.jpg"
+              }else{
+                img_tag.src = post_user.avatar.url
+              }
+              img_tag.width= 35;
+              search_mark.appendChild(img_tag);
+              var text_user_name = document.createTextNode(post_user.name);
+              a_tag.href = '/users/' + post_user.id
+              a_tag.appendChild(text_user_name);
+              search_mark.appendChild(a_tag);
+              //クリックしたマーカー(投稿)の動画･画像
+              var video_extension = /(MOV|mp4)$/;
+              var post_img_or_video = post_data.road.url
+              if (video_extension.test(post_img_or_video)){
+              var video_tag = document.createElement('video');
               video_tag.width = 250;
               video_tag.controls =true;
               video_tag.src = post_data.road.url;
-              // if post_data
               search_mark.appendChild(video_tag);
+              }else{
+              var img_tag = document.createElement('img');
+              img_tag.width = 250;
+              img_tag.controls =true;
+              img_tag.src = post_data.road.url;
+              search_mark.appendChild(img_tag);
+              }
+              //クリックしたマーカー(投稿)のイイネ
+              var div_tag = document.createElement('div')
+              div_tag.id = 'favorites_buttons_' + post_data.id
+              var a_tag_fav = document.createElement('a');
+              // a_tag_fav.data-remote = 'true'
+              a_tag_fav.rel ='nofollow'
+              // a_tag_fav.data-method = 'post'
+              a_tag_fav.href = 'posts/' + post_data.id + '/favorites'
+              // var i_tag = document.createElement('i')
+              // i_tag.area-hidden = 'true'
+              div_tag.appendChild(a_tag_fav)
+              search_mark.appendChild(div_tag)
+              //クリックしたマーカー(投稿)の説明
+              var div_tag_body = document.createElement('div');
+              var a_tag_body = document.createElement('a');
+              a_tag_body.href = '/posts/' + post_data.id;
+              var text_body = document.createTextNode('説明: ' + post_data.body);
+              a_tag_body.appendChild(text_body);
+              div_tag_body.appendChild(a_tag_body);
+              search_mark.appendChild(div_tag_body);
+              //クリックしたマーカー(投稿)の作成日時
+              var div_tag_datetime = document.createElement('div');
+              var text_body = document.createTextNode(post_data.created_at);
+              div_tag_datetime.appendChild(text_body);
+              search_mark.appendChild(div_tag_datetime);
+
+
+
               console.log(post_data.user_id)
               console.log(post_data)
               console.log(post_user.name)
+              console.log(post_user.id)
+              console.log(post_datas)
               // var post_index_user = document.getElementById('post_index_user');
               // var user_name = document.createTextNode(post_data.user);
               // post_index_user.appendChild(user_name);

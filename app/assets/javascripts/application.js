@@ -319,18 +319,28 @@ function dispInfo(marker,name) {
     function(event) {
       console.log(marker.position.lng());
       console.log(marker.position.lat());
+      console.log(this);
+      console.log(marker);
 
-      $(document).on('turbolinks:load', function() { 
-        $('#slidemenu_contents .slidemenu_contents_detail[id != "home"]').hide();
-        $("#slidemenu a").on("click", function(event){
+      // $(document).on('turbolinks:load', function() { 
+      //   $('#slidemenu_contents .slidemenu_contents_detail[id != "home"]').hide();
+      //   $("#slidemenu a").on("click", function(event){
+      //     $("#slidemenu_contents .slidemenu_contents_detail").hide();
+      //     $("#slidemenu .active").removeClass("active");
+      //     $(this).addClass("active");
+      //     $($(this).attr("href")).show();
+      //     event.preventDefault();
+      //   });
+      // });
+
+      $(function(){
+        $('marker').on('click', function() {
           $("#slidemenu_contents .slidemenu_contents_detail").hide();
-          $("#slidemenu .active").removeClass("active");
-          $(this).addClass("active");
-
-          $($(this).attr("href")).show();
+          $('#slidemenu_contents .slidemenu_contents_detail[id = "contents-on-map"]').show();
+          console.log(marker)
           event.preventDefault();
-        });
-      });
+        })
+      })
 
       //マーカークリックでコンテンツを表示
       var search_mark = document.getElementById('search_mark')
@@ -372,7 +382,6 @@ function dispInfo(marker,name) {
             }else{
               var img_tag = document.createElement('img');
               img_tag.width = 250;
-              img_tag.controls =true;
               img_tag.src = post_data.road.url;
               search_mark.appendChild(img_tag);
             }
@@ -384,8 +393,9 @@ function dispInfo(marker,name) {
             a_tag_fav.rel ='nofollow'
             // a_tag_fav.data-method = 'post'
             a_tag_fav.href = 'posts/' + post_data.id + '/favorites'
-            // var i_tag = document.createElement('i')
+            var i_tag = document.createElement('i')
             // i_tag.area-hidden = 'true'
+            // i_tag.class =  'fa fa-heart'
             div_tag.appendChild(a_tag_fav)
             search_mark.appendChild(div_tag)
             //クリックしたマーカー(投稿)の説明

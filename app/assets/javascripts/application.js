@@ -271,6 +271,7 @@ function initialize() {
       // Create a marker for each place.
       console.log(post_place.geometry.location.lat());
       console.log(post_place.geometry.location.lng());
+      console.log(markers[1])
 
       //マーカー表示したい場合コメントアウト外す
       // post_searched_markers.push(
@@ -319,28 +320,11 @@ function dispInfo(marker,name) {
     function(event) {
       console.log(marker.position.lng());
       console.log(marker.position.lat());
-      console.log(this);
-      console.log(marker);
-
-      // $(document).on('turbolinks:load', function() { 
-      //   $('#slidemenu_contents .slidemenu_contents_detail[id != "home"]').hide();
-      //   $("#slidemenu a").on("click", function(event){
-      //     $("#slidemenu_contents .slidemenu_contents_detail").hide();
-      //     $("#slidemenu .active").removeClass("active");
-      //     $(this).addClass("active");
-      //     $($(this).attr("href")).show();
-      //     event.preventDefault();
-      //   });
-      // });
-
-      $(function(){
-        $('marker').on('click', function() {
+          //マーカークリック時にサイドメニューを開く
           $("#slidemenu_contents .slidemenu_contents_detail").hide();
           $('#slidemenu_contents .slidemenu_contents_detail[id = "contents-on-map"]').show();
-          console.log(marker)
-          event.preventDefault();
-        })
-      })
+          $("#slidemenu .active").removeClass("active");
+          $('#slidemenu_contents').addClass("active");
 
       //マーカークリックでコンテンツを表示
       var search_mark = document.getElementById('search_mark')

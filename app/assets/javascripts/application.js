@@ -374,14 +374,19 @@ function dispInfo(marker,name) {
             div_tag.id = 'favorites_buttons_' + post_data.id
             var a_tag_fav = document.createElement('a');
             // a_tag_fav.data-remote = 'true'
+            a_tag_fav.dataset.remote="true"
             a_tag_fav.rel ='nofollow'
             // a_tag_fav.data-method = 'post'
+            a_tag_fav.dataset.method="post"
             a_tag_fav.href = 'posts/' + post_data.id + '/favorites'
-            var i_tag = document.createElement('i')
-            // i_tag.area-hidden = 'true'
-            // i_tag.class =  'fa fa-heart'
-            div_tag.appendChild(a_tag_fav)
-            search_mark.appendChild(div_tag)
+            var i_tag_fav = document.createElement('i');
+            // i_tag_fav.area-hidden = 'true';
+            i_tag_fav.class =  'fa fa-heart';
+            var text_fav = document.createTextNode("いいね");
+            div_tag.appendChild(a_tag_fav);
+            a_tag_fav.appendChild(i_tag_fav);
+            i_tag_fav.appendChild(text_fav);
+            search_mark.appendChild(div_tag);
             //クリックしたマーカー(投稿)の説明
             var div_tag_body = document.createElement('div');
             var a_tag_body = document.createElement('a');

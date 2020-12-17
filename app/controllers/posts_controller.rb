@@ -42,10 +42,14 @@ class PostsController < ApplicationController
   #マップマーカークリック時、緯度経度が一致するpostを引っ張り出す
   def search
     maps = Map.where(latitude: params[:lat]).where(longitude: params[:lng])
+    favorites = Favorite.all
     @marker_arr =[]
     maps.each do |map|
       @marker_arr.push(map.post)
       @marker_arr.push(map.post.user)
+      @marker_arr.push(map.post.favorites.count)
+      @marker_arr.push(map.post.comments.count)
+      @marker_arr.push(map.post.created_at.to_s(:datetime_jp))
     end
     
     # #同一緯度経度に投稿があった場合が考慮されていない。下記の要領で対応できるか?

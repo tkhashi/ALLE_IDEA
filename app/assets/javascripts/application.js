@@ -340,6 +340,9 @@ function dispInfo(marker,name) {
           }else{
             var post_data = post_datas[0];
             var post_user = post_datas[1];
+            var post_favorites_count = post_datas[2];
+            var post_comments_count = post_datas[3];
+            var post_datatime = post_datas[4];
             //クリックしたマーカー(投稿)のユーザー
             var a_tag = document.createElement('a');
             var img_tag = document.createElement('img')
@@ -355,9 +358,9 @@ function dispInfo(marker,name) {
             a_tag.appendChild(text_user_name);
             search_mark.appendChild(a_tag);
             //クリックしたマーカー(投稿)の動画･画像
-            var video_extension = /(MOV|mp4)$/;
+            var post_extension = /(MOV|mp4)$/;
             var post_img_or_video = post_data.road.url
-            if (video_extension.test(post_img_or_video)){
+            if (post_extension.test(post_img_or_video)){
               var video_tag = document.createElement('video');
               video_tag.width = 250;
               video_tag.controls =true;
@@ -373,20 +376,29 @@ function dispInfo(marker,name) {
             var div_tag = document.createElement('div')
             div_tag.id = 'favorites_buttons_' + post_data.id
             var a_tag_fav = document.createElement('a');
-            // a_tag_fav.data-remote = 'true'
             a_tag_fav.dataset.remote="true"
             a_tag_fav.rel ='nofollow'
-            // a_tag_fav.data-method = 'post'
             a_tag_fav.dataset.method="post"
             a_tag_fav.href = 'posts/' + post_data.id + '/favorites'
             var i_tag_fav = document.createElement('i');
-            // i_tag_fav.area-hidden = 'true';
             i_tag_fav.class =  'fa fa-heart';
-            var text_fav = document.createTextNode("いいね");
+            var text_fav = document.createTextNode("いいね" + post_favorites_count);
             div_tag.appendChild(a_tag_fav);
             a_tag_fav.appendChild(i_tag_fav);
             i_tag_fav.appendChild(text_fav);
             search_mark.appendChild(div_tag);
+            //クリックしたマーカー(投稿)のコメント
+            var div_tag_comments = document.createElement('div');
+            div_tag_comments.class = 'post_index_comments_count';
+            var a_tag_comment = document.createElement('a');
+            a_tag_comment.href = 'posts/' + post_data.id;
+            var i_tag_comment = document.createElement('i');
+            i_tag_comment.class =  'fas fa-comment fa-lg';
+            var text_comment = document.createTextNode("コメント" + post_comments_count);
+            div_tag.appendChild(a_tag_comment);
+            a_tag_comment.appendChild(i_tag_comment);
+            i_tag_comment.appendChild(text_comment);
+            search_mark.appendChild(div_tag_comments);
             //クリックしたマーカー(投稿)の説明
             var div_tag_body = document.createElement('div');
             var a_tag_body = document.createElement('a');
@@ -397,7 +409,7 @@ function dispInfo(marker,name) {
             search_mark.appendChild(div_tag_body);
             //クリックしたマーカー(投稿)の作成日時
             var div_tag_datetime = document.createElement('div');
-            var text_body = document.createTextNode(post_data.created_at);
+            var text_body = document.createTextNode(post_datatime);
             div_tag_datetime.appendChild(text_body);
             search_mark.appendChild(div_tag_datetime);
 

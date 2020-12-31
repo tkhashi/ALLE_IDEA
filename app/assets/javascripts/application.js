@@ -381,19 +381,20 @@ function dispInfo(marker,name) {
             a_tag_fav.dataset.method="post"
             a_tag_fav.href = 'posts/' + post_data.id + '/favorites'
             var i_tag_fav = document.createElement('i');
-            i_tag_fav.class =  'fa fa-heart';
+            i_tag_fav.classList.add('fa','fa-heart');
             var text_fav = document.createTextNode("いいね" + post_favorites_count);
             div_tag.appendChild(a_tag_fav);
             a_tag_fav.appendChild(i_tag_fav);
             i_tag_fav.appendChild(text_fav);
             search_mark.appendChild(div_tag);
+            $('#favorites_buttons_' + post_data.id).html( "<%= j(render partial: 'posts/post_on_map') %>");
             //クリックしたマーカー(投稿)のコメント
             var div_tag_comments = document.createElement('div');
             div_tag_comments.class = 'post_index_comments_count';
             var a_tag_comment = document.createElement('a');
             a_tag_comment.href = 'posts/' + post_data.id;
             var i_tag_comment = document.createElement('i');
-            i_tag_comment.class =  'fas fa-comment fa-lg';
+            i_tag_comment.classList.add('fas','fa-comment');
             var text_comment = document.createTextNode("コメント" + post_comments_count);
             div_tag.appendChild(a_tag_comment);
             a_tag_comment.appendChild(i_tag_comment);

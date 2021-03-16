@@ -38,6 +38,22 @@
   border-radius: 50%;
 }
 
+#contents-on-map{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .post_index_user{
+    margin-top: 5px
+  }
+  .post_index_post{
+    margin-left: 10px;
+    #search_mark{
+      img{
+        border-radius: 25px;
+      }
+    } 
+  }
+}
+
 //新規投稿
 .post_new{
   position: absolute;
